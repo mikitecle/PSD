@@ -9,7 +9,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 ENTITY circuito IS
   PORT
   (
-    clk, rst, exec : IN STD_LOGIC;
+    clk, rst : IN STD_LOGIC;
     instr : IN STD_LOGIC;
     btnU, btnD, btnL, btnR : IN STD_LOGIC;
     data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
@@ -21,12 +21,12 @@ ARCHITECTURE Behavioral OF circuito IS
   COMPONENT control
     PORT
     (
-      clk, rst, exec : IN STD_LOGIC;
+      clk, rst : IN STD_LOGIC;
       instr : IN STD_LOGIC;
       btnU, btnD, btnL, btnR : IN STD_LOGIC;
       mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
       reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-      alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+      alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
     );
   END COMPONENT;
   COMPONENT datapath
@@ -39,16 +39,16 @@ ARCHITECTURE Behavioral OF circuito IS
     );
   END COMPONENT;
 
-  SIGNAL mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-  SIGNAL reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-  SIGNAL alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+  SIGNAL mux_enables :  STD_LOGIC_VECTOR (1 DOWNTO 0);
+  SIGNAL reg_enables : STD_LOGIC_VECTOR (1 DOWNTO 0);
+  SIGNAL alu_selectors :  STD_LOGIC_VECTOR (2 DOWNTO 0);
 
 BEGIN
   inst_control : control PORT MAP
   (
     clk => clk,
     rst => rst,
-    exec => exec,
+  
     instr => instr,
     btnU => btnU,
     btnD => btnD,

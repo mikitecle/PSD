@@ -1,5 +1,5 @@
-LIBRARY IEEE;
-USE IEEE.STD_LOGIC_1164.ALL;
+LIBRARY ieee;
+USE ieee.STD_LOGIC_1164.ALL;
 
 ---- Uncomment the following library declaration if instantiating
 ---- any Xilinx primitives in this code.
@@ -8,13 +8,12 @@ USE IEEE.STD_LOGIC_1164.ALL;
 
 ENTITY control IS
   PORT
-  (
-    clk, rst, exec : IN STD_LOGIC;
+  ( clk, rst : IN STD_LOGIC;
     instr : IN STD_LOGIC;
     btnU, btnD, btnL, btnR : IN STD_LOGIC;
     mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
     reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
-    alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+    alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
   );
 END control;
 
@@ -34,7 +33,7 @@ BEGIN
     END IF;
   END PROCESS;
 
-  state_comb : PROCESS (currstate, instr, exec)
+  state_comb : PROCESS (currstate, instr, btnU, btnD, btnL, btnR)
   BEGIN --  process
 
     nextstate <= currstate; -- by default, does not change the state.

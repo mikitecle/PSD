@@ -24,8 +24,7 @@ BEGIN
   value_mag <= unsigned(value_sm(8 DOWNTO 0));
 
   -- Convert from sign-magnitude to signed
-  value <= (OTHERS => '0') - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE
-           signed(resize(value_mag, 16));
+  value <= - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE signed(resize(value_mag, 16));
 
   -- adder/subtracter
   res_addsub <= r1_out + r2_out WHEN sel_add_sub = '0' ELSE
@@ -38,25 +37,25 @@ BEGIN
   res_or <= r1_out OR r2_out;
 
   -- shift right arithmetic
-  in_sra_slv <= STD_LOGIC_VECTOR(r1_out)
-                res_sra_slv <= in_sra_slv(7) & in_sra_slv(7 DOWNTO 1);
+  in_sra_slv <= STD_LOGIC_VECTOR(r1_out);
+  res_sra_slv <= "00000000" & in_sra_slv(7) & in_sra_slv(7 DOWNTO 1);
   res_sra <= signed(res_sra);
 
   -- ALU
-  WITH sel_mux_alu SELECT
-    mux_alu <= res_addsub WHEN sel_mux_alu = "00",
-    res_mul(15 DOWNTO 0) WHEN sel_mux_alu = "01",
-    res_or WHEN sel_mux_alu = "10",
+  WITH sel_mux_alu SELECT 
+    mux_alu <= res_addsub WHEN "00",
+    res_mul(15 DOWNTO 0) WHEN  "01",
+    res_or WHEN  "10",
     res_sra WHEN OTHERS;
 
   -- mux 1
   WITH sel_mux1 SELECT
-    mux1_out <= value WHEN sel_mux1 = '0',
+    mux1_out <= value WHEN  '0',
     mux_alu WHEN OTHERS;
 
   -- mux 2
   WITH sel_mux2 SELECT
-    mux2_out <= r1_out WHEN sel_mux2 = '0',
+    mux2_out <= r1_out WHEN  '0',
     r2_out WHEN OTHERS;
 
   -- register R1

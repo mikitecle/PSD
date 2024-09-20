@@ -47,7 +47,7 @@ END fpga_basicIO;
 
 ARCHITECTURE Behavioral OF fpga_basicIO IS
   -- signal dd3, dd2, dd1, dd0 : std_logic_vector(6 downto 0);
-  SIGNAL res, reg1 : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL res : STD_LOGIC_VECTOR(15 DOWNTO 0);
   SIGNAL dact : STD_LOGIC_VECTOR(3 DOWNTO 0);
   -- signal btnRinstr : std_logic_vector(3 downto 0);
   -- signal clk10hz, clk_disp : std_logic;
@@ -73,10 +73,10 @@ ARCHITECTURE Behavioral OF fpga_basicIO IS
     GENERIC
     (
       DEBNC_CLOCKS : INTEGER;
-      PORT
-      _WIDTH : INTEGER);
-    PORT
-    (
+     
+      PORT_WIDTH : INTEGER);
+   
+      PORT (
       signal_i : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
       clk_i : IN STD_LOGIC;
       signal_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0));
@@ -128,13 +128,10 @@ BEGIN
   -- Debounces btn signals
   btn <= btnC & btnU & btnL & btnR & btnD;
   Inst_btn_debounce : debouncer
-  GENERIC
-  MAP (
+  GENERIC MAP (
   DEBNC_CLOCKS => (2 ** 20),
-  PORT
-  _WIDTH => 5)
-  PORT
-  MAP (
+  PORT_WIDTH => 5)
+  PORT MAP (
   signal_i => btn,
   clk_i => clk,
   signal_o => btnDeBnc);
