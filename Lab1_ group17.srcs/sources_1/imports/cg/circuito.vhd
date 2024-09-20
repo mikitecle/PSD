@@ -21,7 +21,7 @@ ARCHITECTURE Behavioral OF circuito IS
     PORT
     (
       clk, rst, exec : IN STD_LOGIC;
-      instr : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+      instr : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
       mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
       reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
       alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
