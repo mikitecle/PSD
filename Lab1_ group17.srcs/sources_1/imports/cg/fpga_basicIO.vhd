@@ -18,10 +18,10 @@
 --
 ----------------------------------------------------------------------------------
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
-use IEEE.STD_LOGIC_ARITH.all;
-use IEEE.STD_LOGIC_UNSIGNED.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,109 +32,120 @@ use IEEE.STD_LOGIC_UNSIGNED.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity fpga_basicIO is
-  port (
-    clk : in  std_logic;  -- 100MHz clock
-    btnC, btnU, btnL, btnR, btnD : in  std_logic;  -- buttons
-    sw  : in  std_logic_vector(15 downto 0);  -- switches
-    led : out std_logic_vector(15 downto 0);  -- leds
-    an  : out std_logic_vector(3 downto 0);  -- display selectors
-    seg : out std_logic_vector(6 downto 0);  -- display 7-segments
-    dp  : out std_logic   -- display point
-    );
-end fpga_basicIO;
+ENTITY fpga_basicIO IS
+  PORT
+  (
+    clk : IN STD_LOGIC; -- 100MHz clock
+    btnC, btnU, btnL, btnR, btnD : IN STD_LOGIC; -- buttons
+    sw : IN STD_LOGIC_VECTOR(15 DOWNTO 0); -- switches
+    led : OUT STD_LOGIC_VECTOR(15 DOWNTO 0); -- leds
+    an : OUT STD_LOGIC_VECTOR(3 DOWNTO 0); -- display selectors
+    seg : OUT STD_LOGIC_VECTOR(6 DOWNTO 0); -- display 7-segments
+    dp : OUT STD_LOGIC -- display point
+  );
+END fpga_basicIO;
 
-architecture Behavioral of fpga_basicIO is
+ARCHITECTURE Behavioral OF fpga_basicIO IS
   -- signal dd3, dd2, dd1, dd0 : std_logic_vector(6 downto 0);
-  signal res, reg1     : std_logic_vector(7 downto 0);
-  signal dact          : std_logic_vector(3 downto 0);
+  SIGNAL res, reg1 : STD_LOGIC_VECTOR(7 DOWNTO 0);
+  SIGNAL dact : STD_LOGIC_VECTOR(3 DOWNTO 0);
   -- signal btnRinstr : std_logic_vector(3 downto 0);
   -- signal clk10hz, clk_disp : std_logic;
-  signal btn, btnDeBnc : std_logic_vector(4 downto 0);
+  SIGNAL btn, btnDeBnc : STD_LOGIC_VECTOR(4 DOWNTO 0);
   -- registered input buttons
-  signal btnCreg, btnUreg, btnLreg, btnRreg, btnDreg : std_logic;
+  SIGNAL btnCreg, btnUreg, btnLreg, btnRreg, btnDreg : STD_LOGIC;
   -- registered input switches
-  signal sw_reg : std_logic_vector(15 downto 0);
+  SIGNAL sw_reg : STD_LOGIC_VECTOR(15 DOWNTO 0);
 
-  component disp7
-    port (
-      digit3, digit2, digit1, digit0 : in  std_logic_vector(3 downto 0);
-      dp3, dp2, dp1, dp0             : in  std_logic;
-      clk                            : in  std_logic;
-      dactive                        : in  std_logic_vector(3 downto 0);
-      en_disp_l                      : out std_logic_vector(3 downto 0);
-      segm_l                         : out std_logic_vector(6 downto 0);
-      dp_l                           : out std_logic);
-  end component;
+  COMPONENT disp7
+    PORT
+    (
+      digit3, digit2, digit1, digit0 : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      dp3, dp2, dp1, dp0 : IN STD_LOGIC;
+      clk : IN STD_LOGIC;
+      dactive : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      en_disp_l : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+      segm_l : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+      dp_l : OUT STD_LOGIC);
+  END COMPONENT;
 
-  component debouncer
-    generic (
-      DEBNC_CLOCKS : integer;
-      PORT_WIDTH   : integer);
-    port (
-      signal_i : in  std_logic_vector(4 downto 0);
-      clk_i    : in  std_logic;
-      signal_o : out std_logic_vector(4 downto 0));
-  end component;
+  COMPONENT debouncer
+    GENERIC
+    (
+      DEBNC_CLOCKS : INTEGER;
+      PORT
+      _WIDTH : INTEGER);
+    PORT
+    (
+      signal_i : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+      clk_i : IN STD_LOGIC;
+      signal_o : OUT STD_LOGIC_VECTOR(4 DOWNTO 0));
+  END COMPONENT;
 
-  component circuito
-    port(
-      clk     : in  std_logic;
-      rst     : in  std_logic;
-      exec    : in  std_logic;
-      instr   : in  std_logic_vector(1 downto 0);
-      data_in : in  std_logic_vector(7 downto 0);
-      reg1    : out std_logic_vector(7 downto 0);
-      res     : out std_logic_vector(7 downto 0)
-      );
-  end component;
+  COMPONENT circuito
+    PORT
+    (
+      clk : IN STD_LOGIC;
+      rst : IN STD_LOGIC;
+      exec : IN STD_LOGIC;
+      instr : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+      data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+      res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    );
+  END COMPONENT;
 
-begin
+BEGIN
   led <= sw_reg;
 
   dact <= "1111";
 
-  inst_disp7 : disp7 port map(
-    digit3    => reg1(7 downto 4),
-    digit2    => reg1(3 downto 0),
-    digit1    => res(7 downto 4),
-    digit0    => res(3 downto 0),
-    dp3       => btnLreg, dp2 => btnDreg, dp1 => btnRreg, dp0 => btnUreg,
-    clk       => clk,
-    dactive   => dact,
+  inst_disp7 : disp7 PORT MAP
+  (
+    digit3 => res(15 DOWNTO 12),
+    digit2 => res(11 DOWNTO 8),
+    digit1 => res(7 DOWNTO 4),
+    digit0 => res(3 DOWNTO 0),
+    dp3 => btnLreg, dp2 => btnDreg, dp1 => btnRreg, dp0 => btnUreg,
+    clk => clk,
+    dactive => dact,
     en_disp_l => an,
-    segm_l    => seg,
-    dp_l      => dp);
+    segm_l => seg,
+    dp_l => dp);
 
-  inst_circuito : circuito port map(
-    clk     => clk,
-    rst     => btnUreg,
-    exec    => btnRreg,
-    instr   => sw_reg(15 downto 14),
-    data_in => sw_reg(7 downto 0),
-    reg1    => reg1, res => res);
+  inst_circuito : circuito PORT
+  MAP(
+  clk => clk,
+  rst => btnUreg,
+  exec => btnRreg,
+  instr => sw_reg(15 DOWNTO 13),
+  data_in => sw_reg(9 DOWNTO 0),
+  res => res
+  );
 
   -- Debounces btn signals
   btn <= btnC & btnU & btnL & btnR & btnD;
   Inst_btn_debounce : debouncer
-    generic map (
-      DEBNC_CLOCKS => (2**20),
-      PORT_WIDTH   => 5)
-    port map (
-      signal_i => btn,
-      clk_i    => clk,
-      signal_o => btnDeBnc);
+  GENERIC
+  MAP (
+  DEBNC_CLOCKS => (2 ** 20),
+  PORT
+  _WIDTH => 5)
+  PORT
+  MAP (
+  signal_i => btn,
+  clk_i => clk,
+  signal_o => btnDeBnc);
 
-  process (clk)
-  begin
-    if rising_edge(clk) then
+  PROCESS (clk)
+  BEGIN
+    IF rising_edge(clk) THEN
       btnCreg <= btnDeBnc(4);
       btnUreg <= btnDeBnc(3);
       btnLreg <= btnDeBnc(2);
       btnRreg <= btnDeBnc(1);
       btnDreg <= btnDeBnc(0);
-      sw_reg  <= sw;
-    end if;
-  end process;
+      sw_reg <= sw;
+    END IF;
+  END PROCESS;
 
-end Behavioral;
+END Behavioral;
