@@ -1,63 +1,87 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
-use IEEE.NUMERIC_STD.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
-entity datapath is
-  port (
-    data_in              : in  std_logic_vector (7 downto 0);
-    sel_add_sub, sel_mux : in  std_logic;
-    en_accum, en_r1      : in  std_logic;
-    clk, rst_accum       : in  std_logic;
-    res, reg1            : out std_logic_vector (7 downto 0));
-end datapath;
+ENTITY datapath IS
+  PORT (
+    value_sm : IN STD_LOGIC_VECTOR (9 DOWNTO 0); -- input-data in format sign-magnitude
+    rst, en_r1, en_r2, sel_mux1, sel_mux2, sel_add_sub, clk : IN STD_LOGIC; -- single bit control signals
+    sel_mux_alu : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- 2bit control signals
+    result : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)); -- output
+END datapath;
 
-architecture behavioral of datapath is
-  signal res_addsub, res_and, res_alu   : std_logic_vector (7 downto 0);
-  signal res_addsub_sg, r1_sg, accum_sg : signed (7 downto 0);
+ARCHITECTURE behavioral OF datapath IS
+  SIGNAL value_mag : unsigned (8 DOWNTO 0);
+  SIGNAL r1_out, r2_out, mux1_out, mux2_out, value : signed (15 DOWNTO 0);
+  SIGNAL res_addsub, res_or, mux_alu, res_sra : signed (15 DOWNTO 0);
+  SIGNAL res_mul : signed (31 DOWNTO 0);
+  SIGNAL in_sra_slv, res_sra_slv : STD_LOGIC_VECTOR (15 DOWNTO 0);
 
-  -- the next signal initialization is only considered for simulation
-  signal accum     : std_logic_vector (7 downto 0) := (others => '0');
-  -- the next signal initialization is only considered for simulation
-  signal register1 : std_logic_vector (7 downto 0) := (others => '0');
+BEGIN
 
-begin
+  -- Extract magnitude (unsigned)
+  value_mag <= unsigned(value_sm(8 DOWNTO 0));
+
+  -- Convert from sign-magnitude to signed
+  value <= (OTHERS => '0') - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE
+           signed(resize(value_mag, 16));
+
   -- adder/subtracter
-  r1_sg         <= signed(register1);
-  accum_sg      <= signed(accum);
-  res_addsub    <= std_logic_vector(res_addsub_sg);
-  res_addsub_sg <= accum_sg + r1_sg when sel_add_sub = '0' else
-                   accum_sg - r1_sg;
+  res_addsub <= r1_out + r2_out WHEN sel_add_sub = '0' ELSE
+                r1_out - r2_out;
 
-  -- logic unit
-  res_and <= register1 and accum;
+  -- multiplier
+  res_mul <= r1_out * r2_out;
 
-  -- multiplexer
-  res_alu <= res_addsub when sel_mux = '0'
-             else res_and;
+  -- logic operation "or"
+  res_or <= r1_out OR r2_out;
 
-  -- accumulator
-  process (clk)
-  begin
-    if clk'event and clk = '1' then
-      if rst_accum = '1' then
-        accum <= X"00";
-      elsif en_accum = '1' then
-        accum <= res_alu;
-      end if;
-    end if;
-  end process;
+  -- shift right arithmetic
+  in_sra_slv <= STD_LOGIC_VECTOR(r1_out)
+                res_sra_slv <= in_sra_slv(7) & in_sra_slv(7 DOWNTO 1);
+  res_sra <= signed(res_sra);
+
+  -- ALU
+  WITH sel_mux_alu SELECT
+    mux_alu <= res_addsub WHEN sel_mux_alu = "00",
+    res_mul(15 DOWNTO 0) WHEN sel_mux_alu = "01",
+    res_or WHEN sel_mux_alu = "10",
+    res_sra WHEN OTHERS;
+
+  -- mux 1
+  WITH sel_mux1 SELECT
+    mux1_out <= value WHEN sel_mux1 = '0',
+    mux_alu WHEN OTHERS;
+
+  -- mux 2
+  WITH sel_mux2 SELECT
+    mux2_out <= r1_out WHEN sel_mux2 = '0',
+    r2_out WHEN OTHERS;
 
   -- register R1
-  process (clk)
-  begin
-    if clk'event and clk = '1' then
-      if en_r1 = '1' then
-        register1 <= data_in;
-      end if;
-    end if;
-  end process;
+  PROCESS (clk, rst)
+  BEGIN
+    IF (rst = '1') THEN
+      r1_out <= X"0000";
+    ELSIF (clk'event AND clk = '1') THEN
+      IF (en_r1 = '1') THEN
+        r1_out <= value;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  -- register R2
+  PROCESS (clk, rst)
+  BEGIN
+    IF (rst = '1') THEN
+      r2_out <= X"0000";
+    ELSIF (clk'event AND clk = '1') THEN
+      IF (en_r2 = '1') THEN
+        r2_out <= mux1_out;
+      END IF;
+    END IF;
+  END PROCESS;
 
   -- output
-  reg1 <= register1;
-  res  <= accum;
-end behavioral;
+  result <= STD_LOGIC_VECTOR(mux2_out);
+END behavioral;
