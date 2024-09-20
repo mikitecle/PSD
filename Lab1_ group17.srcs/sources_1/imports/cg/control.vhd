@@ -1,109 +1,119 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
 ---- Uncomment the following library declaration if instantiating
 ---- any Xilinx primitives in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity control is
-  port (
-    clk, rst, exec : in  std_logic;
-    instr          : in  std_logic_vector (2 downto 0);
-    enables        : out std_logic_vector (1 downto 0);
-    selectors      : out std_logic_vector (1 downto 0));
-end control;
+ENTITY control IS
+  PORT
+  (
+    clk, rst, exec : IN STD_LOGIC;
+    instr : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+    mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+    reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+    alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+  );
+END control;
 
-architecture Behavioral of control is
-  type fsm_states is (s_initial, s_end, s_subs, s_adds, s_muls, s_or, s_sra, s_load1, s_load2);
-  signal currstate, nextstate : fsm_states;
+ARCHITECTURE Behavioral OF control IS
+  TYPE fsm_states IS (s_initial, s_end, s_subs, s_adds, s_muls, s_or, s_sra, s_load1, s_load2);
+  SIGNAL currstate, nextstate : fsm_states;
 
-begin
-  state_reg : process (clk)
-  begin
-    if clk'event and clk = '1' then
-      if rst = '1' then
+BEGIN
+  state_reg : PROCESS (clk)
+  BEGIN
+    IF clk'event AND clk = '1' THEN
+      IF rst = '1' THEN
         currstate <= s_initial;
-      else
+      ELSE
         currstate <= nextstate;
-      end if;
-    end if;
-  end process;
+      END IF;
+    END IF;
+  END PROCESS;
 
-  state_comb : process (currstate, instr, exec)
-  begin  --  process
+  state_comb : PROCESS (currstate, instr, exec)
+  BEGIN --  process
 
-    nextstate <= currstate;  -- by default, does not change the state.
+    nextstate <= currstate; -- by default, does not change the state.
 
-    case currstate is
-      when s_initial =>
-        if exec = '1' then
-          if instr = "000" then
+    CASE currstate IS
+      WHEN s_initial =>
+        IF exec = '1' THEN
+          IF instr = "000" THEN
             nextstate <= s_adds;
-          elsif instr = "001" then
+          ELSIF instr = "001" THEN
             nextstate <= s_subs;
-          elsif instr = "010" then
+          ELSIF instr = "010" THEN
             nextstate <= s_muls;
-          elsif instr = "011" then
+          ELSIF instr = "011" THEN
             nextstate <= s_or;
-          elsif instr = "011" then
+          ELSIF instr = "011" THEN
             nextstate <= s_or;
-          elsif instr = "100" then
+          ELSIF instr = "100" THEN
             nextstate <= s_sra;
-          elsif instr = "101" then
+          ELSIF instr = "101" THEN
             nextstate <= s_load1;
-          elsif instr = "110" then
+          ELSIF instr = "110" THEN
             nextstate <= s_load2;
-          end if;
-        end if;
-        selectors <= "00";
-        enables   <= "00";
+          END IF;
+        END IF;
+        mux_enables <= "00";
+        reg_enables <= "00";
+        alu_selectors <= "000";
 
-      when s_adds =>
+      WHEN s_adds =>
         nextstate <= s_end;
-        selectors <= "00";
-        enables   <= "10";
+        mux_enables <= "11";
+        reg_enables <= "10";
+        alu_selectors <= "000";
 
-      when s_subs =>
+      WHEN s_subs =>
         nextstate <= s_end;
-        selectors <= "01";
-        enables   <= "10";
+        mux_enables <= "11";
+        reg_enables <= "10";
+        alu_selectors <= "100";
 
-      when s_muls =>
+      WHEN s_muls =>
         nextstate <= s_end;
-        selectors <= "10";
-        enables   <= "10";
+        mux_enables <= "11";
+        reg_enables <= "10";
+        alu_selectors <= "001";
 
-      when s_or =>
+      WHEN s_or =>
         nextstate <= s_end;
-        selectors <= "11";
-        enables   <= "01";
-        
-       when s_sra =>
-        nextstate <= s_end;
-        selectors <= "11";
-        enables   <= "01";
-        
-       when s_load1 =>
-        nextstate <= s_end;
-        selectors <= "11";
-        enables   <= "01";
-      
-       when s_load2 =>
-        nextstate <= s_end;
-        selectors <= "11";
-        enables   <= "01";
-      
+        mux_enables <= "11";
+        reg_enables <= "10";
+        alu_selectors <= "010";
 
-      when s_end =>
-        if exec = '0' then
+      WHEN s_sra =>
+        nextstate <= s_end;
+        mux_enables <= "11";
+        reg_enables <= "10";
+        alu_selectors <= "011";
+
+      WHEN s_load1 =>
+        nextstate <= s_end;
+        mux_enables <= "00";
+        reg_enables <= "01";
+        alu_selectors <= "000";
+
+      WHEN s_load2 =>
+        nextstate <= s_end;
+        mux_enables <= "10";
+        reg_enables <= "10";
+        alu_selectors <= "000";
+
+      WHEN s_end =>
+        IF exec = '0' THEN
           nextstate <= s_initial;
-        end if;
-        selectors <= "00";
-        enables   <= "00";
+        END IF;
+        mux_enables <= "00";
+        reg_enables <= "00";
+        alu_selectors <= "000";
 
-    end case;
-  end process;
+    END CASE;
+  END PROCESS;
 
-end Behavioral;
-
+END Behavioral;
