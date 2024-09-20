@@ -1,61 +1,70 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.all;
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
 
 ---- Uncomment the following library declaration if instantiating
 ---- any Xilinx primitives in this code.
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity circuito is
-  port (
-    clk, rst, exec : in  std_logic;
-    instr          : in  std_logic_vector(1 downto 0);
-    data_in        : in  std_logic_vector(7 downto 0);
-    reg1, res      : out std_logic_vector(7 downto 0)
+ENTITY circuito IS
+  PORT
+  (
+    clk, rst, exec : IN STD_LOGIC;
+    instr : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+    res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+  );
+END circuito;
+
+ARCHITECTURE Behavioral OF circuito IS
+  COMPONENT control
+    PORT
+    (
+      clk, rst, exec : IN STD_LOGIC;
+      instr : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+      mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+      reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+      alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
     );
-end circuito;
-
-architecture Behavioral of circuito is
-  component control
-    port(
-      clk, rst, exec : in  std_logic;
-      instr          : in  std_logic_vector (1 downto 0);
-      enables        : out std_logic_vector (1 downto 0);
-      selectors      : out std_logic_vector (1 downto 0)
-      );
-  end component;
-  component datapath
-    port(
-      data_in              : in  std_logic_vector (7 downto 0);
-      sel_add_sub, sel_mux : in  std_logic;
-      en_accum, en_r1      : in  std_logic;
-      clk, rst_accum       : in  std_logic;
-      res, reg1            : out std_logic_vector (7 downto 0)
-      );
-  end component;
-
-  signal enables : std_logic_vector(1 downto 0);
-  signal sels    : std_logic_vector(1 downto 0);
-
-begin
-  inst_control : control port map(
-    clk       => clk,
-    rst       => rst,
-    exec      => exec,
-    instr     => instr,
-    enables   => enables,
-    selectors => sels
+  END COMPONENT;
+  COMPONENT datapath
+    PORT
+    (
+      value_sm : IN STD_LOGIC_VECTOR (9 DOWNTO 0);
+      rst, en_r1, en_r2, sel_mux1, sel_mux2, sel_add_sub, clk : IN STD_LOGIC;
+      sel_mux_alu : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+      result : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
     );
-  inst_datapath : datapath port map(
-    data_in     => data_in,
-    rst_accum   => rst,
-    en_accum    => enables(1),
-    en_r1       => enables(0),
-    sel_add_sub => sels(0),
-    sel_mux     => sels(1),
-    clk         => clk,
-    reg1        => reg1,
-    res         => res
-    );
+  END COMPONENT;
 
-end Behavioral;
+  SIGNAL mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+  SIGNAL reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
+  SIGNAL alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
+
+BEGIN
+  inst_control : control PORT MAP
+  (
+    clk => clk,
+    rst => rst,
+    exec => exec,
+    instr => instr,
+    mux_enables => mux_enables,
+    reg_enables => reg_enables,
+    alu_selectors => alu_selectors
+  );
+  inst_datapath : datapath PORT
+  MAP
+  (
+  value_sm => data_in,
+  rst => rst,
+  en_r1 => reg_enables(0),
+  en_r2 => reg_enables(1),
+  sel_mux1 => mux_enables(0),
+  sel_mux2 => mux_enables(1),
+  sel_add_sub => alu_selectors(2),
+  sel_mux_alu => alu_selectors(1 DOWNTO 0),
+  clk => clk,
+  result => res
+  );
+
+END Behavioral;
