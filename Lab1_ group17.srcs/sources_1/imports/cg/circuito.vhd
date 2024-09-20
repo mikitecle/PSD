@@ -10,7 +10,8 @@ ENTITY circuito IS
   PORT
   (
     clk, rst, exec : IN STD_LOGIC;
-    instr : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    instr : IN STD_LOGIC;
+    btnU, btnD, btnL, btnR : IN STD_LOGIC;
     data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
     res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
@@ -21,7 +22,8 @@ ARCHITECTURE Behavioral OF circuito IS
     PORT
     (
       clk, rst, exec : IN STD_LOGIC;
-      instr : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+      instr : IN STD_LOGIC;
+      btnU, btnD, btnL, btnR : IN STD_LOGIC;
       mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
       reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
       alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -48,6 +50,10 @@ BEGIN
     rst => rst,
     exec => exec,
     instr => instr,
+    btnU => btnU,
+    btnD => btnD,
+    btnL => btnL,
+    btnR => btnR,
     mux_enables => mux_enables,
     reg_enables => reg_enables,
     alu_selectors => alu_selectors

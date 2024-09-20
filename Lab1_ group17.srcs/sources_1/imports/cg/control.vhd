@@ -10,7 +10,8 @@ ENTITY control IS
   PORT
   (
     clk, rst, exec : IN STD_LOGIC;
-    instr : IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+    instr : IN STD_LOGIC;
+    btnU, btnD, btnL, btnR : IN STD_LOGIC;
     mux_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
     reg_enables : OUT STD_LOGIC_VECTOR (1 DOWNTO 0);
     alu_selectors : OUT STD_LOGIC_VECTOR (2 DOWNTO 0);
@@ -40,24 +41,20 @@ BEGIN
 
     CASE currstate IS
       WHEN s_initial =>
-        IF exec = '1' THEN
-          IF instr = "000" THEN
-            nextstate <= s_adds;
-          ELSIF instr = "001" THEN
-            nextstate <= s_subs;
-          ELSIF instr = "010" THEN
-            nextstate <= s_muls;
-          ELSIF instr = "011" THEN
-            nextstate <= s_or;
-          ELSIF instr = "011" THEN
-            nextstate <= s_or;
-          ELSIF instr = "100" THEN
-            nextstate <= s_sra;
-          ELSIF instr = "101" THEN
-            nextstate <= s_load1;
-          ELSIF instr = "110" THEN
-            nextstate <= s_load2;
-          END IF;
+        IF btnU = '1' AND instr = '0' THEN
+          nextstate <= s_adds;
+        ELSIF btnU = '1' AND instr = '1' THEN
+          nextstate <= s_subs;
+        ELSIF btnR = '1' THEN
+          nextstate <= s_muls;
+        ELSIF btnD = '1' AND instr = '0' THEN
+          nextstate <= s_or;
+        ELSIF btnD = '1' AND instr = '1' THEN
+          nextstate <= s_sra;
+        ELSIF btnL = '1' AND instr = '0' THEN
+          nextstate <= s_load1;
+        ELSIF btnL = '1' AND instr = '1' THEN
+          nextstate <= s_load2;
         END IF;
         mux_enables <= "00";
         reg_enables <= "00";
@@ -106,7 +103,7 @@ BEGIN
         alu_selectors <= "000";
 
       WHEN s_end =>
-        IF exec = '0' THEN
+        IF btnU = '0' AND btnR = '0' AND btnD = '0' AND btnL = '0' THEN
           nextstate <= s_initial;
         END IF;
         mux_enables <= "00";

@@ -3,7 +3,8 @@ USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY datapath IS
-  PORT (
+  PORT
+  (
     value_sm : IN STD_LOGIC_VECTOR (9 DOWNTO 0); -- input-data in format sign-magnitude
     rst, en_r1, en_r2, sel_mux1, sel_mux2, sel_add_sub, clk : IN STD_LOGIC; -- single bit control signals
     sel_mux_alu : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- 2bit control signals

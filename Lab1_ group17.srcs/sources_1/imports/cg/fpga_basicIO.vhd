@@ -87,8 +87,8 @@ ARCHITECTURE Behavioral OF fpga_basicIO IS
     (
       clk : IN STD_LOGIC;
       rst : IN STD_LOGIC;
-      exec : IN STD_LOGIC;
-      instr : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+      instr : IN STD_LOGIC;
+      btnU, btnD, btnL, btnR : IN STD_LOGIC;
       data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
     );
@@ -115,9 +115,12 @@ BEGIN
   inst_circuito : circuito PORT
   MAP(
   clk => clk,
-  rst => btnUreg,
-  exec => btnRreg,
-  instr => sw_reg(15 DOWNTO 13),
+  rst => btnCreg,
+  instr => sw_reg(15),
+  btnU => btnUreg,
+  btnD => btnDreg,
+  btnL => btnLreg,
+  btnR => btnRreg,
   data_in => sw_reg(9 DOWNTO 0),
   res => res
   );
