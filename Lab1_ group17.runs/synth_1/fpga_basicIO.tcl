@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/psd/Lab1_ group17/Lab1_ group17.runs/synth_1/fpga_basicIO.tcl"
+  variable script "C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.runs/synth_1/fpga_basicIO.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,29 +56,27 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir {C:/Users/psd/Lab1_ group17/Lab1_ group17.cache/wt} [current_project]
-set_property parent.project_path {C:/Users/psd/Lab1_ group17/Lab1_ group17.xpr} [current_project]
+set_property webtalk.parent_dir {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.cache/wt} [current_project]
+set_property parent.project_path {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.xpr} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo {c:/Users/psd/Lab1_ group17/Lab1_ group17.cache/ip} [current_project]
+set_property ip_output_repo {c:/Users/krisg/Documents/Git/PSD/Lab1_ group17.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_vhdl -library xil_defaultlib {
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/circuito.vhd}
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/control.vhd}
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/datapath.vhd}
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/debouncer.vhd}
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/disp7.vhd}
-  {C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/sources_1/imports/cg/fpga_basicIO.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/circuito.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/control.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/datapath.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/debouncer.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/disp7.vhd}
+  {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/sources_1/imports/cg/fpga_basicIO.vhd}
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -89,10 +87,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc {{C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/constrs_1/imports/cg/Basys3_Master.xdc}}
-set_property used_in_implementation false [get_files {{C:/Users/psd/Lab1_ group17/Lab1_ group17.srcs/constrs_1/imports/cg/Basys3_Master.xdc}}]
+read_xdc {{C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/constrs_1/imports/cg/Basys3_Master.xdc}}
+set_property used_in_implementation false [get_files {{C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/constrs_1/imports/cg/Basys3_Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental {C:/Users/krisg/Documents/Git/PSD/Lab1_ group17.srcs/utils_1/imports/synth_1/fpga_basicIO.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

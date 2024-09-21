@@ -24,7 +24,8 @@ BEGIN
   value_mag <= unsigned(value_sm(8 DOWNTO 0));
 
   -- Convert from sign-magnitude to signed
-  value <= - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE signed(resize(value_mag, 16));
+  value <= - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE 
+             signed(resize(value_mag, 16));
 
   -- adder/subtracter
   res_addsub <= r1_out + r2_out WHEN sel_add_sub = '0' ELSE
@@ -38,8 +39,8 @@ BEGIN
 
   -- shift right arithmetic
   in_sra_slv <= STD_LOGIC_VECTOR(r1_out);
-  res_sra_slv <= "00000000" & in_sra_slv(7) & in_sra_slv(7 DOWNTO 1);
-  res_sra <= signed(res_sra);
+  res_sra_slv <= in_sra_slv(15) & in_sra_slv(15 DOWNTO 1);
+  res_sra <= signed(res_sra_slv);
 
   -- ALU
   WITH sel_mux_alu SELECT 

@@ -102,8 +102,8 @@ BEGIN
     rst <= '1' AFTER 20 ns,
            '0' AFTER 40 ns;
 
-    data_in <= b"0000000011" AFTER 40 ns,
-               b"1000000100" AFTER 120 ns;
+    data_in <= b"1001000101" AFTER 40 ns,
+               b"0110100100" AFTER 120 ns;
 
     instr <= '0' AFTER 40 ns, -- load r1
              '1' AFTER 120 ns, -- load r2
@@ -122,10 +122,7 @@ BEGIN
     btnU <= '1' AFTER 200 ns, -- add
             '0' AFTER 240 ns,
             '1' AFTER 280 ns, -- sub
-            '0' AFTER 320 ns,
-            
-            '1' AFTER 440 ns, -- and
-            '0' AFTER 480 ns;
+            '0' AFTER 320 ns;
 
     btnR <= '1' AFTER 360 ns, -- mul
             '0' AFTER 400 ns;

@@ -55,7 +55,7 @@ BEGIN
         ELSIF btnL = '1' AND instr = '1' THEN
           nextstate <= s_load2;
         END IF;
-        mux_enables <= "00";
+        --mux_enables <= "10";
         reg_enables <= "00";
         alu_selectors <= "000";
 
@@ -105,7 +105,7 @@ BEGIN
         IF btnU = '0' AND btnR = '0' AND btnD = '0' AND btnL = '0' THEN
           nextstate <= s_initial;
         END IF;
-        mux_enables <= "00";
+        --mux_enables <= "10";
         reg_enables <= "00";
         alu_selectors <= "000";
 
