@@ -5,13 +5,5 @@
 !*/
 
 # Allow the .srcs folder and its contents in both Lab1 and Lab2
-!Lab1/Lab1_ group17.srcs/
-!Lab2/Lab2_ group17.srcs/
-
-# Ignore everything else in Lab1 and Lab2
-Lab1/*
-Lab2/*
-
-# Do not ignore the .srcs directories in Lab1 and Lab2
 !Lab1/Lab1_ group17.srcs/**
 !Lab2/Lab2_ group17.srcs/**
