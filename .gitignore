@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# Allow the .srcs folder and its contents in both Lab1 and Lab2
+!Lab1/
+Lab1/*
+!Lab1/Lab1_ group17.srcs/
+
+!Lab2/
+Lab2/*
+!Lab2/Lab2_ group17.srcs/
+
+# Ignore all files in the Lab1 and Lab2 directories except those in .srcs
+Lab1/*
+Lab2/*
