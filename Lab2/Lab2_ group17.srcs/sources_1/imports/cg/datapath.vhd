@@ -3,86 +3,119 @@ USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY datapath IS
-  PORT
-  (
-    value_sm : IN STD_LOGIC_VECTOR (9 DOWNTO 0); -- input-data in format sign-magnitude
-    rst, en_r1, en_r2, sel_mux1, sel_mux2, sel_add_sub, clk : IN STD_LOGIC; -- single bit control signals
-    sel_mux_alu : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- 2bit control signals
-    result : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)); -- output
+  PORT (
+  A, B, C, D, E, F : IN signed (15 DOWNTO 0); -- Input data
+
+  S1, S2, S3, S4, S6, S7, S8, S9 : IN STD_LOGIC; -- Mux seletcs
+  S5 : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+
+  E1, E2, E3, E4, E5, E6, E7 : IN STD_LOGIC; -- Enables (6 registers and 1 SRA)
+
+  CLK, RST : IN STD_LOGIC; -- Clock and synchronous active high reset
+
+  DATA_OUT : OUT signed (31 DOWNTO 0); -- Output data
 END datapath;
 
 ARCHITECTURE behavioral OF datapath IS
-  SIGNAL value_mag : unsigned (8 DOWNTO 0);
-  SIGNAL r1_out, r2_out, mux1_out, mux2_out, value : signed (15 DOWNTO 0);
-  SIGNAL res_addsub, res_or, mux_alu, res_sra : signed (15 DOWNTO 0);
-  SIGNAL res_mul : signed (31 DOWNTO 0);
-  SIGNAL in_sra_slv, res_sra_slv : STD_LOGIC_VECTOR (15 DOWNTO 0);
+  SIGNAL mul1_out, mul2_out, alu_out, sra_out, mux2, mux3, mux3, mux4, mux5, mux6, mux7, mux8 : signed (31 DOWNTO 0);
+  SIGNAL mux1 : signed (15 DOWNTO 0);
+  SIGNAL r1, r2, r3, r4, r5, r6 : signed (31 DOWNTO 0);
 
 BEGIN
 
-  -- Extract magnitude (unsigned)
-  value_mag <= unsigned(value_sm(8 DOWNTO 0));
+  -- Muxes:
 
-  -- Convert from sign-magnitude to signed
-  value <= - signed(resize(value_mag, 16)) WHEN value_sm(9) = '1' ELSE 
-             signed(resize(value_mag, 16));
+  WITH S3 SELECT
+    mux3 <= resize(A, 32) WHEN '0',
+    mul1_out WHEN OTHERS;
 
-  -- adder/subtracter
-  res_addsub <= r1_out + r2_out WHEN sel_add_sub = '0' ELSE
-                r1_out - r2_out;
+  WITH S4 SELECT
+    mux4 <= resize(B, 32) WHEN '0',
+    alu_out WHEN OTHERS;
 
-  -- multiplier
-  res_mul <= r1_out * r2_out;
+  WITH S5 SELECT
+    mux5 <= resize(C, 32) WHEN "00",
+    mul1_out WHEN "01",
+    alu_out WHEN OTHERS;
 
-  -- logic operation "or"
-  res_or <= r1_out OR r2_out;
+  WITH S6 SELECT
+    mux6 <= resize(D, 32) WHEN '0',
+    sra_out WHEN OTHERS;
 
-  -- shift right arithmetic
-  in_sra_slv <= STD_LOGIC_VECTOR(r1_out);
-  res_sra_slv <= in_sra_slv(15) & in_sra_slv(15 DOWNTO 1);
-  res_sra <= signed(res_sra_slv);
+  WITH S7 SELECT
+    mux7 <= resize(E, 32) WHEN '0',
+    mul1_out WHEN OTHERS;
 
-  -- ALU
-  WITH sel_mux_alu SELECT 
-    mux_alu <= res_addsub WHEN "00",
-    res_mul(15 DOWNTO 0) WHEN  "01",
-    res_or WHEN  "10",
-    res_sra WHEN OTHERS;
+  WITH S8 SELECT
+    mux8 <= resize(F, 32) WHEN '0',
+    alu_out WHEN OTHERS;
 
-  -- mux 1
-  WITH sel_mux1 SELECT
-    mux1_out <= value WHEN  '0',
-    mux_alu WHEN OTHERS;
+  --Registers:
 
-  -- mux 2
-  WITH sel_mux2 SELECT
-    mux2_out <= r1_out WHEN  '0',
-    r2_out WHEN OTHERS;
-
-  -- register R1
-  PROCESS (clk, rst)
+  PROCESS (CLK)
   BEGIN
-    IF (rst = '1') THEN
-      r1_out <= X"0000";
-    ELSIF (clk'event AND clk = '1') THEN
-      IF (en_r1 = '1') THEN
-        r1_out <= value;
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r1 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r1 <= mux3;
       END IF;
     END IF;
   END PROCESS;
 
-  -- register R2
-  PROCESS (clk, rst)
+  PROCESS (CLK)
   BEGIN
-    IF (rst = '1') THEN
-      r2_out <= X"0000";
-    ELSIF (clk'event AND clk = '1') THEN
-      IF (en_r2 = '1') THEN
-        r2_out <= mux1_out;
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r2 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r2 <= mux4;
       END IF;
     END IF;
   END PROCESS;
 
-  -- output
-  result <= STD_LOGIC_VECTOR(mux2_out);
+  PROCESS (CLK)
+  BEGIN
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r3 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r3 <= mux5;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS (CLK)
+  BEGIN
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r4 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r4 <= mux6;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS (CLK)
+  BEGIN
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r5 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r5 <= mux7;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS (CLK)
+  BEGIN
+    IF rising_edge(CLK) THEN
+      IF RST = '1' THEN
+        r6 <= (OTHERS => '0');
+      ELSIF en = '1' THEN
+        r6 <= mux8;
+      END IF;
+    END IF;
+  END PROCESS;
+
 END behavioral;
