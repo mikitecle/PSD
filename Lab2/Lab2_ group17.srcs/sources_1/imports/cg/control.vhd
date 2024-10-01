@@ -62,7 +62,7 @@ BEGIN
 
       WHEN s_load =>
         nextstate <= s_cycle1;
-        selectors <= "XXXXXXXXXX";
+        selectors <= "X0000000XX";
         enables <= "X111111";
 
       WHEN s_cycle1 =>
@@ -91,8 +91,8 @@ BEGIN
         ELSE
           nextstate <= s_cycle1;
         END IF;
-        selectors <= "XXXXXXXXXX";
-        enables <= "0000000";
+        selectors <= "X0000000XX";
+        enables <= "X111111";
         write_det_enable <= '1';
         done_internal <= '1';
 

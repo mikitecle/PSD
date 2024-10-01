@@ -3,22 +3,22 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="circuito_tb_behav.wdb" id="1" >
+      <db_ref path="circuito_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="circuito_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="625.277 ns"></ZoomStartTime>
-      <ZoomEndTime time="690.278 ns"></ZoomEndTime>
-      <Cursor1Time time="645.000 ns"></Cursor1Time>
+      <ZoomStartTime time="260.300 ns"></ZoomStartTime>
+      <ZoomEndTime time="373.301 ns"></ZoomEndTime>
+      <Cursor1Time time="285.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="136"></NameColumnWidth>
-      <ValueColumnWidth column_width="217"></ValueColumnWidth>
+      <ValueColumnWidth column_width="199"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="/circuito_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -26,38 +26,6 @@
    <wvobject fp_name="/circuito_tb/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/instr" type="logic">
-      <obj_property name="ElementShortName">instr</obj_property>
-      <obj_property name="ObjectShortName">instr</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/btnU" type="logic">
-      <obj_property name="ElementShortName">btnU</obj_property>
-      <obj_property name="ObjectShortName">btnU</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/btnD" type="logic">
-      <obj_property name="ElementShortName">btnD</obj_property>
-      <obj_property name="ObjectShortName">btnD</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/btnL" type="logic">
-      <obj_property name="ElementShortName">btnL</obj_property>
-      <obj_property name="ObjectShortName">btnL</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/btnR" type="logic">
-      <obj_property name="ElementShortName">btnR</obj_property>
-      <obj_property name="ObjectShortName">btnR</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_control/mux_enables" type="array">
-      <obj_property name="ElementShortName">mux_enables[1:0]</obj_property>
-      <obj_property name="ObjectShortName">mux_enables[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_control/reg_enables" type="array">
-      <obj_property name="ElementShortName">reg_enables[1:0]</obj_property>
-      <obj_property name="ObjectShortName">reg_enables[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_control/alu_selectors" type="array">
-      <obj_property name="ElementShortName">alu_selectors[2:0]</obj_property>
-      <obj_property name="ObjectShortName">alu_selectors[2:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/circuito_tb/uut/inst_control/currstate" type="other">
       <obj_property name="ElementShortName">currstate</obj_property>
@@ -67,33 +35,44 @@
       <obj_property name="ElementShortName">nextstate</obj_property>
       <obj_property name="ObjectShortName">nextstate</obj_property>
    </wvobject>
-   <wvobject fp_name="/circuito_tb/data_in" type="array">
-      <obj_property name="ElementShortName">data_in[9:0]</obj_property>
-      <obj_property name="ObjectShortName">data_in[9:0]</obj_property>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r1" type="array">
+      <obj_property name="ElementShortName">r1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r1[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/value" type="array">
-      <obj_property name="ElementShortName">value[15:0]</obj_property>
-      <obj_property name="ObjectShortName">value[15:0]</obj_property>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r2" type="array">
+      <obj_property name="ElementShortName">r2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r3" type="array">
+      <obj_property name="ElementShortName">r3[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r3[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r4" type="array">
+      <obj_property name="ElementShortName">r4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r4[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r5" type="array">
+      <obj_property name="ElementShortName">r5[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r5[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r6" type="array">
+      <obj_property name="ElementShortName">r6[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r6[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/circuito_tb/res" type="array">
-      <obj_property name="ElementShortName">res[15:0]</obj_property>
-      <obj_property name="ObjectShortName">res[15:0]</obj_property>
+      <obj_property name="ElementShortName">res[31:0]</obj_property>
+      <obj_property name="ObjectShortName">res[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/circuito_tb/clk_period" type="other">
-      <obj_property name="ElementShortName">clk_period</obj_property>
-      <obj_property name="ObjectShortName">clk_period</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r1_out" type="array">
-      <obj_property name="ElementShortName">r1_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">r1_out[15:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r2_out" type="array">
-      <obj_property name="ElementShortName">r2_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">r2_out[15:0]</obj_property>
+   <wvobject fp_name="/circuito_tb/uut/inst_datapath/sra_out" type="array">
+      <obj_property name="ElementShortName">sra_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sra_out[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>

@@ -1,5 +1,6 @@
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
 ---- Uncomment the following library declaration if instantiating
 ---- any Xilinx primitives in this code.
@@ -10,8 +11,7 @@ ENTITY circuito IS
   PORT (
     clk, rst : IN STD_LOGIC;
     instr : IN STD_LOGIC;
-    data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-    res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    res : OUT signed(31 DOWNTO 0)
   );
 END circuito;
 
@@ -46,12 +46,16 @@ ARCHITECTURE Behavioral OF circuito IS
   SIGNAL output_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
   SIGNAL done : STD_LOGIC;
 
-  SIGNAL A, B, C, D, E, F : signed (15 DOWNTO 0) := "0000000000000010";
+  SIGNAL A : signed (15 DOWNTO 0) := "0000000000000001";
+  SIGNAL B : signed (15 DOWNTO 0) := "1111111111111110";
+  SIGNAL C : signed (15 DOWNTO 0) := "0000000000000011";
+  SIGNAL D : signed (15 DOWNTO 0) := "1111111111111100";
+  SIGNAL E : signed (15 DOWNTO 0) := "0000000000000101";
+  SIGNAL F : signed (15 DOWNTO 0) := "1111111111111010";
 
 BEGIN
   inst_control : control PORT MAP
   (
-    A
     clk => clk,
     rst => rst,
     instr => instr,
@@ -76,11 +80,11 @@ BEGIN
     S2 => selectors(1),
     S3 => selectors(2),
     S4 => selectors(3),
-    S5 => selectors(4 DOWNTO 3),
-    S6 => selectors(5),
-    S7 => selectors(6),
-    S8 => selectors(7),
-    S9 => selectors(8),
+    S5 => selectors(5 DOWNTO 4),
+    S6 => selectors(6),
+    S7 => selectors(7),
+    S8 => selectors(8),
+    S9 => selectors(9),
     E1 => enables(0),
     E2 => enables(1),
     E3 => enables(2),

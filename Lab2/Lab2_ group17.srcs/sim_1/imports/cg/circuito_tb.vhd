@@ -27,6 +27,7 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -44,8 +45,7 @@ ARCHITECTURE behavior OF circuito_tb IS
       clk : IN STD_LOGIC;
       rst : IN STD_LOGIC;
       instr : IN STD_LOGIC;
-      data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-      res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+      res : OUT signed(31 DOWNTO 0)
     );
   END COMPONENT;
 
@@ -53,10 +53,9 @@ ARCHITECTURE behavior OF circuito_tb IS
   SIGNAL clk : STD_LOGIC := '0';
   SIGNAL rst : STD_LOGIC := '0';
   SIGNAL instr : STD_LOGIC := '0';
-  SIGNAL data_in : STD_LOGIC_VECTOR(9 DOWNTO 0) := (OTHERS => '0');
 
   --Outputs
-  SIGNAL res : STD_LOGIC_VECTOR(15 DOWNTO 0);
+  SIGNAL res : signed(31 DOWNTO 0);
 
   -- Clock period definitions
   CONSTANT clk_period : TIME := 10 ns;
@@ -69,7 +68,6 @@ BEGIN
     clk => clk,
     rst => rst,
     instr => instr,
-    data_in => data_in,
     res => res
   );
 
@@ -80,17 +78,14 @@ BEGIN
   stim_proc : PROCESS
   BEGIN
     -- hold reset state for 100 ns.
+    rst <= '1';
     WAIT FOR 100 ns;
 
     WAIT FOR clk_period * 10;
 
     -- insert stimulus here
     -- note that input signals should never change at the positive edge of the clock
-    rst <= '1' AFTER 20 ns,
-           '0' AFTER 40 ns;
-
-    data_in <= b"1001000101" AFTER 40 ns,
-               b"0110100100" AFTER 120 ns;
+    rst <= '0' AFTER 20 ns;
 
     instr <= '0' AFTER 20 ns;
 
