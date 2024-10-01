@@ -24,6 +24,8 @@ ARCHITECTURE behavioral OF datapath IS
 
   SIGNAL r1, r2, r3, r4, r5, r6 : signed (31 DOWNTO 0); --Register "outputs" 
 
+  SIGNAL mul1_out_64, mul2_out_64 : signed(63 DOWNTO 0);
+
 BEGIN
 
   -- Muxes:
@@ -131,14 +133,18 @@ BEGIN
 
   -- Multipliers
 
-  mul1_out <= (mux1 * r2)(31 DOWNTO 0);
+  mul1_out_64 <= (mux1 * r2);
+  mul1_out <= mul1_out_64(31 downto 0);
 
-  mul2_out <= (r5 * r6)(31 DOWNTO 0);
+  mul2_out_64 <= (r5 * r6);
+  mul2_out <= mul2_out_64(31 downto 0);
+
+  -- 
 
   --ALU
 
   WITH S9 SELECT
-    alu_out <= mux2 + r4 WHEN S2 = '0',
+    alu_out <= mux2 + r4 WHEN = '0',
     mux2 - r4 WHEN OTHERS;
 
   --SRA (integer division)
