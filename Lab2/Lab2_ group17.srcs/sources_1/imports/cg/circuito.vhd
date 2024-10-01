@@ -46,12 +46,12 @@ ARCHITECTURE Behavioral OF circuito IS
   SIGNAL output_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
   SIGNAL done : STD_LOGIC;
 
-  SIGNAL A : signed (15 DOWNTO 0) := "0000000000000001";
-  SIGNAL B : signed (15 DOWNTO 0) := "1111111111111110";
-  SIGNAL C : signed (15 DOWNTO 0) := "0000000000000011";
-  SIGNAL D : signed (15 DOWNTO 0) := "1111111111111100";
-  SIGNAL E : signed (15 DOWNTO 0) := "0000000000000101";
-  SIGNAL F : signed (15 DOWNTO 0) := "1111111111111010";
+  SIGNAL A : signed (15 DOWNTO 0) := X"0002";
+  SIGNAL B : signed (15 DOWNTO 0) := X"FFFD";
+  SIGNAL C : signed (15 DOWNTO 0) := X"0008";
+  SIGNAL D : signed (15 DOWNTO 0) := X"FFF8";
+  SIGNAL E : signed (15 DOWNTO 0) := X"000C";
+  SIGNAL F : signed (15 DOWNTO 0) := X"FFFA";
 
 BEGIN
   inst_control : control PORT MAP
