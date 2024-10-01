@@ -62,7 +62,7 @@ BEGIN
 
       WHEN s_load =>
         nextstate <= s_cycle1;
-        selectors <= "0000000000";
+        selectors <= "XXXXXXXXXX";
         enables <= "X111111";
 
       WHEN s_cycle1 =>
@@ -77,13 +77,13 @@ BEGIN
 
       WHEN s_cycle3 =>
         nextstate <= s_cycle4;
-        selectors <= "0000000000";
-        enables <= "0000000";
+        selectors <= "0100010010";
+        enables <= "1100100";
 
       WHEN s_cycle4 =>
         nextstate <= s_cycle5;
-        selectors <= "0000000000";
-        enables <= "0000000";
+        selectors <= "1XXXXXXX10";
+        enables <= "0001000";
 
       WHEN s_cycle5 =>
         IF input_addr_sig = "0000001111" THEN
@@ -91,7 +91,7 @@ BEGIN
         ELSE
           nextstate <= s_load;
         END IF;
-        selectors <= "0000000000";
+        selectors <= "XXXXXXXXXX";
         enables <= "0000000";
         write_det_enable <= '1';
         done_internal <= '1';
