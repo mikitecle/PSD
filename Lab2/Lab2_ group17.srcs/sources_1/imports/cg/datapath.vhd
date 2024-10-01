@@ -147,6 +147,6 @@ BEGIN
     sra_out <= r4 WHEN '0',
     r4 SRA 2 WHEN OTHERS;
 
-  DATA_OUT <= r6;
+  DATA_OUT <= alu_out;
 
 END behavioral;

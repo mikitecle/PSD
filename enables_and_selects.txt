@@ -1,0 +1,31 @@
+s_initial: 
+Enables: 0000000
+Selects: XXXXXXXXXX
+
+s_load:
+Enables: 1111110
+Selects: XX0000000X
+
+s_cycle1:
+Enables: 0011100
+Selects: 01XX1011X0
+
+s_cycle2:
+Enables: 1100000
+Selects: 1011XXXXX0
+
+s_cycle3:
+Enables: 0010011
+Selects: 01XX01XX10
+
+s_cycle4:
+Enables: 0001000
+Selects: XXXXXX1XXX
+
+s_cycle5:
+Enables: 1111110
+Selects: X100000001
+
+s_end:
+Enables: 0000000
+Selects: XXXXXXXXXX
