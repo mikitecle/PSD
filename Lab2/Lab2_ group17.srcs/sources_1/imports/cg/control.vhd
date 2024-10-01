@@ -13,6 +13,8 @@ ENTITY control IS
     btnU, btnD, btnL, btnR : IN STD_LOGIC;
     selectors : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
     enables : OUT STD_LOGIC_VECTOR (6 DOWNTO 0);
+    input_addr : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+    output_addr : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
     done : OUT STD_LOGIC;
   );
 END control;
@@ -20,11 +22,13 @@ END control;
 ARCHITECTURE Behavioral OF control IS
   TYPE fsm_states IS (s_initial, s_end, s_cycle1, s_cycle2, s_cycle3, s_cycle4, s_cycle15, s_load);
   SIGNAL currstate, nextstate : fsm_states;
+  SIGNAL done_internal : STD_LOGIC;
+  SIGNAL input_addr_sig : STD_LOGIC_VECTOR (9 DOWNTO 0) := "0000000000";
 
-  SIGNAL input_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
-  SIGNAL input_addr_next : STD_LOGIC_VECTOR(9 DOWNTO 0);
-  SIGNAL output_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
 BEGIN
+
+  input_addr <= input_addr_sig;
+
   state_reg : PROCESS (clk)
   BEGIN
     IF clk'event AND clk = '1' THEN
@@ -32,7 +36,10 @@ BEGIN
         currstate <= s_initial;
       ELSE
         currstate <= nextstate;
-        input_addr <= input_addr_next;
+        IF done_internal = '1' THEN
+          input_addr_sig <= STD_LOGIC_VECTOR(unsigned(input_addr_sig) + 1); -- Increment input_addr   
+          done_internal <= '0';
+        END IF;
       END IF;
     END IF;
   END PROCESS;
@@ -41,13 +48,11 @@ BEGIN
   BEGIN --  process
 
     nextstate <= currstate; -- by default, does not change the state.
-    input_addr_next <= input_addr; -- by default, does not change the input_addr.
 
     CASE currstate IS
       WHEN s_initial =>
         IF rst = '0' THEN
           nextstate <= s_load;
-          done <= '0';
         END IF;
         selectors <= "XXXXXXXXXX";
         enables <= "0000000";
@@ -78,20 +83,23 @@ BEGIN
         enables <= "0000000";
 
       WHEN s_cycle5 =>
-        nextstate <= s_end;
+        IF input_addr = "000001111" THEN
+          nextstate <= s_end;
+        ELSE
+          nextstate <= s_cycle1;
+          done_internal <= '1';
+        END IF;
         selectors <= "0000000000";
         enables <= "0000000";
 
       WHEN s_end =>
         IF instr = '0' THEN
           nextstate <= s_initial;
-          input_addr_next <= std_logic_vector(unsigned(input_addr) + 1); -- Increment input_addr
-
+          done <= '1';
         END IF;
         selectors <= "XXXXXXXXXX";
         enables <= "0000000";
 
     END CASE;
   END PROCESS;
-
 END Behavioral;
