@@ -40,8 +40,6 @@ BEGIN
         currstate <= s_initial;
       ELSE
         currstate <= nextstate;
-        -- input_addr <= input_addr_sig;
-        -- output_addr <= output_addr_sig;
       END IF;
     END IF;
   END PROCESS;
