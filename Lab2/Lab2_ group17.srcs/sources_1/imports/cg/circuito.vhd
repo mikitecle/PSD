@@ -30,10 +30,12 @@ ARCHITECTURE Behavioral OF circuito IS
   END COMPONENT;
   COMPONENT datapath
     PORT (
-      value_sm : IN STD_LOGIC_VECTOR (9 DOWNTO 0);
-      rst, en_r1, en_r2, sel_mux1, sel_mux2, sel_add_sub, clk : IN STD_LOGIC;
-      sel_mux_alu : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
-      result : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+      A, B, C, D, E, F : IN signed (15 DOWNTO 0); -- Input data
+      S1, S2, S3, S4, S6, S7, S8, S9 : IN STD_LOGIC; -- Mux seletcs
+      S5 : IN STD_LOGIC_VECTOR (1 DOWNTO 0);
+      E1, E2, E3, E4, E5, E6, E7 : IN STD_LOGIC; -- Enables (6 registers and 1 SRA)
+      CLK, RST : IN STD_LOGIC; -- Clock and synchronous active high reset
+      DATA_OUT : OUT signed (31 DOWNTO 0) -- Output data
     );
   END COMPONENT;
 
@@ -44,9 +46,12 @@ ARCHITECTURE Behavioral OF circuito IS
   SIGNAL output_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
   SIGNAL done : STD_LOGIC;
 
+  SIGNAL A, B, C, D, E, F : signed (15 DOWNTO 0) := "0000000000000010";
+
 BEGIN
   inst_control : control PORT MAP
   (
+    A
     clk => clk,
     rst => rst,
     instr => instr,
@@ -59,16 +64,31 @@ BEGIN
   );
   inst_datapath : datapath PORT MAP
   (
-    value_sm => data_in,
-    rst => rst,
-    en_r1 => enables(0),
-    en_r2 => enables(1),
-    sel_mux1 => selectors(0),
-    sel_mux2 => selectors(1),
-    sel_add_sub => selectors(2),
-    sel_mux_alu => selectors(1 DOWNTO 0),
-    clk => clk,
-    result => res
+    A => A,
+    B => B,
+    C => C,
+    D => D,
+    E => E,
+    F => F,
+    CLK => clk,
+    RST => rst,
+    S1 => selectors(0),
+    S2 => selectors(1),
+    S3 => selectors(2),
+    S4 => selectors(3),
+    S5 => selectors(4 DOWNTO 3),
+    S6 => selectors(5),
+    S7 => selectors(6),
+    S8 => selectors(7),
+    S9 => selectors(8),
+    E1 => enables(0),
+    E2 => enables(1),
+    E3 => enables(2),
+    E4 => enables(3),
+    E5 => enables(4),
+    E6 => enables(5),
+    E7 => enables(6),
+    DATA_OUT => res
   );
 
 END Behavioral;

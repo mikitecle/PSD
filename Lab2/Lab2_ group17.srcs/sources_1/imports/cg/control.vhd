@@ -82,14 +82,14 @@ BEGIN
 
       WHEN s_cycle4 =>
         nextstate <= s_cycle5;
-        selectors <= "1XXXXXXX10";
+        selectors <= "1XXXXXXX1X";
         enables <= "0001000";
 
       WHEN s_cycle5 =>
         IF input_addr_sig = "0000001111" THEN
           nextstate <= s_end;
         ELSE
-          nextstate <= s_load;
+          nextstate <= s_cycle1;
         END IF;
         selectors <= "XXXXXXXXXX";
         enables <= "0000000";
