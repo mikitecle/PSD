@@ -29,3 +29,8 @@ Selects: X100000001
 s_end:
 Enables: 0000000
 Selects: XXXXXXXXXX
+
+
+Enables in order: E1 E2 E3 E4 E5 E6 E7
+
+Selects in order: S1 S2 S3 S4 S5(MSB) S5(LSB) S6 S7 S8 S9
