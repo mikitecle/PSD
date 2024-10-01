@@ -68,7 +68,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r1 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E1 = '1' THEN
         r1 <= mux3;
       END IF;
     END IF;
@@ -79,7 +79,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r2 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E2 = '1' THEN
         r2 <= mux4;
       END IF;
     END IF;
@@ -90,7 +90,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r3 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E3 = '1' THEN
         r3 <= mux5;
       END IF;
     END IF;
@@ -101,7 +101,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r4 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E4 = '1' THEN
         r4 <= mux6;
       END IF;
     END IF;
@@ -112,7 +112,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r5 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E5 = '1' THEN
         r5 <= mux7;
       END IF;
     END IF;
@@ -123,7 +123,7 @@ BEGIN
     IF rising_edge(CLK) THEN
       IF RST = '1' THEN
         r6 <= (OTHERS => '0');
-      ELSIF en = '1' THEN
+      ELSIF E6 = '1' THEN
         r6 <= mux8;
       END IF;
     END IF;
