@@ -7,3 +7,11 @@
 # Allow the .srcs folder and its contents in both Lab1 and Lab2
 !Lab1/Lab1_ group17.srcs/**
 !Lab2/Lab2_ group17.srcs/**
+
+# Allow the .xpr file in both Lab1 and Lab2
+!Lab1/Lab1_ group17.xpr
+!Lab2/Lab2_ group17.xpr
+
+# Allow the .lpr file in both Lab1 and Lab2
+!Lab1/Lab1_ group17.hw/**
+!Lab2/Lab2_ group17.hw/**
