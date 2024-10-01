@@ -40,15 +40,10 @@ ARCHITECTURE behavior OF circuito_tb IS
   -- Component Declaration for the Unit Under Test (UUT)
 
   COMPONENT circuito
-    PORT
-    (
+    PORT (
       clk : IN STD_LOGIC;
       rst : IN STD_LOGIC;
       instr : IN STD_LOGIC;
-      btnU : IN STD_LOGIC;
-      btnD : IN STD_LOGIC;
-      btnL : IN STD_LOGIC;
-      btnR : IN STD_LOGIC;
       data_in : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
       res : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
     );
@@ -58,10 +53,6 @@ ARCHITECTURE behavior OF circuito_tb IS
   SIGNAL clk : STD_LOGIC := '0';
   SIGNAL rst : STD_LOGIC := '0';
   SIGNAL instr : STD_LOGIC := '0';
-  SIGNAL btnU : STD_LOGIC := '0';
-  SIGNAL btnD : STD_LOGIC := '0';
-  SIGNAL btnL : STD_LOGIC := '0';
-  SIGNAL btnR : STD_LOGIC := '0';
   SIGNAL data_in : STD_LOGIC_VECTOR(9 DOWNTO 0) := (OTHERS => '0');
 
   --Outputs
@@ -78,10 +69,6 @@ BEGIN
     clk => clk,
     rst => rst,
     instr => instr,
-    btnU => btnU,
-    btnD => btnD,
-    btnL => btnL,
-    btnR => btnR,
     data_in => data_in,
     res => res
   );
@@ -105,32 +92,7 @@ BEGIN
     data_in <= b"1001000101" AFTER 40 ns,
                b"0110100100" AFTER 120 ns;
 
-    instr <= '0' AFTER 40 ns, -- load r1
-             '1' AFTER 120 ns, -- load r2
-             '0' AFTER 200 ns, -- add
-             '1' AFTER 280 ns, -- sub
-             '0' AFTER 360 ns, -- mul
-             '0' AFTER 440 ns, -- or
-             '1' AFTER 520 ns, -- sra
-             '0' AFTER 560 ns;
-
-    btnL <= '1' AFTER 40 ns, -- load r1
-            '0' AFTER 80 ns,
-            '1' AFTER 120 ns, -- load r2
-            '0' AFTER 160 ns;
-
-    btnU <= '1' AFTER 200 ns, -- add
-            '0' AFTER 240 ns,
-            '1' AFTER 280 ns, -- sub
-            '0' AFTER 320 ns;
-
-    btnR <= '1' AFTER 360 ns, -- mul
-            '0' AFTER 400 ns;
-
-    btnD <= '1' AFTER 440 ns, -- or
-            '0' AFTER 480 ns,
-            '1' AFTER 520 ns, -- sra
-            '0' AFTER 560 ns;
+    instr <= '0' AFTER 20 ns;
 
     WAIT;
   END PROCESS;
