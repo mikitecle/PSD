@@ -5,7 +5,6 @@ USE IEEE.NUMERIC_STD.ALL;
 ENTITY circuito IS
   PORT (
     clk, rst : IN STD_LOGIC;
-    instr : IN STD_LOGIC;
     res : OUT signed(31 DOWNTO 0)
   );
 END circuito;
@@ -15,7 +14,6 @@ ARCHITECTURE Behavioral OF circuito IS
   COMPONENT control
     PORT (
       clk, rst : IN STD_LOGIC;
-      instr : IN STD_LOGIC;
       selectors : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
       enables : OUT STD_LOGIC_VECTOR (6 DOWNTO 0);
       write_det_enable : OUT STD_LOGIC;
@@ -74,7 +72,6 @@ BEGIN
   inst_control : control PORT MAP(
     clk => clk,
     rst => rst,
-    instr => instr,
     selectors => selectors,
     enables => enables,
     write_det_enable => write_det_enable,

@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="187.500 ns"></ZoomStartTime>
-      <ZoomEndTime time="761.501 ns"></ZoomEndTime>
-      <Cursor1Time time="625.000 ns"></Cursor1Time>
+      <ZoomStartTime time="58.433 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,158.434 ns"></ZoomEndTime>
+      <Cursor1Time time="615.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="207"></NameColumnWidth>
-      <ValueColumnWidth column_width="110"></ValueColumnWidth>
+      <ValueColumnWidth column_width="104"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="/circuito_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -35,35 +35,39 @@
       <obj_property name="ElementShortName">nextstate</obj_property>
       <obj_property name="ObjectShortName">nextstate</obj_property>
    </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r1" type="array">
-      <obj_property name="ElementShortName">r1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r1[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r2" type="array">
-      <obj_property name="ElementShortName">r2[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r2[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r3" type="array">
-      <obj_property name="ElementShortName">r3[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r3[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r4" type="array">
-      <obj_property name="ElementShortName">r4[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r4[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r5" type="array">
-      <obj_property name="ElementShortName">r5[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r5[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/r6" type="array">
-      <obj_property name="ElementShortName">r6[31:0]</obj_property>
-      <obj_property name="ObjectShortName">r6[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="group313" type="group">
+      <obj_property name="label">regs</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r1" type="array">
+         <obj_property name="ElementShortName">r1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r1[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r2" type="array">
+         <obj_property name="ElementShortName">r2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r2[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r3" type="array">
+         <obj_property name="ElementShortName">r3[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r3[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r4" type="array">
+         <obj_property name="ElementShortName">r4[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r4[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r5" type="array">
+         <obj_property name="ElementShortName">r5[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r5[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/circuito_tb/uut/inst_datapath/r6" type="array">
+         <obj_property name="ElementShortName">r6[31:0]</obj_property>
+         <obj_property name="ObjectShortName">r6[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/circuito_tb/res" type="array">
       <obj_property name="ElementShortName">res[31:0]</obj_property>

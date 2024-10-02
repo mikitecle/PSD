@@ -44,7 +44,6 @@ ARCHITECTURE behavior OF circuito_tb IS
     PORT (
       clk : IN STD_LOGIC;
       rst : IN STD_LOGIC;
-      instr : IN STD_LOGIC;
       res : OUT signed(31 DOWNTO 0)
     );
   END COMPONENT;
@@ -52,7 +51,6 @@ ARCHITECTURE behavior OF circuito_tb IS
   --Inputs
   SIGNAL clk : STD_LOGIC := '0';
   SIGNAL rst : STD_LOGIC := '0';
-  SIGNAL instr : STD_LOGIC := '0';
 
   --Outputs
   SIGNAL res : signed(31 DOWNTO 0);
@@ -67,7 +65,6 @@ BEGIN
   (
     clk => clk,
     rst => rst,
-    instr => instr,
     res => res
   );
 
@@ -83,11 +80,7 @@ BEGIN
 
     WAIT FOR clk_period * 10;
 
-    -- insert stimulus here
-    -- note that input signals should never change at the positive edge of the clock
     rst <= '0' AFTER 20 ns;
-
-    instr <= '0' AFTER 20 ns;
 
     WAIT;
   END PROCESS;

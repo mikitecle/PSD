@@ -10,7 +10,6 @@ USE ieee.numeric_std.ALL;
 ENTITY control IS
   PORT (
     clk, rst : IN STD_LOGIC;
-    instr : IN STD_LOGIC;
     selectors : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
     enables : OUT STD_LOGIC_VECTOR (6 DOWNTO 0);
     write_det_enable : OUT STD_LOGIC;
@@ -64,6 +63,7 @@ BEGIN
         nextstate <= s_cycle1;
         selectors <= "X0000000XX";
         enables <= "X111111";
+        done_internal <= '1';
 
       WHEN s_cycle1 =>
         nextstate <= s_cycle2;
