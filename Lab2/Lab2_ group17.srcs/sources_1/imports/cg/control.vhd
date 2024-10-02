@@ -90,11 +90,11 @@ BEGIN
           nextstate <= s_end;
         ELSE
           nextstate <= s_cycle1;
+          done_internal <= '1';
         END IF;
         selectors <= "100000001X";
         enables <= "0111111";
         write_det_enable <= '1';
-        done_internal <= '1';
 
       WHEN s_end =>
         selectors <= "XXXXXXXXXX";

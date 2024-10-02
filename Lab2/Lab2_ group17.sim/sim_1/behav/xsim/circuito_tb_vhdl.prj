@@ -6,9 +6,10 @@ vhdl xil_defaultlib  \
 "../../../../Lab2_ group17.srcs/sources_1/imports/cg/debouncer.vhd" \
 "../../../../Lab2_ group17.srcs/sources_1/imports/cg/disp7.vhd" \
 "../../../../Lab2_ group17.srcs/sources_1/imports/cg/fpga_basicIO.vhd" \
-"../../../../../../../../../Downloads/memIN06b.vhd" \
 "../../../../../../../../../Downloads/memOUT.vhd" \
+"../../../../../../../../../Downloads/memIN5.vhd" \
 "../../../../Lab2_ group17.srcs/sim_1/imports/cg/circuito_tb.vhd" \
+"../../../../../../../../../Downloads/memIN_tb.vhd" \
 
 # Do not sort compile order
 nosort
