@@ -6,105 +6,103 @@
 -- Seed: -s 123 ( dat2mem.pl -bw 5 -A 1 -B -2 -C 3 -D -4 -E 5 -F -6 -s 123 -s 123 )
 -- Date: 2024-09-29T21:31:21 WEST
 -----------------------------------------------------------------------------
-library ieee;
-library UNISIM;
-library UNIMACRO;
+LIBRARY ieee;
+LIBRARY UNISIM;
+LIBRARY UNIMACRO;
 
-use ieee.std_logic_1164.all;
-use ieee.numeric_std.all;
-use UNISIM.Vcomponents.all;
-use UNIMACRO.vcomponents.all;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+USE UNISIM.Vcomponents.ALL;
+USE UNIMACRO.vcomponents.ALL;
 
+ENTITY MemIN IS
+  PORT (
+    clk : IN STD_LOGIC;
+    addr : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+    A, B, C, D, E, F : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+  );
+END MemIN;
 
-entity MemIN is
-  port (
-    clk    : in  std_logic;
-    addr   : in  std_logic_vector(9 downto 0);
-    A, B, C, D, E, F : out std_logic_vector(15 downto 0)
-    );
-end MemIN;
-
-
-architecture GEN123 of MemIN is
-  signal dout0,dout1,dout2: std_logic_vector(31 downto 0);
-begin
+ARCHITECTURE GEN123 OF MemIN IS
+  SIGNAL dout0, dout1, dout2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+BEGIN
 
   MEM_in0 : BRAM_SINGLE_MACRO
-    generic map (          -- memory initialization
-      BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
-      DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
-      WRITE_WIDTH => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      READ_WIDTH  => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      -- Initialize memory predefined data
-      INIT_00 => X"FFF8FFF7FFFFFFFEFFFFFFFCFFF9FFF70008000E000C000BFFFD0002FFFE0001",
-      INIT_01 => X"000BFFF6FFFF0003FFFA00060003FFFAFFFE000800030003000C0008FFF8FFFF",
-      INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
-    )
-    port map (
-      CLK   => clk,         -- Clock
-      ADDR  => addr,        -- 9-bit Address Input, width defined by read/write port depth
-      DI    => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
-      DO    => dout0,       -- 32-bit Data Output, width defined by READ_WIDTH parameter
-      EN    => '1',         -- 1-bit RAM Enable Input
-      WE    => "0000",      -- Write Enable Input, width defined by write port depth
-      REGCE => '0',         -- 1-bit Input, output register enable
-      RST   => '0'          -- 1-bit Input reset
-      );
+  GENERIC MAP(-- memory initialization
+    BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
+    DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
+    WRITE_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    READ_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    -- Initialize memory predefined data
+    INIT_00 => X"FFF8FFF7FFFFFFFEFFFFFFFCFFF9FFF70008000E000C000BFFFD0002FFFE0001",
+    INIT_01 => X"000BFFF6FFFF0003FFFA00060003FFFAFFFE000800030003000C0008FFF8FFFF",
+    INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
+  )
+  PORT MAP(
+    CLK => clk, -- Clock
+    ADDR => addr, -- 9-bit Address Input, width defined by read/write port depth
+    DI => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
+    DO => dout0, -- 32-bit Data Output, width defined by READ_WIDTH parameter
+    EN => '1', -- 1-bit RAM Enable Input
+    WE => "0000", -- Write Enable Input, width defined by write port depth
+    REGCE => '0', -- 1-bit Input, output register enable
+    RST => '0' -- 1-bit Input reset
+  );
 
   MEM_in1 : BRAM_SINGLE_MACRO
-    generic map (          -- memory initialization
-      BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
-      DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
-      WRITE_WIDTH => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      READ_WIDTH  => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      -- Initialize memory predefined data
-      INIT_00 => X"FFFB0002FFF90001000D0000FFF70005000C000D0009000EFFF80008FFFC0003",
-      INIT_01 => X"000C000AFFF7000EFFF70009FFF80003000000050007000EFFF40002FFF4000D",
-      INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
-    )
-    port map (
-      CLK   => clk,         -- Clock
-      ADDR  => addr,        -- 9-bit Address Input, width defined by read/write port depth
-      DI    => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
-      DO    => dout1,       -- 32-bit Data Output, width defined by READ_WIDTH parameter
-      EN    => '1',         -- 1-bit RAM Enable Input
-      WE    => "0000",      -- Write Enable Input, width defined by write port depth
-      REGCE => '0',         -- 1-bit Input, output register enable
-      RST   => '0'          -- 1-bit Input reset
-      );
+  GENERIC MAP(-- memory initialization
+    BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
+    DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
+    WRITE_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    READ_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    -- Initialize memory predefined data
+    INIT_00 => X"FFFB0002FFF90001000D0000FFF70005000C000D0009000EFFF80008FFFC0003",
+    INIT_01 => X"000C000AFFF7000EFFF70009FFF80003000000050007000EFFF40002FFF4000D",
+    INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
+  )
+  PORT MAP(
+    CLK => clk, -- Clock
+    ADDR => addr, -- 9-bit Address Input, width defined by read/write port depth
+    DI => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
+    DO => dout1, -- 32-bit Data Output, width defined by READ_WIDTH parameter
+    EN => '1', -- 1-bit RAM Enable Input
+    WE => "0000", -- Write Enable Input, width defined by write port depth
+    REGCE => '0', -- 1-bit Input, output register enable
+    RST => '0' -- 1-bit Input reset
+  );
 
   MEM_in2 : BRAM_SINGLE_MACRO
-    generic map (          -- memory initialization
-      BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
-      DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
-      WRITE_WIDTH => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      READ_WIDTH  => 32,   -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-      -- Initialize memory predefined data
-      INIT_00 => X"FFF7FFFFFFF200080009000B00090009FFFE00070005FFF7FFFA000CFFFA0005",
-      INIT_01 => X"FFF6FFF6000A000B0006000D00090003FFF2FFF7FFFFFFFF000DFFFC0000FFFF",
-      INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
-    )
-    port map (
-      CLK   => clk,         -- Clock
-      ADDR  => addr,        -- 9-bit Address Input, width defined by read/write port depth
-      DI    => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
-      DO    => dout2,       -- 32-bit Data Output, width defined by READ_WIDTH parameter
-      EN    => '1',         -- 1-bit RAM Enable Input
-      WE    => "0000",      -- Write Enable Input, width defined by write port depth
-      REGCE => '0',         -- 1-bit Input, output register enable
-      RST   => '0'          -- 1-bit Input reset
-      );
+  GENERIC MAP(-- memory initialization
+    BRAM_SIZE => "36Kb", -- Target BRAM, "18Kb" or "36Kb"
+    DEVICE => "7SERIES", -- Target Device: "VIRTEX5", "7SERIES", "VIRTEX6, "SPARTAN6"
+    WRITE_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    READ_WIDTH => 32, -- Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
+    -- Initialize memory predefined data
+    INIT_00 => X"FFF7FFFFFFF200080009000B00090009FFFE00070005FFF7FFFA000CFFFA0005",
+    INIT_01 => X"FFF6FFF6000A000B0006000D00090003FFF2FFF7FFFFFFFF000DFFFC0000FFFF",
+    INIT_02 => X"0000000000000000000000000000000000000000000000000000000000000000"
+  )
+  PORT MAP(
+    CLK => clk, -- Clock
+    ADDR => addr, -- 9-bit Address Input, width defined by read/write port depth
+    DI => x"00000000", -- 32-bit Data Input, width defined by WRITE_WIDTH parameter
+    DO => dout2, -- 32-bit Data Output, width defined by READ_WIDTH parameter
+    EN => '1', -- 1-bit RAM Enable Input
+    WE => "0000", -- Write Enable Input, width defined by write port depth
+    REGCE => '0', -- 1-bit Input, output register enable
+    RST => '0' -- 1-bit Input reset
+  );
 
-  A <= dout0(15 downto 0);
-  B <= dout0(31 downto 16);
+  A <= dout0(15 DOWNTO 0);
+  B <= dout0(31 DOWNTO 16);
 
-  C <= dout1(15 downto 0);
-  D <= dout1(31 downto 16);
+  C <= dout1(15 DOWNTO 0);
+  D <= dout1(31 DOWNTO 16);
 
-  E <= dout2(15 downto 0);
-  F <= dout2(31 downto 16);
+  E <= dout2(15 DOWNTO 0);
+  F <= dout2(31 DOWNTO 16);
 
-end GEN123;
+END GEN123;
 
 --- Mat:  0 --------------------------------------------------------------  0
 -- Inp A=     1 (0x0001)  B=    -2 (0xFFFE)  C=     3 (0x0003)
@@ -202,5 +200,3 @@ end GEN123;
 -- Res m11=        -110 (0xFFFFFF92)        m12=          90 (0x0000005A)
 --     m21=         242 (0x000000F2)        m22=          47 (0x0000002F)
 --- Det -26950 (0xFFFF96BA)
-
-

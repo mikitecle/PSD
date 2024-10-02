@@ -86,7 +86,7 @@ BEGIN
         enables <= "1001000";
 
       WHEN s_cycle5 =>
-        IF input_addr_sig = "0000001111" THEN
+        IF output_addr_sig = "0000001111" THEN
           nextstate <= s_end;
         ELSE
           nextstate <= s_cycle1;
@@ -122,6 +122,7 @@ BEGIN
       done_delayed <= done_delayed(3 DOWNTO 0) & done_internal;
       IF rst = '1' THEN
         output_addr_sig <= "0000000000";
+        done_delayed <= "00000";
       ELSE
         IF done_delayed(4) = '1' THEN
           output_addr_sig <= STD_LOGIC_VECTOR(unsigned(output_addr_sig) + 1); -- Increment output_addr

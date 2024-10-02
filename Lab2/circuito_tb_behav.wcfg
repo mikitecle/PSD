@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="260.300 ns"></ZoomStartTime>
-      <ZoomEndTime time="373.301 ns"></ZoomEndTime>
-      <Cursor1Time time="285.000 ns"></Cursor1Time>
+      <ZoomStartTime time="187.500 ns"></ZoomStartTime>
+      <ZoomEndTime time="761.501 ns"></ZoomEndTime>
+      <Cursor1Time time="625.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="136"></NameColumnWidth>
-      <ValueColumnWidth column_width="199"></ValueColumnWidth>
+      <NameColumnWidth column_width="207"></NameColumnWidth>
+      <ValueColumnWidth column_width="110"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/circuito_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -70,9 +70,30 @@
       <obj_property name="ObjectShortName">res[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/circuito_tb/uut/inst_datapath/sra_out" type="array">
-      <obj_property name="ElementShortName">sra_out[31:0]</obj_property>
-      <obj_property name="ObjectShortName">sra_out[31:0]</obj_property>
+   <wvobject fp_name="/circuito_tb/uut/input_addr" type="array">
+      <obj_property name="ElementShortName">input_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">input_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/output_addr" type="array">
+      <obj_property name="ElementShortName">output_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">output_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/inst_control/done_internal" type="logic">
+      <obj_property name="ElementShortName">done_internal</obj_property>
+      <obj_property name="ObjectShortName">done_internal</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/u_memOut/we" type="logic">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/u_memOut/dataIN" type="array">
+      <obj_property name="ElementShortName">dataIN[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dataIN[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/circuito_tb/uut/u_memOut/dataOUT" type="array">
+      <obj_property name="ElementShortName">dataOUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dataOUT[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
 </wave_config>
