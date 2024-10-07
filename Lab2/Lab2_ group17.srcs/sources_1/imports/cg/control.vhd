@@ -43,7 +43,7 @@ BEGIN
     END IF;
   END PROCESS;
 
-  state_comb : PROCESS (currstate, rst)
+  state_comb : PROCESS (currstate, rst, output_addr_sig)
   BEGIN --  process
 
     nextstate <= currstate; -- by default, does not change the state.

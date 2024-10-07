@@ -1,0 +1,5 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/krisg/OneDrive - NTNU/7.semester/Digital Systems Design/PSD/Lab2/Lab2_ group17.srcs/sim_1/imports/cg/circuito_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'circuito_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/krisg/Downloads/memIN_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'memIN_tb'
+WARNING: [VRFC 10-3093] actual for formal port 'addr' is neither a static name nor a globally static expression [C:/Users/krisg/Downloads/memIN_tb.vhd:67]

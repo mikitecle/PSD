@@ -5,7 +5,10 @@ USE IEEE.NUMERIC_STD.ALL;
 ENTITY circuito IS
   PORT (
     clk, rst : IN STD_LOGIC;
-    res : OUT signed(31 DOWNTO 0)
+    dataOUT : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    done : OUT STD_LOGIC;
+    we : OUT STD_LOGIC;
+    addr : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END circuito;
 
@@ -58,7 +61,7 @@ ARCHITECTURE Behavioral OF circuito IS
   SIGNAL write_det_enable : STD_LOGIC;
   SIGNAL input_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
   SIGNAL output_addr : STD_LOGIC_VECTOR(9 DOWNTO 0);
-  SIGNAL done : STD_LOGIC;
+  SIGNAL done_sig : STD_LOGIC;
 
   -- Renamed signals for clarity
   SIGNAL a_sig, b_sig, c_sig, d_sig, e_sig, f_sig : STD_LOGIC_VECTOR(15 DOWNTO 0); -- Signals from memory (STD_LOGIC_VECTOR)
@@ -77,7 +80,7 @@ BEGIN
     write_det_enable => write_det_enable,
     input_addr => input_addr,
     output_addr => output_addr,
-    done => done
+    done => done_sig
   );
 
   -- Datapath instance with conversion from STD_LOGIC_VECTOR to signed
@@ -131,6 +134,9 @@ BEGIN
   );
 
   -- Assign internal result to the output
-  res <= res_sig;
+  dataOUT <= mem_out;
+  done <= done_sig;
+  addr <= output_addr;
+  we <= write_det_enable;
 
 END Behavioral;
