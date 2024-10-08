@@ -102,8 +102,8 @@ BEGIN
         selectors <= "0100010010";
         enables <= "1100100";
       WHEN s_4 =>
-        selectors <= "1000000010";
-        enables <= "1001000";
+        selectors <= "0001000000";
+        enables <= "0001000";
       WHEN s_5 =>
         selectors <= "1000000010";
         enables <= "0111111";
