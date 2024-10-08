@@ -17,7 +17,7 @@ END control;
 ARCHITECTURE Behavioral OF control IS
   TYPE fsm_states IS (s_initial, s_load, s_1, s_2, s_3, s_4, s_5, s_finished);
   SIGNAL currstate, nextstate : fsm_states;
-  SIGNAL input_counter : unsigned(9 DOWNTO 0);
+  SIGNAL input_counter, output_counter : unsigned(9 DOWNTO 0);
 
 BEGIN
 
@@ -37,13 +37,24 @@ BEGIN
     IF rising_edge(clk) THEN
       IF rst = '1' THEN
         input_counter <= (OTHERS => '0');
-      ELSIF currstate = s_5 THEN
+      ELSIF currstate = s_4 THEN
         input_counter <= input_counter + 1;
       END IF;
     END IF;
   END PROCESS;
 
-  PROCESS (currstate, input_counter)
+  PROCESS (clk)
+  BEGIN
+    IF rising_edge(clk) THEN
+      IF rst = '1' THEN
+        output_counter <= (OTHERS => '0');
+      ELSIF currstate = s_5 THEN
+        output_counter <= output_counter + 1;
+      END IF;
+    END IF;
+  END PROCESS;
+
+  PROCESS (currstate, output_counter)
   BEGIN
     nextstate <= currstate;
     CASE currstate IS
@@ -60,7 +71,7 @@ BEGIN
       WHEN s_4 =>
         nextstate <= s_5;
       WHEN s_5 =>
-        IF (input_counter = "0000001111") THEN
+        IF (output_counter = "0000001111") THEN
           nextstate <= s_finished;
         ELSE
           nextstate <= s_1;
@@ -106,6 +117,6 @@ BEGIN
   END PROCESS;
 
   input_addr <= STD_LOGIC_VECTOR(input_counter);
-  output_addr <= STD_LOGIC_VECTOR(input_counter);
+  output_addr <= STD_LOGIC_VECTOR(output_counter);
 
 END Behavioral;
