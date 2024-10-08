@@ -65,6 +65,8 @@ BEGIN
         ELSE
           nextstate <= s_1;
         END IF;
+      WHEN s_finished =>
+        nextstate <= s_finished;
     END CASE;
   END PROCESS;
 
