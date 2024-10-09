@@ -1,0 +1,13 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.sim/sim_1/impl/func/xsim/fpga_basicIO_tb_func_impl.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'control'
+INFO: [VRFC 10-3107] analyzing entity 'datapath'
+INFO: [VRFC 10-3107] analyzing entity 'unimacro_BRAM_SINGLE_MACRO'
+INFO: [VRFC 10-3107] analyzing entity '\unimacro_BRAM_SINGLE_MACRO__parameterized0\'
+INFO: [VRFC 10-3107] analyzing entity '\unimacro_BRAM_SINGLE_MACRO__parameterized1\'
+INFO: [VRFC 10-3107] analyzing entity '\unimacro_BRAM_SINGLE_MACRO__parameterized2\'
+INFO: [VRFC 10-3107] analyzing entity 'MemIN'
+INFO: [VRFC 10-3107] analyzing entity 'memOUT'
+INFO: [VRFC 10-3107] analyzing entity 'circuito'
+INFO: [VRFC 10-3107] analyzing entity 'fpga_basicIO'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sim_1/new/fpga_IO_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'fpga_basicIO_tb'
