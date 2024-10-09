@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"fpga_basicIO_tb_func_impl.vhd" \
+"../../../../../project_2.srcs/sim_1/new/fpga_IO_tb.vhd" \
+
+# Do not sort compile order
+nosort

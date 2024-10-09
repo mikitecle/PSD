@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Wed Oct  9 17:36:55 2024
+# Process ID: 56860
+# Current directory: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/synth_1
+# Command line: vivado.exe -log fpga_basicIO.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fpga_basicIO.tcl
+# Log file: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/synth_1/fpga_basicIO.vds
+# Journal file: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/synth_1\vivado.jou
+# Running On        :Kristian-PC
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :19045
+# Processor Detail  :Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz
+# CPU Frequency     :1498 MHz
+# CPU Physical cores:4
+# CPU Logical cores :8
+# Host memory       :16908 MB
+# Swap memory       :36507 MB
+# Total Virtual     :53415 MB
+# Available Virtual :27972 MB
+#-----------------------------------------------------------
+source fpga_basicIO.tcl -notrace

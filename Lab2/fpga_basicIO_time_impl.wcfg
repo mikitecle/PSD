@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="fpga_basicIO_tb_time_synth.wdb" id="1">
+         <top_modules>
+            <top_module name="fpga_basicIO_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="297.899 ns"></ZoomStartTime>
+      <ZoomEndTime time="393.400 ns"></ZoomEndTime>
+      <Cursor1Time time="345.483 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="223"></NameColumnWidth>
+      <ValueColumnWidth column_width="287"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wvobject fp_name="/fpga_basicIO_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/dataOUT" type="array">
+      <obj_property name="ElementShortName">dataOUT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dataOUT[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/we" type="logic">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/addr" type="array">
+      <obj_property name="ElementShortName">addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/alu_out" type="array">
+      <obj_property name="ElementShortName">alu_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">alu_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="group196" type="group">
+      <obj_property name="label">inn</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/a_sig" type="array">
+         <obj_property name="ElementShortName">a_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">a_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/b_sig" type="array">
+         <obj_property name="ElementShortName">b_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">b_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/c_sig" type="array">
+         <obj_property name="ElementShortName">c_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">c_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/d_sig" type="array">
+         <obj_property name="ElementShortName">d_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">d_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/e_sig" type="array">
+         <obj_property name="ElementShortName">e_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">e_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/f_sig" type="array">
+         <obj_property name="ElementShortName">f_sig[15:0]</obj_property>
+         <obj_property name="ObjectShortName">f_sig[15:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/r1" type="array">
+      <obj_property name="ElementShortName">r1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/r3" type="array">
+      <obj_property name="ElementShortName">r3[31:0]</obj_property>
+      <obj_property name="ObjectShortName">r3[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/\\r4_reg_n_0_[0]  " type="logic">
+      <obj_property name="ElementShortName">\\r4_reg_n_0_[0]  </obj_property>
+      <obj_property name="ObjectShortName">\\r4_reg_n_0_[0]  </obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/\\r3_reg[31]_1  " type="array">
+      <obj_property name="ElementShortName">\\r3_reg[31]_1  [31:0]</obj_property>
+      <obj_property name="ObjectShortName">\\r3_reg[31]_1  [31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/\\r4_reg[31]_0  " type="array">
+      <obj_property name="ElementShortName">\\r4_reg[31]_0  [31:0]</obj_property>
+      <obj_property name="ObjectShortName">\\r4_reg[31]_0  [31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/mul1_out_64" type="array">
+      <obj_property name="ElementShortName">mul1_out_64[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mul1_out_64[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/mul2_out_64_0" type="array">
+      <obj_property name="ElementShortName">mul2_out_64_0[16:0]</obj_property>
+      <obj_property name="ObjectShortName">mul2_out_64_0[16:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/mux1" type="array">
+      <obj_property name="ElementShortName">mux1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mux1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/mux4" type="array">
+      <obj_property name="ElementShortName">mux4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mux4[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/mux8" type="array">
+      <obj_property name="ElementShortName">mux8[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mux8[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/out" type="array">
+      <obj_property name="ElementShortName">out[14:0]</obj_property>
+      <obj_property name="ObjectShortName">out[14:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/fpga_basicIO_tb/uut/Inst_circuito/inst_datapath/sra_out" type="array">
+      <obj_property name="ElementShortName">sra_out[30:0]</obj_property>
+      <obj_property name="ObjectShortName">sra_out[30:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
