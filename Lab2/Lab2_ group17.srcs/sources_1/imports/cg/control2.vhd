@@ -54,7 +54,7 @@ BEGIN
     END IF;
   END PROCESS;
 
-  PROCESS (currstate, output_counter)
+  PROCESS (currstate)
   BEGIN
     nextstate <= currstate;
     CASE currstate IS
