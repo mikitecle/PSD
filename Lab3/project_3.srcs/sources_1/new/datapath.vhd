@@ -4,55 +4,26 @@ USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY datapath IS
   PORT (
-    A, B, C, D, E, F : IN signed (15 DOWNTO 0); -- Input data
+    DATA_IN : IN signed(23 DOWNTO 0);
 
-    S1, S2, S3, S4, S6, S7, S8, S9 : IN STD_LOGIC; -- Mux selects
-    S5 : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- Mux select for Mux5
+    DATA_OUT : OUT signed(63 DOWNTO 0);
 
-    E1, E2, E3, E4, E5, E6, E7 : IN STD_LOGIC; -- Enables for 6 registers and 1 SRA
+    CLK : IN STD_LOGIC;
+    RST : IN STD_LOGIC;
 
-    CLK, RST : IN STD_LOGIC; -- Clock and synchronous active high reset
-
-    DATA_OUT : OUT signed (31 DOWNTO 0) -- Output data
+    WE : IN STD_LOGIC(12 DOWNTO 0);
   );
 END datapath;
 
 ARCHITECTURE behavioral OF datapath IS
-
-  -- Operator outputs
-  SIGNAL mul1_out, mul2_out, alu_out, sra_out : signed (31 DOWNTO 0);
-  SIGNAL mul1_out_64, mul2_out_64 : signed(63 DOWNTO 0);
-
-  -- Mux outputs
-  SIGNAL mux1, mux2, mux3, mux4, mux5, mux6, mux7, mux8 : signed (31 DOWNTO 0);
-
-  -- Register outputs
-  SIGNAL r1, r2, r3, r4, r5, r6 : signed (31 DOWNTO 0);
-
+  SIGNAL r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11 : signed(23 DOWNTO 0);
+  SIGNAL r12 : signed(11 DOWNTO 0);
+  SIGNAL mul1_out, mul2_out, mul3_out, mul4_out, mul5_out, mul6_out : signed(23 DOWNTO 0);
+  SIGNAL sub1_out, add1_out, sub2_out, sub3_out, add2_out : signed(23 DOWNTO 0);
+  SIGNAL mux1_out, mux2_out, ars1_out, ars2_out : signed(11 DOWNTO 0);
+  SIGNAL sum_real, sum_imag : signed(11 DOWNTO 0);
+  SIGNAL data_out : signed(63 DOWNTO 0);
 BEGIN
-
-  -- Muxes:
-  mux1 <= r1 WHEN S1 = '0' ELSE
-          r3;
-  mux2 <= r1 WHEN S2 = '0' ELSE
-          r3;
-  mux3 <= resize(A, 32) WHEN S3 = '0' ELSE
-          mul1_out;
-  mux4 <= resize(B, 32) WHEN S4 = '0' ELSE
-          alu_out;
-
-  -- Mux5 has a 2-bit select signal S5
-  WITH S5 SELECT
-    mux5 <= resize(C, 32) WHEN "00",
-    mul1_out WHEN "01",
-    alu_out WHEN OTHERS;
-
-  mux6 <= resize(D, 32) WHEN S6 = '0' ELSE
-          mul2_out;
-  mux7 <= resize(E, 32) WHEN S7 = '0' ELSE
-          mul1_out;
-  mux8 <= resize(F, 32) WHEN S8 = '0' ELSE
-          alu_out;
 
   -- Registers:
   PROCESS (CLK)
@@ -65,46 +36,77 @@ BEGIN
         r4 <= (OTHERS => '0');
         r5 <= (OTHERS => '0');
         r6 <= (OTHERS => '0');
+        r7 <= (OTHERS => '0');
+        r8 <= (OTHERS => '0');
+        r9 <= (OTHERS => '0');
+        r10 <= (OTHERS => '0');
+        r11 <= (OTHERS => '0');
+        r12 <= (OTHERS => '0');
+
       ELSE
-        IF E1 = '1' THEN
-          r1 <= mux3;
+        IF WE(0) = '1' THEN
+          r1 <= DATA_IN;
         END IF;
-        IF E2 = '1' THEN
-          r2 <= mux4;
+        IF WE(1) = '1' THEN
+          r2 <= mul1_out;
+          r3 <= mul2_out;
+          r4 <= mul3_out;
+          r5 <= mul4_out;
         END IF;
-        IF E3 = '1' THEN
-          r3 <= mux5;
+        IF WE(2) = '1' THEN
+          r6 <= sub1_out;
+          r7 <= add1_out;
         END IF;
-        IF E4 = '1' THEN
-          r4 <= mux6;
+        IF WE(3) = '1' THEN
+          r8 <= sub2_out;
+          r9 <= sub3_out;
         END IF;
-        IF E5 = '1' THEN
-          r5 <= mux7;
+        IF WE(4) = '1' THEN
+          r10 <= ars1_out;
+          r11 <= ars2_out;
         END IF;
-        IF E6 = '1' THEN
-          r6 <= mux8;
+        IF WE(5) = '1' THEN
+          r12 <= add2_out;
         END IF;
       END IF;
     END IF;
   END PROCESS;
 
-  -- Multipliers (32-bit x 32-bit):
-  mul1_out_64 <= (mux1 * r2);
-  mul1_out <= mul1_out_64(31 DOWNTO 0);
+  -- Multipliers:
+  mul1_out <= r1(23 DOWNTO 12) * DATA_IN(23 DOWNTO 12); -- real * real
+  mul2_out <= r1(11 DOWNTO 0) * DATA_IN(11 DOWNTO 0); -- imag * imag
+  mul3_out <= r1(11 DOWNTO 0) * DATA_IN(23 DOWNTO 12); -- imag * real
+  mul4_out <= r1(23 DOWNTO 12) * DATA_IN(11 DOWNTO 0); -- real * imag
 
-  mul2_out_64 <= (r5 * r6);
-  mul2_out <= mul2_out_64(31 DOWNTO 0);
+  mul5_out <= r8 * r8; -- Fix size of the output
+  mul6_out <= r9 * r9; -- Fix size of the output
 
-  -- ALU:
-  WITH S9 SELECT
-    alu_out <= mux2 + sra_out WHEN '0',
-    sra_out - mux2 WHEN OTHERS;
+  -- Adders and subtractors: 
+  sub1_out <= resize(2 - r3, 24);
+  add1_out <= resize(r4 + r5, 24);
 
-  -- SRA (Shift Right Arithmetic) for integer division:
-  sra_out <= r4(31) & r4(31) & r4(31 DOWNTO 2) WHEN E7 = '1' ELSE
-             r4;
+  sub2_out <= resize(r6 - sub1_out, 24);
+  sub3_out <= resize(r7 - add1_out, 24);
 
-  -- Output assignment:
-  DATA_OUT <= alu_out;
+  add2_out <= mul5_out + mul6_out;
+
+  -- Muxes:
+  mux1_out <= sub2_out WHEN S1 = '0' ELSE
+              ars1_out;
+
+  mux2_out <= sub3_out WHEN S1 = '0' ELSE
+              ars2_out;
+
+  -- Sum of the real parts:
+  sum_real <= r8 + r10;
+  ars1_out <= sum_real(); -- FIXME: ars1_out is not defined
+
+  -- Sum of the imaginary parts:
+  sum_imag <= r9 + r11;
+  ars2_out <= sum_imag(); -- FIXME: ars2_out is not defined
+
+  -- Output:
+  data_out <= mux1_out & mux2_out;
+  DATA_OUT <= data_out;
 
 END behavioral;
