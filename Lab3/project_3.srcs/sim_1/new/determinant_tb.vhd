@@ -70,22 +70,57 @@ BEGIN
 
     WAIT FOR 10 * clk_period;
 
-    input_re <= "000100010000" AFTER 0 ns, -- 4.25
-                "000001100000" AFTER 20 ns; -- 1.5
+    input_re <= "000100010000" AFTER 0 ns, --     4.25
+                "000001100000" AFTER 20 ns, --    1.5
+                "001000000000" AFTER 40 ns, --    8
+                "010000000000" AFTER 60 ns; --    16
 
-    input_im <= "111101100000" AFTER 0 ns, -- -2.5
-                "001000010000" AFTER 20 ns; -- 8.25
+    -- "000100010000" AFTER 80 ns, --     4.25
+    -- "000001100000" AFTER 100 ns, --    1.5
+    -- "001000000000" AFTER 120 ns, --    8
+    -- "010000000000" AFTER 140 ns; --    16
+
+    input_im <= "111101100000" AFTER 0 ns, --     -2.5
+                "001000010000" AFTER 20 ns, --    8.25
+                "100110000000" AFTER 40 ns, --    -26
+                "111111000000" AFTER 60 ns; --    -1
+
+    -- "111101100000" AFTER 80 ns, --     -2.5
+    -- "001000010000" AFTER 100 ns, --    8.25
+    -- "100110000000" AFTER 120 ns, --    -26
+    -- "111111000000" AFTER 140 ns; --    -1  
 
     input_reg_enable <= '1' AFTER 0 ns,
-                        '0' AFTER 20 ns;
+                        '0' AFTER 20 ns,
+                        '1' AFTER 40 ns,
+                        '0' AFTER 60 ns;
+
+    -- '1' AFTER 80 ns,
+    -- '0' AFTER 100 ns,
+    -- '1' AFTER 120 ns,
+    -- '0' AFTER 140 ns;
 
     multiply_reg_enable <= '1' AFTER 20 ns,
-                           '0' AFTER 40 ns;
+                           '0' AFTER 40 ns,
+                           '1' AFTER 60 ns,
+                           '0' AFTER 80 ns;
+
+    --  '1' AFTER 100 ns,
+    --  '0' AFTER 120 ns,
+    --  '1' AFTER 140 ns,
+    --  '0' AFTER 160 ns;
 
     subtract_reg_enable_ad <= '1' AFTER 40 ns,
                               '0' AFTER 60 ns;
 
-    subtract_sel <= '0' AFTER 40 ns;
+    subtract_reg_enable_bc <= '1' AFTER 80 ns,
+                              '0' AFTER 100 ns;
+
+    subtract_sel <= '0' AFTER 40 ns,
+                    '1' AFTER 80 ns;
+
+    output_reg_enable <= '1' AFTER 100 ns,
+                         '0' AFTER 120 ns;
 
   END PROCESS;
 
