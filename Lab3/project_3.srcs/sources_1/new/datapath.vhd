@@ -11,18 +11,25 @@ ENTITY datapath IS
     CLK : IN STD_LOGIC;
     RST : IN STD_LOGIC;
 
-    WE : IN STD_LOGIC(12 DOWNTO 0);
+    WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    S1 : IN STD_LOGIC
   );
 END datapath;
 
 ARCHITECTURE behavioral OF datapath IS
-  SIGNAL r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11 : signed(23 DOWNTO 0);
-  SIGNAL r12 : signed(11 DOWNTO 0);
-  SIGNAL mul1_out, mul2_out, mul3_out, mul4_out, mul5_out, mul6_out : signed(23 DOWNTO 0);
-  SIGNAL sub1_out, add1_out, sub2_out, sub3_out, add2_out : signed(23 DOWNTO 0);
-  SIGNAL mux1_out, mux2_out, ars1_out, ars2_out : signed(11 DOWNTO 0);
-  SIGNAL sum_real, sum_imag : signed(11 DOWNTO 0);
-  SIGNAL data_out : signed(63 DOWNTO 0);
+  SIGNAL r1, r2, r3, r4, r5 : signed(23 DOWNTO 0);
+  SIGNAL r6, r7, r8, r9 : signed(25 DOWNTO 0);
+  SIGNAL r10, r11 : signed(33 DOWNTO 0);
+  SIGNAL r12 : signed(27 DOWNTO 0);
+  SIGNAL mul1_out, mul2_out, mul3_out, mul4_out : signed(23 DOWNTO 0);
+  SIGNAL abs_real, abs_imag : signed(25 DOWNTO 0);
+  SIGNAL sub1_out, add1_out, sub2_out, sub3_out : signed(25 DOWNTO 0);
+  SIGNAL add2_out : signed(27 DOWNTO 0);
+  SIGNAL mux1_out, mux2_out : signed(31 DOWNTO 0);
+  SIGNAL ars1_temp, ars2_temp : signed(33 DOWNTO 0);
+  SIGNAL ars1_out, ars2_out : signed(31 DOWNTO 0);
+  SIGNAL sum_real, sum_imag : signed(33 DOWNTO 0);
+  SIGNAL data : signed(63 DOWNTO 0);
 BEGIN
 
   -- Registers:
@@ -45,69 +52,75 @@ BEGIN
 
       ELSE
         IF WE(0) = '1' THEN
-          r1 <= DATA_IN;
+          r1 <= DATA_IN; -- Q12.12
         END IF;
         IF WE(1) = '1' THEN
-          r2 <= mul1_out;
-          r3 <= mul2_out;
-          r4 <= mul3_out;
-          r5 <= mul4_out;
+          r2 <= mul1_out; -- Q12.12
+          r3 <= mul2_out; -- Q12.12
+          r4 <= mul3_out; -- Q12.12
+          r5 <= mul4_out; -- Q12.12
         END IF;
         IF WE(2) = '1' THEN
-          r6 <= sub1_out;
-          r7 <= add1_out;
+          r6 <= sub1_out; -- Q13.13
+          r7 <= add1_out; -- Q13.13
         END IF;
         IF WE(3) = '1' THEN
-          r8 <= sub2_out;
-          r9 <= sub3_out;
+          r8 <= sub2_out; -- Q13.13
+          r9 <= sub3_out; -- Q13.13
         END IF;
         IF WE(4) = '1' THEN
-          r10 <= ars1_out;
-          r11 <= ars2_out;
+          r10 <= sum_real; -- Q17.17
+          r11 <= sum_imag; -- Q17.17
         END IF;
         IF WE(5) = '1' THEN
-          r12 <= add2_out;
+          r12 <= add2_out; -- Q14.14
         END IF;
       END IF;
     END IF;
   END PROCESS;
 
   -- Multipliers:
-  mul1_out <= r1(23 DOWNTO 12) * DATA_IN(23 DOWNTO 12); -- real * real
-  mul2_out <= r1(11 DOWNTO 0) * DATA_IN(11 DOWNTO 0); -- imag * imag
-  mul3_out <= r1(11 DOWNTO 0) * DATA_IN(23 DOWNTO 12); -- imag * real
-  mul4_out <= r1(23 DOWNTO 12) * DATA_IN(11 DOWNTO 0); -- real * imag
+  mul1_out <= r1(23 DOWNTO 12) * DATA_IN(23 DOWNTO 12); -- real * real = Q12.12
+  mul2_out <= r1(11 DOWNTO 0) * DATA_IN(11 DOWNTO 0); -- imag * imag = Q12.12
+  mul3_out <= r1(11 DOWNTO 0) * DATA_IN(23 DOWNTO 12); -- imag * real = Q12.12
+  mul4_out <= r1(23 DOWNTO 12) * DATA_IN(11 DOWNTO 0); -- real * imag = Q12.12
 
-  mul5_out <= r8 * r8; -- Fix size of the output
-  mul6_out <= r9 * r9; -- Fix size of the output
+  -- Absolute value of the real and imaginary parts:
+  abs_real <= -r8 WHEN r8 < 0 ELSE
+              r8; -- Q13.13
+
+  abs_imag <= -r9 WHEN r9 < 0 ELSE
+              r9; -- Q13.13
 
   -- Adders and subtractors: 
-  sub1_out <= resize(2 - r3, 24);
-  add1_out <= resize(r4 + r5, 24);
+  subTemp <= r2 - r3; -- Q12.12
+  sub1_out <= resize(r2, 26) - resize(r3, 26); -- Q13.13
+  add1_out <= resize(r4, 26) + resize(r5, 26); -- Q13.13
 
-  sub2_out <= resize(r6 - sub1_out, 24);
-  sub3_out <= resize(r7 - add1_out, 24);
+  sub2_out <= r6 - sub1_out; -- Q13.13
+  sub3_out <= r7 - add1_out; -- Q13.13
 
-  add2_temp <= mul5_out + mul6_out;
-  add2_out <= resize(add2_temp(47 DOWNTO 9), 32);
+  add2_out <= resize(abs_real, 28) + resize(abs_imag, 28); -- Q14.14s
 
   -- Muxes:
-  mux1_out <= sub2_out WHEN S1 = '0' ELSE
+  mux1_out <= resize(r8, 32) WHEN S1 = '0' ELSE
               ars1_out;
 
-  mux2_out <= sub3_out WHEN S1 = '0' ELSE
+  mux2_out <= resize(r9, 32) WHEN S1 = '0' ELSE
               ars2_out;
 
   -- Sum of the real parts:
-  sum_real <= r8 + r10;
-  ars1_out <= sum_real(); -- FIXME: ars1_out is not defined
+  sum_real <= r8 + r10; -- Q17.17
+  ars1_temp <= r10(33) & r10(33) & r10(33) & r10(33 DOWNTO 3); -- Q17.17
+  ars1_out <= ars1_temp(33 DOWNTO 2); -- Q17.15
 
   -- Sum of the imaginary parts:
-  sum_imag <= r9 + r11;
-  ars2_out <= sum_imag(); -- FIXME: ars2_out is not defined
+  sum_imag <= r9 + r11; -- Q17.17
+  ars2_temp <= r11(33) & r11(33) & r11(33) & r11(33 DOWNTO 3); -- Q17.17
+  ars2_out <= ars2_temp(33 DOWNTO 2); -- Q17.15
 
   -- Output:
-  data_out <= mux1_out & mux2_out;
-  DATA_OUT <= data_out;
+  data <= mux1_out & mux2_out;
+  DATA_OUT <= data; -- Q17.15 * 2
 
 END behavioral;

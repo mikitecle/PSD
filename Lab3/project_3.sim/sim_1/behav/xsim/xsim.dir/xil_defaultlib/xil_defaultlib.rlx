@@ -2,10 +2,5 @@
 2020.2
 May 22 2024
 19:03:11
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sim_1/new/fpga_IO_tb.vhd,1728412266,vhdl,,,,fpga_basicio_tb,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/circuito.vhd,1728317879,vhdl,,,,circuito,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/control.vhd,1728412872,vhdl,,,,control,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/datapath.vhd,1728309860,vhdl,,,,datapath,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/fpga_basicIO.vhd,1728318032,vhdl,,,,fpga_basicio,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/memIN1.vhd,1728046984,vhdl,,,,memin,,,,,,,,
-C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.srcs/sources_1/new/memOUT.vhd,1727976694,vhdl,,,,memout,,,,,,,,
+C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sim_1/new/datapath_tb.vhd,1729016902,vhdl,,,,datapath_tb,,,,,,,,
+C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/datapath.vhd,1729017415,vhdl,,,,datapath,,,,,,,,
