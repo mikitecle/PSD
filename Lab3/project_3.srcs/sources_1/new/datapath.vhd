@@ -17,10 +17,10 @@ ENTITY datapath IS
 END datapath;
 
 ARCHITECTURE behavioral OF datapath IS
-  SIGNAL r1, r2, r3, r4, r5 : signed(23 DOWNTO 0);
-  SIGNAL r6, r7, r8, r9 : signed(25 DOWNTO 0);
-  SIGNAL r10, r11 : signed(33 DOWNTO 0);
-  SIGNAL r12 : signed(27 DOWNTO 0);
+  SIGNAL r1 : signed(23 DOWNTO 0);
+  SIGNAL r2, r3, r4, r5, r6, r7, r8, r9 : signed(24 DOWNTO 0);
+  SIGNAL r10, r11 : signed(28 DOWNTO 0);
+  SIGNAL r12 : signed(25 DOWNTO 0);
   SIGNAL mul1_out, mul2_out, mul3_out, mul4_out : signed(23 DOWNTO 0);
   SIGNAL abs_real, abs_imag : signed(25 DOWNTO 0);
   SIGNAL sub1_out, add1_out, sub2_out, sub3_out : signed(25 DOWNTO 0);
@@ -55,25 +55,25 @@ BEGIN
           r1 <= DATA_IN; -- Q12.12
         END IF;
         IF WE(1) = '1' THEN
-          r2 <= mul1_out; -- Q12.12
-          r3 <= mul2_out; -- Q12.12
-          r4 <= mul3_out; -- Q12.12
-          r5 <= mul4_out; -- Q12.12
+          r2 <= '0' & mul1_out; -- Q13.12
+          r3 <= '0' & mul2_out; -- Q13.12
+          r4 <= '0' & mul3_out; -- Q13.12
+          r5 <= '0' & mul4_out; -- Q13.12
         END IF;
         IF WE(2) = '1' THEN
-          r6 <= sub1_out; -- Q13.13
-          r7 <= add1_out; -- Q13.13
+          r6 <= sub1_out; -- Q13.12
+          r7 <= add1_out; -- Q13.12
         END IF;
         IF WE(3) = '1' THEN
-          r8 <= sub2_out; -- Q13.13
-          r9 <= sub3_out; -- Q13.13
+          r8 <= sub2_out; -- Q13.12
+          r9 <= sub3_out; -- Q13.12
         END IF;
         IF WE(4) = '1' THEN
-          r10 <= sum_real; -- Q17.17
-          r11 <= sum_imag; -- Q17.17
+          r10 <= sum_real; -- Q17.12
+          r11 <= sum_imag; -- Q17.12
         END IF;
         IF WE(5) = '1' THEN
-          r12 <= add2_out; -- Q14.14
+          r12 <= add2_out; -- Q14.12
         END IF;
       END IF;
     END IF;
@@ -93,14 +93,13 @@ BEGIN
               r9; -- Q13.13
 
   -- Adders and subtractors: 
-  subTemp <= r2 - r3; -- Q12.12
-  sub1_out <= resize(r2, 26) - resize(r3, 26); -- Q13.13
-  add1_out <= resize(r4, 26) + resize(r5, 26); -- Q13.13
+  sub1_out <= r2 - r3; -- Q13.12
+  add1_out <= r4 + r5; -- Q13.12
 
-  sub2_out <= r6 - sub1_out; -- Q13.13
-  sub3_out <= r7 - add1_out; -- Q13.13
+  sub2_out <= r6 - sub1_out; -- Q13.12
+  sub3_out <= r7 - add1_out; -- Q13.12
 
-  add2_out <= resize(abs_real, 28) + resize(abs_imag, 28); -- Q14.14s
+  add2_out <= resize(abs_real, 28) + resize(abs_imag, 28); -- Q14.12
 
   -- Muxes:
   mux1_out <= resize(r8, 32) WHEN S1 = '0' ELSE
@@ -110,14 +109,14 @@ BEGIN
               ars2_out;
 
   -- Sum of the real parts:
-  sum_real <= r8 + r10; -- Q17.17
-  ars1_temp <= r10(33) & r10(33) & r10(33) & r10(33 DOWNTO 3); -- Q17.17
-  ars1_out <= ars1_temp(33 DOWNTO 2); -- Q17.15
+  sum_real <= r8 + r10; -- Q17.12
+  ars1_temp <= r10(33) & r10(33) & r10(33) & r10(33 DOWNTO 3); -- Q17.12
+  ars1_out <= ars1_temp & "000"; -- Q17.15
 
   -- Sum of the imaginary parts:
-  sum_imag <= r9 + r11; -- Q17.17
-  ars2_temp <= r11(33) & r11(33) & r11(33) & r11(33 DOWNTO 3); -- Q17.17
-  ars2_out <= ars2_temp(33 DOWNTO 2); -- Q17.15
+  sum_imag <= r9 + r11; -- Q17.12
+  ars2_temp <= r11(33) & r11(33) & r11(33) & r11(33 DOWNTO 3); -- Q17.12
+  ars2_out <= ars2_temp & "0000"; -- Q17.15
 
   -- Output:
   data <= mux1_out & mux2_out;
