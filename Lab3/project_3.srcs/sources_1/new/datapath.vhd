@@ -88,7 +88,8 @@ BEGIN
   sub2_out <= resize(r6 - sub1_out, 24);
   sub3_out <= resize(r7 - add1_out, 24);
 
-  add2_out <= mul5_out + mul6_out;
+  add2_temp <= mul5_out + mul6_out;
+  add2_out <= resize(add2_temp(47 DOWNTO 9), 32);
 
   -- Muxes:
   mux1_out <= sub2_out WHEN S1 = '0' ELSE
