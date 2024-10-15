@@ -34,7 +34,7 @@ ARCHITECTURE behavioral OF determinant IS
 
   SIGNAL sub_res1, sub_res2, sub_res3, sub_res4 : signed (23 DOWNTO 0); -- Q12.12 format
 
-  SIGNAL sub_reg1, sub_reg2, sub_reg3, sub_reg4 : signed (23 DOWNTO 0); -- Q12.12 format
+  SIGNAL sub_reg1, sub_reg2, sub_reg3, sub_reg4 : signed (24 DOWNTO 0); -- Q12.12 format
 
   SIGNAL sum_re, sum_im : signed (24 DOWNTO 0); -- Q13.12 format
 
