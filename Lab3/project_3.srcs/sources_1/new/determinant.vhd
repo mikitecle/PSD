@@ -144,7 +144,7 @@ BEGIN
       IF reset = '1' THEN
         sub_reg1 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_ad = '1' THEN
-        sub_reg1 <= sub_res1;
+        sub_reg1 <= resize(sub_res1, 25);
       END IF;
     END IF;
   END PROCESS;
@@ -155,7 +155,7 @@ BEGIN
       IF reset = '1' THEN
         sub_reg2 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_ad = '1' THEN
-        sub_reg2 <= sub_res2;
+        sub_reg2 <= resize(sub_res2, 25);
       END IF;
     END IF;
   END PROCESS;
@@ -166,7 +166,7 @@ BEGIN
       IF reset = '1' THEN
         sub_reg3 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_bc = '1' THEN
-        sub_reg3 <= sub_res1;
+        sub_reg3 <= resize(sub_res1, 25);
       END IF;
     END IF;
   END PROCESS;
@@ -177,14 +177,14 @@ BEGIN
       IF reset = '1' THEN
         sub_reg4 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_bc = '1' THEN
-        sub_reg4 <= sub_res2;
+        sub_reg4 <= resize(sub_res2, 25);
       END IF;
     END IF;
   END PROCESS;
 
-  sum_re <= sub_reg1(23) & sub_reg1 + sub_reg3(23) & sub_reg3;
+  sum_re <= sub_reg1 + sub_reg3;
 
-  sum_im <= sub_reg2(23) & sub_reg2 + sub_reg4(23) & sub_reg4;
+  sum_im <= sub_reg2 + sub_reg4;
 
   PROCESS (clk)
   BEGIN
