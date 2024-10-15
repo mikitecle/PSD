@@ -36,7 +36,7 @@ ARCHITECTURE behavioral OF tb_determinant IS
   SIGNAL subtract_sel : STD_LOGIC := '0';
 
   -- Clock generation
-  CONSTANT clk_period : TIME := 25 ns;
+  CONSTANT clk_period : TIME := 20 ns;
 
 BEGIN
 
@@ -70,69 +70,26 @@ BEGIN
   -- Stimulus process to apply input signals
   stimulus : PROCESS
   BEGIN
-    -- Initialize Inputs
-    reset <= '1';
-    WAIT FOR 5 * clk_period;
 
-    input_re <= TO_SIGNED(69, 6) & "000000";
-    input_im <= TO_SIGNED(420, 6) & "000000";
-    reset <= '0';
-    input_reg_enable <= '1';
+    WAIT FOR 10 * clk_period;
 
-    WAIT FOR clk_period;
+    input_re <= "000100010000" AFTER 0 ns; -- 4.25
+    "000001100000" AFTER 20 ns; -- 1.5
 
-    input_re <= TO_SIGNED(2, 6) & "000000";
-    input_im <= TO_SIGNED(4, 6) & "000000";
-    input_reg_enable <= '0';
-    multiply_reg_enable <= '1'
-                           
-                           WAIT FOR clk_period;
+    input_im <= "111101100000" AFTER 0 ns;-- -2.5
+    "001000010000" AFTER 20 ns; -- 8.25
 
-    multiply_reg_enable <= '0';
-    subtract_reg_enable_ad <= '1';
+    inout_reg_enable <= '1' AFTER 0 ns;
+    '0' AFTER 20 ns;
 
-    WAIT FOR clk_period;
+    multiply_reg_enable <= '1' AFTER 20 ns;
+    '0' AFTER 40 ns;
 
-    subtract_reg_enable_ad <= '0';
-    input_re <= TO_SIGNED(69, 6) & "000000";
-    input_im <= TO_SIGNED(420, 6) & "000000";
-    reset <= '0';
-    input_reg_enable <= '1';
+    subtract_reg_enable_ad <= '1' AFTER 40 ns;
+    '0' AFTER 60 ns;
 
-    WAIT FOR clk_period;
-
-    input_re <= TO_SIGNED(2, 6) & "000000";
-    input_im <= TO_SIGNED(4, 6) & "000000";
-    input_reg_enable <= '0';
-    multiply_reg_enable <= '1'
-                           
-                           WAIT FOR clk_period;
-
-    multiply_reg_enable <= '0';
-    subtract_reg_enable_bc <= '1';
-
-    WAIT FOR clk_period;
-
-    subtract_reg_enable_bc <= '0';
-    output_reg_enable <= '1';
-
-    WAIT FOR clk_period;
-
-    output_reg_enable <= '0';
-
-    WAIT FOR 100 * clk_period;
-    WAIT;
+    subtract_sel <= '0' AFTER 40 ns;
 
   END PROCESS;
-
-  --   -- Monitor process to observe the outputs
-  --   monitor : PROCESS
-  --   BEGIN
-  --     WAIT UNTIL rising_edge(clk);
-  --     REPORT "Input Re: " & INTEGER'IMAGE(TO_INTEGER(input_re));
-  --     REPORT "Input Im: " & INTEGER'IMAGE(TO_INTEGER(input_im));
-  --     REPORT "Output Re: " & INTEGER'IMAGE(TO_INTEGER(output_re));
-  --     REPORT "Output Im: " & INTEGER'IMAGE(TO_INTEGER(output_im));
-  --   END PROCESS;
 
 END behavioral;

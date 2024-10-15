@@ -28,9 +28,15 @@ ARCHITECTURE behavioral OF determinant IS
 
   SIGNAL input_re_q, input_im_q : signed (11 DOWNTO 0); -- Q6.6 format
 
+  SIGNAL mult_res1, mult_res2, mult_res3, mult_res4 : signed (23 DOWNTO 0); -- Q12.12 format
+
   SIGNAL mult_reg1, mult_reg2, mult_reg3, mult_reg4 : signed (23 DOWNTO 0); -- Q12.12 format
 
+  SIGNAL sub_res1, sub_res2, sub_res3, sub_res4 : signed (23 DOWNTO 0); -- Q12.12 format
+
   SIGNAL sub_reg1, sub_reg2, sub_reg3, sub_reg4 : signed (23 DOWNTO 0); -- Q12.12 format
+
+  SIGNAL sum_re, sum_im : signed (24 DOWNTO 0); -- Q13.12 format
 
   SIGNAL output_reg_re, output_reg_im : signed (24 DOWNTO 0); --Q13.12 format
 
@@ -60,13 +66,21 @@ BEGIN
     END IF;
   END PROCESS;
 
+  mult_res1 <= input_re_q * input_re;
+
+  mult_res2 <= input_im_q * input_im;
+
+  mult_res3 <= input_re_q * input_im;
+
+  mult_res4 <= input_im_q * input_re;
+
   PROCESS (clk)
   BEGIN
     IF rising_edge(clk) THEN
       IF reset = '1' THEN
         mult_reg1 <= (OTHERS => '0');
-      ELSIF input_reg_enable = '1' THEN
-        mult_reg1 <= input_re_q * input_re;
+      ELSIF multiply_reg_enable = '1' THEN
+        mult_reg1 <= mult_res1;
       END IF;
     END IF;
   END PROCESS;
@@ -76,8 +90,8 @@ BEGIN
     IF rising_edge(clk) THEN
       IF reset = '1' THEN
         mult_reg2 <= (OTHERS => '0');
-      ELSIF input_reg_enable = '1' THEN
-        mult_reg2 <= input_im_q * input_im;
+      ELSIF multiply_reg_enable = '1' THEN
+        mult_reg2 <= mult_res2;
       END IF;
     END IF;
   END PROCESS;
@@ -87,8 +101,8 @@ BEGIN
     IF rising_edge(clk) THEN
       IF reset = '1' THEN
         mult_reg3 <= (OTHERS => '0');
-      ELSIF input_reg_enable = '1' THEN
-        mult_reg3 <= input_re_q * input_im;
+      ELSIF multiply_reg_enable = '1' THEN
+        mult_reg3 <= mult_res3;
       END IF;
     END IF;
   END PROCESS;
@@ -98,8 +112,8 @@ BEGIN
     IF rising_edge(clk) THEN
       IF reset = '1' THEN
         mult_reg4 <= (OTHERS => '0');
-      ELSIF input_reg_enable = '1' THEN
-        mult_reg4 <= input_im_q * input_re;
+      ELSIF multiply_reg_enable = '1' THEN
+        mult_reg4 <= mult_res4;
       END IF;
     END IF;
   END PROCESS;
@@ -120,13 +134,17 @@ BEGIN
                  ELSE
                  mult_reg3;
 
+  sub_res1 <= minuend1 - subtrahend1;
+
+  sub_res2 <= minuend2 - subtrahend2;
+
   PROCESS (clk)
   BEGIN
     IF rising_edge(clk) THEN
       IF reset = '1' THEN
         sub_reg1 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_ad = '1' THEN
-        sub_reg1 <= minuend1 - subtrahend1;
+        sub_reg1 <= sub_res1;
       END IF;
     END IF;
   END PROCESS;
@@ -137,7 +155,7 @@ BEGIN
       IF reset = '1' THEN
         sub_reg2 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_ad = '1' THEN
-        sub_reg2 <= minuend2 - subtrahend2;
+        sub_reg2 <= sub_res2;
       END IF;
     END IF;
   END PROCESS;
@@ -148,7 +166,7 @@ BEGIN
       IF reset = '1' THEN
         sub_reg3 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_bc = '1' THEN
-        sub_reg3 <= minuend1 - subtrahend1;
+        sub_reg3 <= sub_res1;
       END IF;
     END IF;
   END PROCESS;
@@ -159,10 +177,14 @@ BEGIN
       IF reset = '1' THEN
         sub_reg4 <= (OTHERS => '0');
       ELSIF subtract_reg_enable_bc = '1' THEN
-        sub_reg4 <= minuend2 - subtrahend2;
+        sub_reg4 <= sub_res2;
       END IF;
     END IF;
   END PROCESS;
+
+  sum_re <= sub_reg1 + sub_reg3;
+
+  sum_im <= sub_reg2 + sub_reg4;
 
   PROCESS (clk)
   BEGIN
@@ -170,7 +192,7 @@ BEGIN
       IF reset = '1' THEN
         output_reg_re <= (OTHERS => '0');
       ELSIF output_reg_enable = '1' THEN
-        output_reg_re <= sub_reg1 + sub_reg3;
+        output_reg_re <= sum_re;
       END IF;
     END IF;
   END PROCESS;
@@ -181,7 +203,7 @@ BEGIN
       IF reset = '1' THEN
         output_reg_im <= (OTHERS => '0');
       ELSIF output_reg_enable = '1' THEN
-        output_reg_im <= sub_reg2 + sub_reg4;
+        output_reg_im <= sum_im;
       END IF;
     END IF;
   END PROCESS;
