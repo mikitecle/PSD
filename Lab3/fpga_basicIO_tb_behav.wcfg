@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="117.484 ns"></ZoomStartTime>
-      <ZoomEndTime time="222.585 ns"></ZoomEndTime>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="771.471 ns"></ZoomEndTime>
       <Cursor1Time time="135.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="223"></NameColumnWidth>
-      <ValueColumnWidth column_width="191"></ValueColumnWidth>
+      <ValueColumnWidth column_width="185"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="38" />
    <wvobject fp_name="/datapath_tb/uut/DATA_IN" type="array">
@@ -52,88 +52,88 @@
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r2" type="array">
-      <obj_property name="ElementShortName">r2[23:0]</obj_property>
-      <obj_property name="ObjectShortName">r2[23:0]</obj_property>
+      <obj_property name="ElementShortName">r2[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r2[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r3" type="array">
-      <obj_property name="ElementShortName">r3[23:0]</obj_property>
-      <obj_property name="ObjectShortName">r3[23:0]</obj_property>
+      <obj_property name="ElementShortName">r3[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r3[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r4" type="array">
-      <obj_property name="ElementShortName">r4[23:0]</obj_property>
-      <obj_property name="ObjectShortName">r4[23:0]</obj_property>
+      <obj_property name="ElementShortName">r4[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r4[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r5" type="array">
-      <obj_property name="ElementShortName">r5[23:0]</obj_property>
-      <obj_property name="ObjectShortName">r5[23:0]</obj_property>
+      <obj_property name="ElementShortName">r5[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r5[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">12</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r6" type="array">
-      <obj_property name="ElementShortName">r6[25:0]</obj_property>
-      <obj_property name="ObjectShortName">r6[25:0]</obj_property>
+      <obj_property name="ElementShortName">r6[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r6[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r7" type="array">
-      <obj_property name="ElementShortName">r7[25:0]</obj_property>
-      <obj_property name="ObjectShortName">r7[25:0]</obj_property>
+      <obj_property name="ElementShortName">r7[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r7[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r8" type="array">
-      <obj_property name="ElementShortName">r8[25:0]</obj_property>
-      <obj_property name="ObjectShortName">r8[25:0]</obj_property>
+      <obj_property name="ElementShortName">r8[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r8[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r9" type="array">
-      <obj_property name="ElementShortName">r9[25:0]</obj_property>
-      <obj_property name="ObjectShortName">r9[25:0]</obj_property>
+      <obj_property name="ElementShortName">r9[24:0]</obj_property>
+      <obj_property name="ObjectShortName">r9[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r10" type="array">
-      <obj_property name="ElementShortName">r10[33:0]</obj_property>
-      <obj_property name="ObjectShortName">r10[33:0]</obj_property>
+      <obj_property name="ElementShortName">r10[28:0]</obj_property>
+      <obj_property name="ObjectShortName">r10[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r11" type="array">
-      <obj_property name="ElementShortName">r11[33:0]</obj_property>
-      <obj_property name="ObjectShortName">r11[33:0]</obj_property>
+      <obj_property name="ElementShortName">r11[28:0]</obj_property>
+      <obj_property name="ObjectShortName">r11[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r12" type="array">
-      <obj_property name="ElementShortName">r12[27:0]</obj_property>
-      <obj_property name="ObjectShortName">r12[27:0]</obj_property>
+      <obj_property name="ElementShortName">r12[25:0]</obj_property>
+      <obj_property name="ObjectShortName">r12[25:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">14</obj_property>
@@ -172,56 +172,56 @@
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/abs_real" type="array">
-      <obj_property name="ElementShortName">abs_real[25:0]</obj_property>
-      <obj_property name="ObjectShortName">abs_real[25:0]</obj_property>
+      <obj_property name="ElementShortName">abs_real[24:0]</obj_property>
+      <obj_property name="ObjectShortName">abs_real[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/abs_imag" type="array">
-      <obj_property name="ElementShortName">abs_imag[25:0]</obj_property>
-      <obj_property name="ObjectShortName">abs_imag[25:0]</obj_property>
+      <obj_property name="ElementShortName">abs_imag[24:0]</obj_property>
+      <obj_property name="ObjectShortName">abs_imag[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/sub1_out" type="array">
-      <obj_property name="ElementShortName">sub1_out[25:0]</obj_property>
-      <obj_property name="ObjectShortName">sub1_out[25:0]</obj_property>
+      <obj_property name="ElementShortName">sub1_out[24:0]</obj_property>
+      <obj_property name="ObjectShortName">sub1_out[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/add1_out" type="array">
-      <obj_property name="ElementShortName">add1_out[25:0]</obj_property>
-      <obj_property name="ObjectShortName">add1_out[25:0]</obj_property>
+      <obj_property name="ElementShortName">add1_out[24:0]</obj_property>
+      <obj_property name="ObjectShortName">add1_out[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/sub2_out" type="array">
-      <obj_property name="ElementShortName">sub2_out[25:0]</obj_property>
-      <obj_property name="ObjectShortName">sub2_out[25:0]</obj_property>
+      <obj_property name="ElementShortName">sub2_out[24:0]</obj_property>
+      <obj_property name="ObjectShortName">sub2_out[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/sub3_out" type="array">
-      <obj_property name="ElementShortName">sub3_out[25:0]</obj_property>
-      <obj_property name="ObjectShortName">sub3_out[25:0]</obj_property>
+      <obj_property name="ElementShortName">sub3_out[24:0]</obj_property>
+      <obj_property name="ObjectShortName">sub3_out[24:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">13</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/add2_out" type="array">
-      <obj_property name="ElementShortName">add2_out[27:0]</obj_property>
-      <obj_property name="ObjectShortName">add2_out[27:0]</obj_property>
+      <obj_property name="ElementShortName">add2_out[25:0]</obj_property>
+      <obj_property name="ObjectShortName">add2_out[25:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">14</obj_property>
@@ -244,16 +244,16 @@
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/ars1_temp" type="array">
-      <obj_property name="ElementShortName">ars1_temp[33:0]</obj_property>
-      <obj_property name="ObjectShortName">ars1_temp[33:0]</obj_property>
+      <obj_property name="ElementShortName">ars1_temp[28:0]</obj_property>
+      <obj_property name="ObjectShortName">ars1_temp[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/ars2_temp" type="array">
-      <obj_property name="ElementShortName">ars2_temp[33:0]</obj_property>
-      <obj_property name="ObjectShortName">ars2_temp[33:0]</obj_property>
+      <obj_property name="ElementShortName">ars2_temp[28:0]</obj_property>
+      <obj_property name="ObjectShortName">ars2_temp[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>
@@ -276,16 +276,16 @@
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/sum_real" type="array">
-      <obj_property name="ElementShortName">sum_real[33:0]</obj_property>
-      <obj_property name="ObjectShortName">sum_real[33:0]</obj_property>
+      <obj_property name="ElementShortName">sum_real[28:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_real[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/sum_imag" type="array">
-      <obj_property name="ElementShortName">sum_imag[33:0]</obj_property>
-      <obj_property name="ObjectShortName">sum_imag[33:0]</obj_property>
+      <obj_property name="ElementShortName">sum_imag[28:0]</obj_property>
+      <obj_property name="ObjectShortName">sum_imag[28:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">17</obj_property>

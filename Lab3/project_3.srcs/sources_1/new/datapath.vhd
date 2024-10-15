@@ -22,13 +22,13 @@ ARCHITECTURE behavioral OF datapath IS
   SIGNAL r10, r11 : signed(28 DOWNTO 0);
   SIGNAL r12 : signed(25 DOWNTO 0);
   SIGNAL mul1_out, mul2_out, mul3_out, mul4_out : signed(23 DOWNTO 0);
-  SIGNAL abs_real, abs_imag : signed(25 DOWNTO 0);
-  SIGNAL sub1_out, add1_out, sub2_out, sub3_out : signed(25 DOWNTO 0);
-  SIGNAL add2_out : signed(27 DOWNTO 0);
+  SIGNAL abs_real, abs_imag : signed(24 DOWNTO 0);
+  SIGNAL sub1_out, add1_out, sub2_out, sub3_out : signed(24 DOWNTO 0);
+  SIGNAL add2_out : signed(25 DOWNTO 0);
   SIGNAL mux1_out, mux2_out : signed(31 DOWNTO 0);
-  SIGNAL ars1_temp, ars2_temp : signed(33 DOWNTO 0);
+  SIGNAL ars1_temp, ars2_temp : signed(28 DOWNTO 0);
   SIGNAL ars1_out, ars2_out : signed(31 DOWNTO 0);
-  SIGNAL sum_real, sum_imag : signed(33 DOWNTO 0);
+  SIGNAL sum_real, sum_imag : signed(28 DOWNTO 0);
   SIGNAL data : signed(63 DOWNTO 0);
 BEGIN
 
@@ -55,10 +55,10 @@ BEGIN
           r1 <= DATA_IN; -- Q12.12
         END IF;
         IF WE(1) = '1' THEN
-          r2 <= '0' & mul1_out; -- Q13.12
-          r3 <= '0' & mul2_out; -- Q13.12
-          r4 <= '0' & mul3_out; -- Q13.12
-          r5 <= '0' & mul4_out; -- Q13.12
+          r2 <= mul1_out(23) & mul1_out; -- Q13.12
+          r3 <= mul2_out(23) & mul2_out; -- Q13.12
+          r4 <= mul3_out(23) & mul3_out; -- Q13.12
+          r5 <= mul4_out(23) & mul4_out; -- Q13.12
         END IF;
         IF WE(2) = '1' THEN
           r6 <= sub1_out; -- Q13.12
@@ -99,7 +99,7 @@ BEGIN
   sub2_out <= r6 - sub1_out; -- Q13.12
   sub3_out <= r7 - add1_out; -- Q13.12
 
-  add2_out <= resize(abs_real, 28) + resize(abs_imag, 28); -- Q14.12
+  add2_out <= resize(abs_real, 26) + resize(abs_imag, 26); -- Q14.12
 
   -- Muxes:
   mux1_out <= resize(r8, 32) WHEN S1 = '0' ELSE
@@ -110,13 +110,13 @@ BEGIN
 
   -- Sum of the real parts:
   sum_real <= r8 + r10; -- Q17.12
-  ars1_temp <= r10(33) & r10(33) & r10(33) & r10(33 DOWNTO 3); -- Q17.12
+  ars1_temp <= r10(28) & r10(28) & r10(28) & r10(28 DOWNTO 3); -- Q17.12
   ars1_out <= ars1_temp & "000"; -- Q17.15
 
   -- Sum of the imaginary parts:
   sum_imag <= r9 + r11; -- Q17.12
-  ars2_temp <= r11(33) & r11(33) & r11(33) & r11(33 DOWNTO 3); -- Q17.12
-  ars2_out <= ars2_temp & "0000"; -- Q17.15
+  ars2_temp <= r11(28) & r11(28) & r11(28) & r11(28 DOWNTO 3); -- Q17.12
+  ars2_out <= ars2_temp & "000"; -- Q17.15
 
   -- Output:
   data <= mux1_out & mux2_out;
