@@ -16,7 +16,6 @@ ARCHITECTURE behavioral OF tb_determinant IS
       multiply_reg_enable : IN STD_LOGIC;
       subtract_reg_enable_ad, subtract_reg_enable_bc : IN STD_LOGIC;
       output_reg_enable : IN STD_LOGIC;
-      mul_select : IN STD_LOGIC;
       reset, clk : IN STD_LOGIC;
       subtract_sel : IN STD_LOGIC
     );
@@ -30,7 +29,6 @@ ARCHITECTURE behavioral OF tb_determinant IS
   SIGNAL subtract_reg_enable_ad : STD_LOGIC := '0';
   SIGNAL subtract_reg_enable_bc : STD_LOGIC := '0';
   SIGNAL output_reg_enable : STD_LOGIC := '0';
-  SIGNAL mul_select : STD_LOGIC := '0';
   SIGNAL reset : STD_LOGIC := '0';
   SIGNAL clk : STD_LOGIC := '0';
   SIGNAL subtract_sel : STD_LOGIC := '0';
@@ -73,20 +71,20 @@ BEGIN
 
     WAIT FOR 10 * clk_period;
 
-    input_re <= "000100010000" AFTER 0 ns; -- 4.25
-    "000001100000" AFTER 20 ns; -- 1.5
+    input_re <= "000100010000" AFTER 0 ns, -- 4.25
+                "000001100000" AFTER 20 ns; -- 1.5
 
-    input_im <= "111101100000" AFTER 0 ns;-- -2.5
-    "001000010000" AFTER 20 ns; -- 8.25
+    input_im <= "111101100000" AFTER 0 ns, -- -2.5
+                "001000010000" AFTER 20 ns; -- 8.25
 
-    inout_reg_enable <= '1' AFTER 0 ns;
-    '0' AFTER 20 ns;
+    input_reg_enable <= '1' AFTER 0 ns,
+                        '0' AFTER 20 ns;
 
-    multiply_reg_enable <= '1' AFTER 20 ns;
-    '0' AFTER 40 ns;
+    multiply_reg_enable <= '1' AFTER 20 ns,
+                           '0' AFTER 40 ns;
 
-    subtract_reg_enable_ad <= '1' AFTER 40 ns;
-    '0' AFTER 60 ns;
+    subtract_reg_enable_ad <= '1' AFTER 40 ns,
+                              '0' AFTER 60 ns;
 
     subtract_sel <= '0' AFTER 40 ns;
 
