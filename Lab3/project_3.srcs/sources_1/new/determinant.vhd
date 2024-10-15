@@ -19,7 +19,7 @@ ENTITY determinant IS
 
     reset, clk : IN STD_LOGIC;
 
-    subtract_sel : IN STD_LOGIC;
+    subtract_sel : IN STD_LOGIC
 
   );
 END determinant;
@@ -182,9 +182,9 @@ BEGIN
     END IF;
   END PROCESS;
 
-  sum_re <= sub_reg1 + sub_reg3;
+  sum_re <= sub_reg1(23) & sub_reg1 + sub_reg3(23) & sub_reg3;
 
-  sum_im <= sub_reg2 + sub_reg4;
+  sum_im <= sub_reg2(23) & sub_reg2 + sub_reg4(23) & sub_reg4;
 
   PROCESS (clk)
   BEGIN
