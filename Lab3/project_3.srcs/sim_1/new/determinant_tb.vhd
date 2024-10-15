@@ -50,7 +50,6 @@ BEGIN
     subtract_reg_enable_ad => subtract_reg_enable_ad,
     subtract_reg_enable_bc => subtract_reg_enable_bc,
     output_reg_enable => output_reg_enable,
-    mul_select => mul_select,
     reset => reset,
     clk => clk,
     subtract_sel => subtract_sel
