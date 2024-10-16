@@ -11,8 +11,9 @@ ENTITY datapath IS
     CLK : IN STD_LOGIC;
     RST : IN STD_LOGIC;
 
-    WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
-    S1 : IN STD_LOGIC
+    WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    S1 : IN STD_LOGIC;
+    N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
   );
 END datapath;
 
@@ -30,6 +31,9 @@ ARCHITECTURE behavioral OF datapath IS
   SIGNAL ars1_out, ars2_out : signed(31 DOWNTO 0);
   SIGNAL sum_real, sum_imag : signed(28 DOWNTO 0);
   SIGNAL data : signed(63 DOWNTO 0);
+  SIGNAL max_abs, min_abs : signed(25 DOWNTO 0);
+  SIGNAL max_det, min_det : signed(63 DOWNTO 0);
+  SIGNAL max_index, min_index : STD_LOGIC_VECTOR(2 DOWNTO 0);
 BEGIN
 
   -- Registers:
@@ -49,7 +53,12 @@ BEGIN
         r10 <= (OTHERS => '0');
         r11 <= (OTHERS => '0');
         r12 <= (OTHERS => '0');
-
+        max_abs <= "10000000000000000000000000";
+        min_abs <= "01111111111111111111111111";
+        max_det <= (OTHERS => '0');
+        min_det <= (OTHERS => '0');
+        max_index <= (OTHERS => '0');
+        min_index <= (OTHERS => '0');
       ELSE
         IF WE(0) = '1' THEN
           r1 <= DATA_IN; -- Q12.12
@@ -74,6 +83,28 @@ BEGIN
         END IF;
         IF WE(5) = '1' THEN
           r12 <= add2_out; -- Q14.12
+        END IF;
+
+        -- Comparator for the absolute values:
+        IF WE(6) = '1' THEN
+          IF r12 > max_abs THEN
+            max_abs <= r12;
+            max_det <= resize(r8, 32) & resize(r9, 32);
+            max_index <= N;
+          ELSE
+            max_abs <= max_abs;
+            max_det <= max_det;
+            max_index <= max_index;
+          END IF;
+          IF r12 < min_abs THEN
+            min_abs <= r12;
+            min_det <= resize(r8, 32) & resize(r9, 32);
+            min_index <= N;
+          ELSE
+            min_abs <= min_abs;
+            min_det <= min_det;
+            min_index <= min_index;
+          END IF;
         END IF;
       END IF;
     END IF;
