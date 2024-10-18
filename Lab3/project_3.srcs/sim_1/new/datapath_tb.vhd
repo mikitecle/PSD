@@ -20,8 +20,6 @@ ARCHITECTURE behavior OF datapath_tb IS
       WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
       S1 : IN STD_LOGIC;
       N : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-      N_2 : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
-
     );
   END COMPONENT;
 
@@ -32,7 +30,6 @@ ARCHITECTURE behavior OF datapath_tb IS
   SIGNAL WE : STD_LOGIC_VECTOR(6 DOWNTO 0);
   SIGNAL S1 : STD_LOGIC := '0';
   SIGNAL N : STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";
-  SIGNAL N_2 : STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";
 
   -- Outputs
   SIGNAL DATA_OUT : signed(63 DOWNTO 0);
@@ -55,7 +52,6 @@ BEGIN
     WE => WE,
     S1 => S1,
     N => N,
-    N_2 => N_2
   );
 
   -- Clock generation
@@ -129,15 +125,10 @@ BEGIN
     -- Select different mux values and enable the registers
     S1 <= '0' AFTER 20 ns;
 
-    N <= "000" AFTER 20 ns,
-         "001" AFTER 60 ns,
-         "010" AFTER 100 ns,
-         "011" AFTER 140 ns;
-
-    N_2 <= "000" AFTER 80 ns,
-           "001" AFTER 120 ns,
-           "010" AFTER 160 ns,
-           "011" AFTER 200 ns;
+    N <= "000" AFTER 80 ns,
+         "001" AFTER 120 ns,
+         "010" AFTER 160 ns,
+         "011" AFTER 200 ns;
 
     -- Wait for a few clock cycles to observe output
     WAIT FOR clk_period * 10;

@@ -14,7 +14,6 @@ ENTITY datapath IS
     WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     S1 : IN STD_LOGIC;
     N : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
-    N_2 : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
   );
 END datapath;
 
@@ -91,7 +90,7 @@ BEGIN
           IF r12 > max_abs THEN
             max_abs <= r12;
             max_det <= resize(r8, 32) & resize(r9, 32);
-            max_index <= N_2;
+            max_index <= N;
           ELSE
             max_abs <= max_abs;
             max_det <= max_det;
@@ -100,7 +99,7 @@ BEGIN
           IF r12 < min_abs THEN
             min_abs <= r12;
             min_det <= resize(r8, 32) & resize(r9, 32);
-            min_index <= N_2;
+            min_index <= N;
           ELSE
             min_abs <= min_abs;
             min_det <= min_det;
