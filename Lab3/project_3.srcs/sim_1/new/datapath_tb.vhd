@@ -19,7 +19,7 @@ ARCHITECTURE behavior OF datapath_tb IS
 
       WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
       S1 : IN STD_LOGIC;
-      N : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+      N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
     );
   END COMPONENT;
 
@@ -51,7 +51,7 @@ BEGIN
 
     WE => WE,
     S1 => S1,
-    N => N,
+    N => N
   );
 
   -- Clock generation

@@ -13,7 +13,7 @@ ENTITY datapath IS
 
     WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
     S1 : IN STD_LOGIC;
-    N : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
   );
 END datapath;
 
@@ -80,8 +80,6 @@ BEGIN
         IF WE(4) = '1' THEN
           r10 <= sum_real; -- Q17.12
           r11 <= sum_imag; -- Q17.12
-        END IF;
-        IF WE(5) = '1' THEN
           r12 <= add2_out; -- Q14.12
         END IF;
 
