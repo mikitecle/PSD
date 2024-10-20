@@ -17,8 +17,8 @@ ARCHITECTURE behavior OF datapath_tb IS
       CLK : IN STD_LOGIC;
       RST : IN STD_LOGIC;
 
-      WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
-      S1 : IN STD_LOGIC;
+      WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+      S : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
     );
   END COMPONENT;
@@ -27,8 +27,8 @@ ARCHITECTURE behavior OF datapath_tb IS
   SIGNAL DATA_IN : signed(23 DOWNTO 0);
   SIGNAL CLK : STD_LOGIC := '0';
   SIGNAL RST : STD_LOGIC := '0';
-  SIGNAL WE : STD_LOGIC_VECTOR(6 DOWNTO 0);
-  SIGNAL S1 : STD_LOGIC := '0';
+  SIGNAL WE : STD_LOGIC_VECTOR(5 DOWNTO 0);
+  SIGNAL S : STD_LOGIC_VECTOR(1 DOWNTO 0);
   SIGNAL N : STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";
 
   -- Outputs
@@ -50,7 +50,7 @@ BEGIN
     RST => RST,
 
     WE => WE,
-    S1 => S1,
+    S => S,
     N => N
   );
 
@@ -64,11 +64,16 @@ BEGIN
     RST <= '1';
     DATA_IN <= (OTHERS => '0');
     WE <= (OTHERS => '0');
-    S1 <= '0';
+    S <= (OTHERS => '0');
 
     -- Wait for reset to finish
     WAIT FOR 100 ns;
     RST <= '0';
+
+    -- Det 1: 42.5 - 12.125i
+    -- Det 2: 9.8125 - 55.5i
+    -- Det 3: 134 + i
+    -- Det 4: 30.375 - 43.3125i
 
     -- Apply some test inputs after reset is de-asserted
     DATA_IN <= "000010000000000110100000" AFTER 20 ns, -- 2 + 6.5i
@@ -93,37 +98,37 @@ BEGIN
                -- Done fourth set of inputs
                "000000000000000000000000" AFTER 180 ns;-- 0 + 0i
 
-    WE <= "0001001" AFTER 20 ns,
-          "0010010" AFTER 30 ns,
-          "0100101" AFTER 40 ns,
-          "0000010" AFTER 50 ns,
-          "0001001" AFTER 60 ns,
-          "0010010" AFTER 70 ns,
-          "0100101" AFTER 80 ns,
-          "0000010" AFTER 90 ns,
-          "0001001" AFTER 100 ns,
-          "1010010" AFTER 110 ns,
-          "0100101" AFTER 120 ns,
-          "0000010" AFTER 130 ns,
-          "0001001" AFTER 140 ns,
-          "1010010" AFTER 150 ns,
-          "0100101" AFTER 160 ns,
-          "0000010" AFTER 170 ns,
-          "0001001" AFTER 180 ns,
-          "1010010" AFTER 190 ns,
-          "0100101" AFTER 200 ns,
-          "0000010" AFTER 210 ns,
-          "0001001" AFTER 220 ns,
-          "1010010" AFTER 230 ns,
-          "0100101" AFTER 240 ns,
-          "0000010" AFTER 250 ns,
-          "0001001" AFTER 260 ns,
-          "1010010" AFTER 270 ns,
-          "0100101" AFTER 280 ns,
-          "0000010" AFTER 290 ns;
+    WE <= "001001" AFTER 20 ns,
+          "010010" AFTER 30 ns,
+          "100101" AFTER 40 ns,
+          "000010" AFTER 50 ns,
+          "001001" AFTER 60 ns,
+          "010010" AFTER 70 ns,
+          "100101" AFTER 80 ns,
+          "000010" AFTER 90 ns,
+          "001001" AFTER 100 ns,
+          "010010" AFTER 110 ns,
+          "100101" AFTER 120 ns,
+          "000010" AFTER 130 ns,
+          "001001" AFTER 140 ns,
+          "010010" AFTER 150 ns,
+          "100101" AFTER 160 ns,
+          "000010" AFTER 170 ns,
+          "001001" AFTER 180 ns,
+          "010010" AFTER 190 ns,
+          "100101" AFTER 200 ns,
+          "000010" AFTER 210 ns,
+          "001001" AFTER 220 ns,
+          "010010" AFTER 230 ns,
+          "100101" AFTER 240 ns,
+          "000010" AFTER 250 ns,
+          "001001" AFTER 260 ns,
+          "010010" AFTER 270 ns,
+          "100101" AFTER 280 ns,
+          "000010" AFTER 290 ns;
 
     -- Select different mux values and enable the registers
-    S1 <= '0' AFTER 20 ns;
+    S <= "00" AFTER 20 ns;
 
     N <= "000" AFTER 80 ns,
          "001" AFTER 120 ns,

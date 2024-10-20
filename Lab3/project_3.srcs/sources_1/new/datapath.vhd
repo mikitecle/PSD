@@ -6,14 +6,16 @@ ENTITY datapath IS
   PORT (
     DATA_IN : IN signed(23 DOWNTO 0);
 
-    DATA_OUT : OUT signed(63 DOWNTO 0);
+    DATA_OUT : OUT signed(31 DOWNTO 0);
+    MAX_INDEX_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    MIN_INDEX_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 
     CLK : IN STD_LOGIC;
     RST : IN STD_LOGIC;
 
-    WE : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
-    S1 : IN STD_LOGIC;
-    N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
+    WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    S : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    N : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
   );
 END datapath;
 
@@ -30,10 +32,10 @@ ARCHITECTURE behavioral OF datapath IS
   SIGNAL ars1_temp, ars2_temp : signed(28 DOWNTO 0);
   SIGNAL ars1_out, ars2_out : signed(31 DOWNTO 0);
   SIGNAL sum_real, sum_imag : signed(28 DOWNTO 0);
-  SIGNAL data : signed(63 DOWNTO 0);
+  SIGNAL data : signed(31 DOWNTO 0);
   SIGNAL max_abs, min_abs : signed(25 DOWNTO 0);
   SIGNAL max_det, min_det : signed(63 DOWNTO 0);
-  SIGNAL max_index, min_index : STD_LOGIC_VECTOR(2 DOWNTO 0);
+  SIGNAL max_index, min_index : STD_LOGIC_VECTOR(7 DOWNTO 0);
 BEGIN
 
   -- Registers:
@@ -84,11 +86,12 @@ BEGIN
         END IF;
 
         -- Comparator for the absolute values:
-        IF WE(6) = '1' THEN
+        IF S(0) = '1' THEN
           IF r12 > max_abs THEN
             max_abs <= r12;
             max_det <= resize(r8, 32) & resize(r9, 32);
-            max_index <= N;
+            max_index <= (OTHERS => '0');
+            max_index(to_integer(unsigned(N) - "0010")) <= '1';
           ELSE
             max_abs <= max_abs;
             max_det <= max_det;
@@ -97,7 +100,8 @@ BEGIN
           IF r12 < min_abs THEN
             min_abs <= r12;
             min_det <= resize(r8, 32) & resize(r9, 32);
-            min_index <= N;
+            min_index <= (OTHERS => '0');
+            min_index(to_integer(unsigned(N) - "0010")) <= '1';
           ELSE
             min_abs <= min_abs;
             min_det <= min_det;
@@ -116,10 +120,10 @@ BEGIN
 
   -- Absolute value of the real and imaginary parts:
   abs_real <= -r8 WHEN r8 < 0 ELSE
-              r8; -- Q13.13
+              r8; -- Q13.12
 
   abs_imag <= -r9 WHEN r9 < 0 ELSE
-              r9; -- Q13.13
+              r9; -- Q13.12
 
   -- Adders and subtractors: 
   sub1_out <= r2 - r3; -- Q13.12
@@ -128,14 +132,14 @@ BEGIN
   sub2_out <= r6 - sub1_out; -- Q13.12
   sub3_out <= r7 - add1_out; -- Q13.12
 
-  add2_out <= resize(abs_real, 26) + resize(abs_imag, 26); -- Q14.12
+  add2_out <= ('0' & abs_real) + ('0' & abs_imag); -- Q14.12
 
   -- Muxes:
-  mux1_out <= resize(r8, 32) WHEN S1 = '0' ELSE
-              ars1_out;
+  -- mux1_out <= r8(24) & r8(24) & r8(24) & r8(24) & r8 & "000" WHEN S(1) = '0' ELSE
+  --             ars1_out;
 
-  mux2_out <= resize(r9, 32) WHEN S1 = '0' ELSE
-              ars2_out;
+  -- mux2_out <= r9(24) & r9(24) & r9(24) & r9(24) & r9 & "000" WHEN S(1) = '0' ELSE
+  --             ars2_out;
 
   -- Sum of the real parts:
   sum_real <= r8 + r10; -- Q17.12
@@ -148,7 +152,18 @@ BEGIN
   ars2_out <= ars2_temp & "000"; -- Q17.15
 
   -- Output:
-  data <= mux1_out & mux2_out;
-  DATA_OUT <= data; -- Q17.15 * 2
+  WITH S(2 DOWNTO 1) SELECT
+  data <= r8(24) & r8(24) & r8(24) & r8(24) & r8 & "000" WHEN "00",
+          r9(24) & r9(24) & r9(24) & r9(24) & r9 & "000" WHEN "01",
+          ars1_out WHEN "10",
+          ars2_out WHEN OTHERS;
+
+  DATA_OUT <= data; -- Q17.15
+
+  -- MAX_DET_OUT <= max_det;
+  MAX_INDEX_OUT <= max_index;
+
+  -- MIN_DET_OUT <= min_det;
+  MIN_INDEX_OUT <= min_index;
 
 END behavioral;

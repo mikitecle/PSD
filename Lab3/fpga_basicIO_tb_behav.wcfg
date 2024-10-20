@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="266.666 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,266.667 ns"></ZoomEndTime>
-      <Cursor1Time time="1,100.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,723.601 ns"></ZoomEndTime>
+      <Cursor1Time time="205.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="223"></NameColumnWidth>
-      <ValueColumnWidth column_width="137"></ValueColumnWidth>
+      <ValueColumnWidth column_width="125"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="40" />
+   <WVObjectSize size="38" />
    <wvobject fp_name="/datapath_tb/uut/DATA_IN" type="array">
       <obj_property name="ElementShortName">DATA_IN[23:0]</obj_property>
       <obj_property name="ObjectShortName">DATA_IN[23:0]</obj_property>
@@ -38,13 +38,9 @@
       <obj_property name="ObjectShortName">RST</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/WE" type="array">
-      <obj_property name="ElementShortName">WE[6:0]</obj_property>
-      <obj_property name="ObjectShortName">WE[6:0]</obj_property>
+      <obj_property name="ElementShortName">WE[5:0]</obj_property>
+      <obj_property name="ObjectShortName">WE[5:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/datapath_tb/uut/S1" type="logic">
-      <obj_property name="ElementShortName">S1</obj_property>
-      <obj_property name="ObjectShortName">S1</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_tb/uut/r1" type="array">
       <obj_property name="ElementShortName">r1[23:0]</obj_property>
@@ -386,9 +382,5 @@
    <wvobject fp_name="/datapath_tb/uut/N" type="array">
       <obj_property name="ElementShortName">N[2:0]</obj_property>
       <obj_property name="ObjectShortName">N[2:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/datapath_tb/uut/N_2" type="array">
-      <obj_property name="ElementShortName">N_2[2:0]</obj_property>
-      <obj_property name="ObjectShortName">N_2[2:0]</obj_property>
    </wvobject>
 </wave_config>
