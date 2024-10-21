@@ -1,7 +1,7 @@
 Vivado Simulator v2024.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot circuito_tb_behav xil_defaultlib.circuito_tb -log elaborate.log 
+Running: C:/Xilinx/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot top_circuit_tb_behav xil_defaultlib.top_circuit_tb -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,9 +11,34 @@ Time Resolution for simulation is 1ps
 Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling package synopsys.attributes
+Compiling package ieee.std_logic_misc
 Compiling package ieee.numeric_std
+Compiling package unisim.vcomponents
+Compiling package unimacro.vcomponents
+Compiling package ieee.std_logic_signed
+Compiling package ieee.std_logic_textio
+Compiling package ieee.vital_timing
+Compiling package ieee.vital_primitives
+Compiling package unisim.vpkg
+Compiling architecture rb36_internal_vhdl_v of entity unisim.RB36_INTERNAL_VHDL [\RB36_INTERNAL_VHDL(init_00="110...]
+Compiling architecture ramb36e1_v of entity unisim.RAMB36E1 [\RAMB36E1(init_00="1101001110100...]
+Compiling architecture bram_v of entity unimacro.BRAM_TDP_MACRO [\BRAM_TDP_MACRO(bram_size="36Kb"...]
+Compiling architecture xmacro of entity xil_defaultlib.MemIn [memin_default]
+Compiling architecture rb36_internal_vhdl_v of entity unisim.RB36_INTERNAL_VHDL [\RB36_INTERNAL_VHDL(init_00="001...]
+Compiling architecture ramb36e1_v of entity unisim.RAMB36E1 [\RAMB36E1(init_00="0010001100100...]
+Compiling architecture bram_v of entity unimacro.BRAM_TDP_MACRO [\BRAM_TDP_MACRO(bram_size="36Kb"...]
+Compiling architecture xmacro of entity xil_defaultlib.MemOut [memout_default]
 Compiling architecture behavioral of entity xil_defaultlib.control [control_default]
 Compiling architecture behavioral of entity xil_defaultlib.datapath [datapath_default]
 Compiling architecture behavioral of entity xil_defaultlib.circuito [circuito_default]
-Compiling architecture behavior of entity xil_defaultlib.circuito_tb
-Built simulation snapshot circuito_tb_behav
+Compiling architecture behavioral of entity xil_defaultlib.UART_TX_1B [uart_tx_1b_default]
+Compiling architecture behavioral of entity xil_defaultlib.UART_CTRL [uart_ctrl_default]
+Compiling architecture behavioral of entity xil_defaultlib.UART_TX_KB [uart_tx_kb_default]
+Compiling architecture behavioral of entity xil_defaultlib.debouncer [\debouncer(debnc_log_clocks=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.sevenSeg [sevenseg_default]
+Compiling architecture behavioral of entity xil_defaultlib.top_circuit [top_circuit_default]
+Compiling architecture behavior of entity xil_defaultlib.top_circuit_tb
+Built simulation snapshot top_circuit_tb_behav

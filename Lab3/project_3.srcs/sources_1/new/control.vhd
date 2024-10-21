@@ -42,13 +42,11 @@ BEGIN
         input_counter <= (OTHERS => '0');
         a <= (OTHERS => '0');
         b <= (OTHERS => '0');
-      ELSE
-        IF nextstate /= s_initial AND nextstate /= s_finished THEN
-          IF b = "01" THEN
-            a <= a + 1;
-          END IF;
-          b <= b + 3;
+      ELSIF (nextstate /= s_initial AND nextstate /= s_finished) OR btn_R = '1' THEN
+        IF b = "01" THEN
+          a <= a + 1;
         END IF;
+        b <= b + 3;
         input_counter <= a & b;
       END IF;
     END IF;
@@ -124,7 +122,7 @@ BEGIN
     END CASE;
   END PROCESS;
 
-  input_addr <= STD_LOGIC_VECTOR(input_counter);
+  input_addr <= STD_LOGIC_VECTOR(a & b);
   output_addr <= STD_LOGIC_VECTOR(output_counter);
 
 END Behavioral;

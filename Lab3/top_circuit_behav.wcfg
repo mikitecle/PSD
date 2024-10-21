@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="6.699306 us"></ZoomEndTime>
-      <Cursor1Time time="0.215000 us"></Cursor1Time>
+      <ZoomStartTime time="3,593.833 ns"></ZoomStartTime>
+      <ZoomEndTime time="3,787.234 ns"></ZoomEndTime>
+      <Cursor1Time time="3,735.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="255"></NameColumnWidth>
-      <ValueColumnWidth column_width="333"></ValueColumnWidth>
+      <NameColumnWidth column_width="247"></NameColumnWidth>
+      <ValueColumnWidth column_width="251"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="34" />
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/SW" type="array">
       <obj_property name="ElementShortName">SW[15:0]</obj_property>
       <obj_property name="ObjectShortName">SW[15:0]</obj_property>
@@ -75,14 +75,20 @@
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/addrIn" type="array">
       <obj_property name="ElementShortName">addrIn[7:0]</obj_property>
       <obj_property name="ObjectShortName">addrIn[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/dataOut" type="array">
       <obj_property name="ElementShortName">dataOut[31:0]</obj_property>
       <obj_property name="ObjectShortName">dataOut[31:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">15</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/addrOut" type="array">
       <obj_property name="ElementShortName">addrOut[7:0]</obj_property>
       <obj_property name="ObjectShortName">addrOut[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/weOut" type="logic">
       <obj_property name="ElementShortName">weOut</obj_property>
@@ -100,10 +106,12 @@
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/dataSend" type="array">
       <obj_property name="ElementShortName">dataSend[7:0]</obj_property>
       <obj_property name="ObjectShortName">dataSend[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/readAddr" type="array">
       <obj_property name="ElementShortName">readAddr[9:0]</obj_property>
       <obj_property name="ObjectShortName">readAddr[9:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/btnDeBnc" type="array">
       <obj_property name="ElementShortName">btnDeBnc[4:0]</obj_property>
@@ -170,16 +178,16 @@
          <obj_property name="ObjectShortName">s_internal[2:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/n_internal" type="array">
-         <obj_property name="ElementShortName">n_internal[2:0]</obj_property>
-         <obj_property name="ObjectShortName">n_internal[2:0]</obj_property>
+         <obj_property name="ElementShortName">n_internal[3:0]</obj_property>
+         <obj_property name="ObjectShortName">n_internal[3:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/iaddr_internal" type="array">
-         <obj_property name="ElementShortName">iaddr_internal[9:0]</obj_property>
-         <obj_property name="ObjectShortName">iaddr_internal[9:0]</obj_property>
+         <obj_property name="ElementShortName">iaddr_internal[5:0]</obj_property>
+         <obj_property name="ObjectShortName">iaddr_internal[5:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/oaddr_internal" type="array">
-         <obj_property name="ElementShortName">oaddr_internal[9:0]</obj_property>
-         <obj_property name="ObjectShortName">oaddr_internal[9:0]</obj_property>
+         <obj_property name="ElementShortName">oaddr_internal[5:0]</obj_property>
+         <obj_property name="ObjectShortName">oaddr_internal[5:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/real_data" type="array">
          <obj_property name="ElementShortName">real_data[31:0]</obj_property>
@@ -194,6 +202,282 @@
          <obj_property name="ObjectShortName">max_index[7:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/min_index" type="array">
+         <obj_property name="ElementShortName">min_index[7:0]</obj_property>
+         <obj_property name="ObjectShortName">min_index[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/input_addr" type="array">
+      <obj_property name="ElementShortName">input_addr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">input_addr[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/b" type="array">
+      <obj_property name="ElementShortName">b[1:0]</obj_property>
+      <obj_property name="ObjectShortName">b[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/input_counter" type="array">
+      <obj_property name="ElementShortName">input_counter[5:0]</obj_property>
+      <obj_property name="ObjectShortName">input_counter[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/output_addr" type="array">
+      <obj_property name="ElementShortName">output_addr[5:0]</obj_property>
+      <obj_property name="ObjectShortName">output_addr[5:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/currstate" type="other">
+      <obj_property name="ElementShortName">currstate</obj_property>
+      <obj_property name="ObjectShortName">currstate</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_control/nextstate" type="other">
+      <obj_property name="ElementShortName">nextstate</obj_property>
+      <obj_property name="ObjectShortName">nextstate</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider10193">
+      <obj_property name="label">Datapath</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group10241" type="group">
+      <obj_property name="label">datapath</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/DATA_IN" type="array">
+         <obj_property name="ElementShortName">DATA_IN[23:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/DATA_OUT" type="array">
+         <obj_property name="ElementShortName">DATA_OUT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/MAX_INDEX_OUT" type="array">
+         <obj_property name="ElementShortName">MAX_INDEX_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">MAX_INDEX_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/MIN_INDEX_OUT" type="array">
+         <obj_property name="ElementShortName">MIN_INDEX_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">MIN_INDEX_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/CLK" type="logic">
+         <obj_property name="ElementShortName">CLK</obj_property>
+         <obj_property name="ObjectShortName">CLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/RST" type="logic">
+         <obj_property name="ElementShortName">RST</obj_property>
+         <obj_property name="ObjectShortName">RST</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/WE" type="array">
+         <obj_property name="ElementShortName">WE[5:0]</obj_property>
+         <obj_property name="ObjectShortName">WE[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/S" type="array">
+         <obj_property name="ElementShortName">S[2:0]</obj_property>
+         <obj_property name="ObjectShortName">S[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/N" type="array">
+         <obj_property name="ElementShortName">N[3:0]</obj_property>
+         <obj_property name="ObjectShortName">N[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r1" type="array">
+         <obj_property name="ElementShortName">r1[23:0]</obj_property>
+         <obj_property name="ObjectShortName">r1[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r2" type="array">
+         <obj_property name="ElementShortName">r2[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r2[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r3" type="array">
+         <obj_property name="ElementShortName">r3[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r3[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r4" type="array">
+         <obj_property name="ElementShortName">r4[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r4[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r5" type="array">
+         <obj_property name="ElementShortName">r5[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r5[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r6" type="array">
+         <obj_property name="ElementShortName">r6[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r6[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r7" type="array">
+         <obj_property name="ElementShortName">r7[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r7[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r8" type="array">
+         <obj_property name="ElementShortName">r8[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r8[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r9" type="array">
+         <obj_property name="ElementShortName">r9[24:0]</obj_property>
+         <obj_property name="ObjectShortName">r9[24:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r10" type="array">
+         <obj_property name="ElementShortName">r10[28:0]</obj_property>
+         <obj_property name="ObjectShortName">r10[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r11" type="array">
+         <obj_property name="ElementShortName">r11[28:0]</obj_property>
+         <obj_property name="ObjectShortName">r11[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/r12" type="array">
+         <obj_property name="ElementShortName">r12[25:0]</obj_property>
+         <obj_property name="ObjectShortName">r12[25:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mul1_out" type="array">
+         <obj_property name="ElementShortName">mul1_out[23:0]</obj_property>
+         <obj_property name="ObjectShortName">mul1_out[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mul2_out" type="array">
+         <obj_property name="ElementShortName">mul2_out[23:0]</obj_property>
+         <obj_property name="ObjectShortName">mul2_out[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mul3_out" type="array">
+         <obj_property name="ElementShortName">mul3_out[23:0]</obj_property>
+         <obj_property name="ObjectShortName">mul3_out[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mul4_out" type="array">
+         <obj_property name="ElementShortName">mul4_out[23:0]</obj_property>
+         <obj_property name="ObjectShortName">mul4_out[23:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/abs_real" type="array">
+         <obj_property name="ElementShortName">abs_real[24:0]</obj_property>
+         <obj_property name="ObjectShortName">abs_real[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/abs_imag" type="array">
+         <obj_property name="ElementShortName">abs_imag[24:0]</obj_property>
+         <obj_property name="ObjectShortName">abs_imag[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sub1_out" type="array">
+         <obj_property name="ElementShortName">sub1_out[24:0]</obj_property>
+         <obj_property name="ObjectShortName">sub1_out[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/add1_out" type="array">
+         <obj_property name="ElementShortName">add1_out[24:0]</obj_property>
+         <obj_property name="ObjectShortName">add1_out[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sub2_out" type="array">
+         <obj_property name="ElementShortName">sub2_out[24:0]</obj_property>
+         <obj_property name="ObjectShortName">sub2_out[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sub3_out" type="array">
+         <obj_property name="ElementShortName">sub3_out[24:0]</obj_property>
+         <obj_property name="ObjectShortName">sub3_out[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/add2_out" type="array">
+         <obj_property name="ElementShortName">add2_out[25:0]</obj_property>
+         <obj_property name="ObjectShortName">add2_out[25:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mux1_out" type="array">
+         <obj_property name="ElementShortName">mux1_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mux1_out[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/mux2_out" type="array">
+         <obj_property name="ElementShortName">mux2_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mux2_out[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars1_temp" type="array">
+         <obj_property name="ElementShortName">ars1_temp[28:0]</obj_property>
+         <obj_property name="ObjectShortName">ars1_temp[28:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars2_temp" type="array">
+         <obj_property name="ElementShortName">ars2_temp[28:0]</obj_property>
+         <obj_property name="ObjectShortName">ars2_temp[28:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars1_out" type="array">
+         <obj_property name="ElementShortName">ars1_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ars1_out[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">15</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars2_out" type="array">
+         <obj_property name="ElementShortName">ars2_out[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ars2_out[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">15</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sum_real" type="array">
+         <obj_property name="ElementShortName">sum_real[28:0]</obj_property>
+         <obj_property name="ObjectShortName">sum_real[28:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sum_imag" type="array">
+         <obj_property name="ElementShortName">sum_imag[28:0]</obj_property>
+         <obj_property name="ObjectShortName">sum_imag[28:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/data" type="array">
+         <obj_property name="ElementShortName">data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/max_abs" type="array">
+         <obj_property name="ElementShortName">max_abs[25:0]</obj_property>
+         <obj_property name="ObjectShortName">max_abs[25:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/min_abs" type="array">
+         <obj_property name="ElementShortName">min_abs[25:0]</obj_property>
+         <obj_property name="ObjectShortName">min_abs[25:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/max_det" type="array">
+         <obj_property name="ElementShortName">max_det[63:0]</obj_property>
+         <obj_property name="ObjectShortName">max_det[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/min_det" type="array">
+         <obj_property name="ElementShortName">min_det[63:0]</obj_property>
+         <obj_property name="ObjectShortName">min_det[63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/max_index" type="array">
+         <obj_property name="ElementShortName">max_index[7:0]</obj_property>
+         <obj_property name="ObjectShortName">max_index[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/min_index" type="array">
          <obj_property name="ElementShortName">min_index[7:0]</obj_property>
          <obj_property name="ObjectShortName">min_index[7:0]</obj_property>
       </wvobject>
@@ -223,51 +507,6 @@
          <obj_property name="ElementShortName">sig_cntrs_ary[0:4][3:0]</obj_property>
          <obj_property name="ObjectShortName">sig_cntrs_ary[0:4][3:0]</obj_property>
          <obj_property name="isExpanded"></obj_property>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[0]" type="array">
-            <obj_property name="ElementShortName">[0][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[0][3:0]</obj_property>
-            <obj_property name="Radix">BINARYRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[1]" type="array">
-            <obj_property name="ElementShortName">[1][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[1][3:0]</obj_property>
-            <obj_property name="Radix">BINARYRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[2]" type="array">
-            <obj_property name="ElementShortName">[2][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[2][3:0]</obj_property>
-            <obj_property name="Radix">BINARYRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[3]" type="array">
-            <obj_property name="ElementShortName">[3][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[3][3:0]</obj_property>
-            <obj_property name="Radix">BINARYRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[4]" type="array">
-            <obj_property name="ElementShortName">[4][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[4][3:0]</obj_property>
-            <obj_property name="Radix">BINARYRADIX</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[0]" type="array">
-            <obj_property name="ElementShortName">[0][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[0][3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[1]" type="array">
-            <obj_property name="ElementShortName">[1][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[1][3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[2]" type="array">
-            <obj_property name="ElementShortName">[2][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[2][3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[3]" type="array">
-            <obj_property name="ElementShortName">[3][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[3][3:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_cntrs_ary[4]" type="array">
-            <obj_property name="ElementShortName">[4][3:0]</obj_property>
-            <obj_property name="ObjectShortName">[4][3:0]</obj_property>
-         </wvobject>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/debouncer_1/sig_out_reg" type="array">
          <obj_property name="ElementShortName">sig_out_reg[4:0]</obj_property>

@@ -196,7 +196,8 @@ BEGIN
     DataWRB => "00000000",
     AddrWRB => (OTHERS => '0'),
     ClkWRB => CLK,
-    WeWRB => '0');
+    WeWRB => '0'
+  );
 
   -- Output memory
   MemOuT_1 : MemOuT
@@ -207,7 +208,8 @@ BEGIN
     WeWRA => weOut,
     DataRDB => dataSend,
     AddrRDB => readAddr,
-    clkRDB => CLK);
+    clkRDB => CLK
+  );
 
   -- developed circuit to implement an algorithm
   circuit_1 : circuito
@@ -232,7 +234,8 @@ BEGIN
     START_TX => btnLoad,
     RD_ADDR => readAddr,
     RD_DATA => dataSend,
-    TX_OUT => UART_TXD);
+    TX_OUT => UART_TXD
+  );
 
   --Debounces btn signals
   debouncer_1 : debouncer
@@ -242,7 +245,8 @@ BEGIN
   PORT MAP(
     SIGNAL_I => BTN,
     CLK_I => CLK,
-    SIGNAL_O => btnDeBnc);
+    SIGNAL_O => btnDeBnc
+  );
 
   -- Seven segments display interface
   sevenSeg_1 : sevenSeg
@@ -254,6 +258,7 @@ BEGIN
     SEG2 => "11000000", -- O
     SEG3 => sevenSeg3, -- singal is ANDed with counter inside sevenSeg.vhd
     SSEG_CA => SSEG_CA,
-    SSEG_AN => SSEG_AN);
+    SSEG_AN => SSEG_AN
+  );
 
 END Behavioral;

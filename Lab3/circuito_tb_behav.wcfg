@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,000.001 ns"></ZoomEndTime>
-      <Cursor1Time time="325.000 ns"></Cursor1Time>
+      <ZoomStartTime time="330.667 ns"></ZoomStartTime>
+      <ZoomEndTime time="776.668 ns"></ZoomEndTime>
+      <Cursor1Time time="595.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="251"></NameColumnWidth>
-      <ValueColumnWidth column_width="328"></ValueColumnWidth>
+      <ValueColumnWidth column_width="322"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="25" />
    <wvobject fp_name="/circuito_tb/uut/clk" type="logic">
@@ -85,8 +85,8 @@
       <obj_property name="ObjectShortName">s_internal[2:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/circuito_tb/uut/n_internal" type="array">
-      <obj_property name="ElementShortName">n_internal[2:0]</obj_property>
-      <obj_property name="ObjectShortName">n_internal[2:0]</obj_property>
+      <obj_property name="ElementShortName">n_internal[3:0]</obj_property>
+      <obj_property name="ObjectShortName">n_internal[3:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/circuito_tb/uut/iaddr_internal" type="array">
       <obj_property name="ElementShortName">iaddr_internal[5:0]</obj_property>
@@ -146,8 +146,8 @@
          <obj_property name="Radix">BINARYRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/circuito_tb/uut/inst_datapath/N" type="array">
-         <obj_property name="ElementShortName">N[2:0]</obj_property>
-         <obj_property name="ObjectShortName">N[2:0]</obj_property>
+         <obj_property name="ElementShortName">N[3:0]</obj_property>
+         <obj_property name="ObjectShortName">N[3:0]</obj_property>
          <obj_property name="Radix">BINARYRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/circuito_tb/uut/inst_datapath/r1" type="array">
