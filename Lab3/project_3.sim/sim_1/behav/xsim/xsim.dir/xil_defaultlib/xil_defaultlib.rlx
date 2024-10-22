@@ -3,14 +3,14 @@
 May 22 2024
 19:03:11
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sim_1/new/top_circuit_tb.vhd,1729452883,vhdl,,,,top_circuit_tb,,,,,,,,
-C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/MemIn.vhd,1729450420,vhdl,,,,memin,,,,,,,,
+C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/MemIn.vhd,1729525803,vhdl,,,,memin,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/MemOut copy.vhd,1606177960,vhdl,,,,memout,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/UART_CTRL.vhd,1511546166,vhdl,,,,uart_ctrl,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/UART_TX_1B.vhd,1510505288,vhdl,,,,uart_tx_1b,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/UART_TX_KB.vhd,1511135588,vhdl,,,,uart_tx_kb,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/circuito.vhd,1729448389,vhdl,,,,circuito,,,,,,,,
-C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/control.vhd,1729498173,vhdl,,,,control,,,,,,,,
-C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/datapath.vhd,1729448336,vhdl,,,,datapath,,,,,,,,
+C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/control.vhd,1729523206,vhdl,,,,control,,,,,,,,
+C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/datapath.vhd,1729523157,vhdl,,,,datapath,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/debouncer.vhd,1729359049,vhdl,,,,debouncer,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/sevenSeg.vhd,1606177908,vhdl,,,,sevenseg,,,,,,,,
 C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.srcs/sources_1/new/top_circuit.vhd,1729448927,vhdl,,,,top_circuit,,,,,,,,

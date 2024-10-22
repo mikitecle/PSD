@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="3,593.833 ns"></ZoomStartTime>
-      <ZoomEndTime time="3,787.234 ns"></ZoomEndTime>
+      <ZoomStartTime time="3,718.584 ns"></ZoomStartTime>
+      <ZoomEndTime time="3,817.085 ns"></ZoomEndTime>
       <Cursor1Time time="3,735.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="247"></NameColumnWidth>
-      <ValueColumnWidth column_width="251"></ValueColumnWidth>
+      <ValueColumnWidth column_width="233"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="34" />
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/SW" type="array">
@@ -26,10 +26,6 @@
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/BTN" type="array">
       <obj_property name="ElementShortName">BTN[4:0]</obj_property>
       <obj_property name="ObjectShortName">BTN[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/top_circuit_tb/top_circuit_1/CLK" type="logic">
-      <obj_property name="ElementShortName">CLK</obj_property>
-      <obj_property name="ObjectShortName">CLK</obj_property>
    </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/LED" type="array">
       <obj_property name="ElementShortName">LED[15:0]</obj_property>
@@ -67,6 +63,10 @@
       <obj_property name="ElementShortName">btnLeft</obj_property>
       <obj_property name="ObjectShortName">btnLeft</obj_property>
    </wvobject>
+   <wvobject fp_name="/top_circuit_tb/top_circuit_1/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/dataIn" type="array">
       <obj_property name="ElementShortName">dataIn[31:0]</obj_property>
       <obj_property name="ObjectShortName">dataIn[31:0]</obj_property>
@@ -80,7 +80,7 @@
    <wvobject fp_name="/top_circuit_tb/top_circuit_1/dataOut" type="array">
       <obj_property name="ElementShortName">dataOut[31:0]</obj_property>
       <obj_property name="ObjectShortName">dataOut[31:0]</obj_property>
-      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">15</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
@@ -424,10 +424,18 @@
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars1_temp" type="array">
          <obj_property name="ElementShortName">ars1_temp[28:0]</obj_property>
          <obj_property name="ObjectShortName">ars1_temp[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars2_temp" type="array">
          <obj_property name="ElementShortName">ars2_temp[28:0]</obj_property>
          <obj_property name="ObjectShortName">ars2_temp[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/ars1_out" type="array">
          <obj_property name="ElementShortName">ars1_out[31:0]</obj_property>
@@ -448,14 +456,26 @@
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sum_real" type="array">
          <obj_property name="ElementShortName">sum_real[28:0]</obj_property>
          <obj_property name="ObjectShortName">sum_real[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/sum_imag" type="array">
          <obj_property name="ElementShortName">sum_imag[28:0]</obj_property>
          <obj_property name="ObjectShortName">sum_imag[28:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">12</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/data" type="array">
          <obj_property name="ElementShortName">data[31:0]</obj_property>
          <obj_property name="ObjectShortName">data[31:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">15</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
       <wvobject fp_name="/top_circuit_tb/top_circuit_1/circuit_1/inst_datapath/max_abs" type="array">
          <obj_property name="ElementShortName">max_abs[25:0]</obj_property>

@@ -64,7 +64,7 @@ BEGIN
     END IF;
   END PROCESS;
 
-  PROCESS (currstate, btn_R)
+  PROCESS (currstate, btn_R, input_counter)
   BEGIN
     nextstate <= currstate;
     CASE currstate IS
@@ -89,7 +89,7 @@ BEGIN
     END CASE;
   END PROCESS;
 
-  PROCESS (currstate, output_counter)
+  PROCESS (currstate, output_counter, input_counter)
   BEGIN
 
     CASE currstate IS

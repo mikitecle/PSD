@@ -1,78 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1728491810">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1729525987">
   <File Type="ROUTE-PWR" Name="top_circuit_power_routed.rpt"/>
-  <File Type="PA-TCL" Name="fpga_basicIO.tcl"/>
+  <File Type="PA-TCL" Name="top_circuit.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="top_circuit_power_summary_routed.pb"/>
-  <File Type="REPORTS-TCL" Name="fpga_basicIO_reports.tcl"/>
-  <File Type="BITSTR-MSK" Name="fpga_basicIO.msk"/>
-  <File Type="ROUTE-CLK" Name="top_circuit_clock_utilization_routed.rpt"/>
-  <File Type="RDI-RDI" Name="fpga_basicIO.vdi"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="top_circuit_bus_skew_postroute_physopted.pb"/>
-  <File Type="BG-BIT" Name="fpga_basicIO.bit"/>
-  <File Type="BG-DRC" Name="fpga_basicIO.drc"/>
-  <File Type="BG-BGN" Name="fpga_basicIO.bgn"/>
-  <File Type="BG-BIN" Name="fpga_basicIO.bin"/>
-  <File Type="BITSTR-RBT" Name="fpga_basicIO.rbt"/>
-  <File Type="BITSTR-NKY" Name="fpga_basicIO.nky"/>
-  <File Type="BITSTR-BMM" Name="fpga_basicIO_bd.bmm"/>
-  <File Type="BITSTR-MMI" Name="fpga_basicIO.mmi"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="top_circuit_methodology_drc_routed.rpt"/>
-  <File Type="BITSTR-SYSDEF" Name="fpga_basicIO.sysdef"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="top_circuit_methodology_drc_routed.pb"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="fpga_basicIO.ltx"/>
-  <File Type="BOOT-PDI-FILE" Name="fpga_basicIO_boot.pdi"/>
-  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="NPI_FILE" Name="fpga_basicIO.npi"/>
+  <File Type="REPORTS-TCL" Name="top_circuit_reports.tcl"/>
+  <File Type="OPT-RQA-PB" Name="top_circuit_rqa_opted.pb"/>
+  <File Type="BITSTR-MMI" Name="top_circuit.mmi"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="top_circuit_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="top_circuit_timing_summary_init.rpt"/>
+  <File Type="OPT-TIMING" Name="top_circuit_timing_summary_opted.rpt"/>
+  <File Type="OPT-DCP" Name="top_circuit_opt.dcp"/>
   <File Type="OPT-DRC" Name="top_circuit_drc_opted.rpt"/>
-  <File Type="RBD_FILE" Name="fpga_basicIO.rbd"/>
-  <File Type="OPT-HWDEF" Name="fpga_basicIO.hwdef"/>
+  <File Type="OPT-HWDEF" Name="top_circuit.hwdef"/>
+  <File Type="PWROPT-DCP" Name="top_circuit_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="top_circuit_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="top_circuit_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="top_circuit_placed.dcp"/>
   <File Type="PLACE-IO" Name="top_circuit_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="top_circuit_clock_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL" Name="top_circuit_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="top_circuit_utilization_placed.pb"/>
   <File Type="PLACE-CTRL" Name="top_circuit_control_sets_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="fpga_basicIO_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="top_circuit_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="top_circuit_incremental_reuse_pre_placed.rpt"/>
+  <File Type="BG-BIN" Name="top_circuit.bin"/>
+  <File Type="PLACE-TIMING" Name="top_circuit_timing_summary_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="top_circuit_power_routed.rpx"/>
+  <File Type="PLACE-RQA-PB" Name="top_circuit_rqa_placed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="top_circuit_postplace_pwropt.dcp"/>
+  <File Type="BITSTR-MSK" Name="top_circuit.msk"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="top_circuit_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="top_circuit_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="top_circuit_drc_physopted.rpt"/>
+  <File Type="BITSTR-RBT" Name="top_circuit.rbt"/>
+  <File Type="PHYSOPT-TIMING" Name="top_circuit_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="top_circuit_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="top_circuit_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="top_circuit_routed_bb.dcp"/>
   <File Type="ROUTE-DRC" Name="top_circuit_drc_routed.rpt"/>
   <File Type="ROUTE-DRC-PB" Name="top_circuit_drc_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="top_circuit_power_routed.rpx"/>
+  <File Type="ROUTE-DRC-RPX" Name="top_circuit_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="top_circuit_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="top_circuit_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="top_circuit_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-RQS-PB" Name="top_circuit_rqs_routed.pb"/>
   <File Type="ROUTE-STATUS" Name="top_circuit_route_status.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="top_circuit_route_status.pb"/>
-  <File Type="ROUTE-DCP" Name="fpga_basicIO_routed.dcp"/>
-  <File Type="ROUTE-ERROR-DCP" Name="fpga_basicIO_routed_error.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="fpga_basicIO_routed_bb.dcp"/>
   <File Type="ROUTE-TIMINGSUMMARY" Name="top_circuit_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-TIMING-PB" Name="fpga_basicIO_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-PB" Name="top_circuit_timing_summary_routed.pb"/>
   <File Type="ROUTE-TIMING-RPX" Name="top_circuit_timing_summary_routed.rpx"/>
   <File Type="ROUTE-SIMILARITY" Name="top_circuit_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="top_circuit_clock_utilization_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW" Name="top_circuit_bus_skew_routed.rpt"/>
   <File Type="ROUTE-BUS-SKEW-PB" Name="top_circuit_bus_skew_routed.pb"/>
   <File Type="ROUTE-BUS-SKEW-RPX" Name="top_circuit_bus_skew_routed.rpx"/>
-  <File Type="OPT-DCP" Name="fpga_basicIO_opt.dcp"/>
-  <File Type="PLACE-DCP" Name="fpga_basicIO_placed.dcp"/>
-  <File Type="PWROPT-DCP" Name="fpga_basicIO_pwropt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="fpga_basicIO_postplace_pwropt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="fpga_basicIO_physopt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="fpga_basicIO_postroute_physopt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="fpga_basicIO_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="top_circuit_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="top_circuit_postroute_physopt_bb.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING" Name="top_circuit_timing_summary_postroute_physopted.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="top_circuit_timing_summary_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="top_circuit_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="top_circuit_bus_skew_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="top_circuit.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="top_circuit_bus_skew_postroute_physopted.pb"/>
   <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="top_circuit_bus_skew_postroute_physopted.rpx"/>
-  <File Type="ROUTE-DRC-RPX" Name="top_circuit_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="top_circuit_methodology_drc_routed.rpx"/>
-  <File Type="PDI-FILE" Name="fpga_basicIO.pdi"/>
-  <File Type="PL-PDI-FILE" Name="fpga_basicIO_pld.pdi"/>
-  <File Type="RCFI_FILE" Name="fpga_basicIO.rcfi"/>
-  <File Type="CFI_FILE" Name="fpga_basicIO.cfi"/>
-  <File Type="RNPI_FILE" Name="fpga_basicIO.rnpi"/>
-  <File Type="ROUTE-RQS" Name="fpga_basicIO_routed.rqs"/>
-  <File Type="POSTROUTE-PHYSOPT-RQS" Name="fpga_basicIO_postroute_physopted.rqs"/>
+  <File Type="BITSTR-NKY" Name="top_circuit.nky"/>
+  <File Type="BITSTR-BMM" Name="top_circuit_bd.bmm"/>
+  <File Type="PDI-FILE" Name="top_circuit.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="top_circuit_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="top_circuit_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="top_circuit.rcfi"/>
+  <File Type="CFI_FILE" Name="top_circuit.cfi"/>
+  <File Type="RNPI_FILE" Name="top_circuit.rnpi"/>
+  <File Type="NPI_FILE" Name="top_circuit.npi"/>
+  <File Type="RBD_FILE" Name="top_circuit.rbd"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="top_circuit.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="top_circuit.sysdef"/>
+  <File Type="BG-BGN" Name="top_circuit.bgn"/>
+  <File Type="BG-DRC" Name="top_circuit.drc"/>
+  <File Type="RDI-RDI" Name="top_circuit.vdi"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="ROUTE-RQS" Name="top_circuit_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="top_circuit_postroute_physopted.rqs"/>
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/memIN1.vhd">
+    <File Path="$PSRCDIR/sources_1/new/MemIn.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/MemOut copy.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/UART_CTRL.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/UART_TX_1B.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/UART_TX_KB.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -96,33 +134,32 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/memOUT.vhd">
+    <File Path="$PSRCDIR/sources_1/new/debouncer.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/fpga_basicIO.vhd">
+    <File Path="$PSRCDIR/sources_1/new/sevenSeg.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../../../../Downloads/memIN06b.vhd">
+    <File Path="$PSRCDIR/sources_1/new/top_circuit.vhd">
       <FileInfo>
-        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="fpga_basicIO"/>
+      <Option Name="TopModule" Val="top_circuit"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PPRDIR/../../../../Downloads/Lab2_Constraints.xdc">
+    <File Path="$PSRCDIR/sources_1/new/Basys3_Lab3.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -149,6 +186,5 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
-    <Step Id="write_device_image"/>
   </Strategy>
 </GenRun>

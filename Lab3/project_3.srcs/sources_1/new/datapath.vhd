@@ -34,7 +34,6 @@ ARCHITECTURE behavioral OF datapath IS
   SIGNAL sum_real, sum_imag : signed(28 DOWNTO 0);
   SIGNAL data : signed(31 DOWNTO 0);
   SIGNAL max_abs, min_abs : signed(25 DOWNTO 0);
-  SIGNAL max_det, min_det : signed(63 DOWNTO 0);
   SIGNAL max_index, min_index : STD_LOGIC_VECTOR(7 DOWNTO 0);
 BEGIN
 
@@ -57,8 +56,6 @@ BEGIN
         r12 <= (OTHERS => '0');
         max_abs <= "10000000000000000000000000";
         min_abs <= "01111111111111111111111111";
-        max_det <= (OTHERS => '0');
-        min_det <= (OTHERS => '0');
         max_index <= (OTHERS => '0');
         min_index <= (OTHERS => '0');
       ELSE
@@ -89,22 +86,18 @@ BEGIN
         IF S(0) = '1' THEN
           IF r12 > max_abs THEN
             max_abs <= r12;
-            max_det <= resize(r8, 32) & resize(r9, 32);
             max_index <= (OTHERS => '0');
             max_index(to_integer(unsigned(N) - "0010")) <= '1';
           ELSE
             max_abs <= max_abs;
-            max_det <= max_det;
             max_index <= max_index;
           END IF;
           IF r12 < min_abs THEN
             min_abs <= r12;
-            min_det <= resize(r8, 32) & resize(r9, 32);
             min_index <= (OTHERS => '0');
             min_index(to_integer(unsigned(N) - "0010")) <= '1';
           ELSE
             min_abs <= min_abs;
-            min_det <= min_det;
             min_index <= min_index;
           END IF;
         END IF;
@@ -143,13 +136,13 @@ BEGIN
 
   -- Sum of the real parts:
   sum_real <= r8 + r10; -- Q17.12
-  ars1_temp <= r10(28) & r10(28) & r10(28) & r10(28 DOWNTO 3); -- Q17.12
-  ars1_out <= ars1_temp & "000"; -- Q17.15
+  ars1_out <= r10(28) & r10(28) & r10(28) & r10; -- Q17.15
+  -- ars1_out <= ars1_temp; -- Q17.15
 
   -- Sum of the imaginary parts:
   sum_imag <= r9 + r11; -- Q17.12
-  ars2_temp <= r11(28) & r11(28) & r11(28) & r11(28 DOWNTO 3); -- Q17.12
-  ars2_out <= ars2_temp & "000"; -- Q17.15
+  ars2_out <= r11(28) & r11(28) & r11(28) & r11; -- Q17.15
+  -- ars2_out <= ars2_temp & "000"; -- Q17.15
 
   -- Output:
   WITH S(2 DOWNTO 1) SELECT
@@ -160,10 +153,8 @@ BEGIN
 
   DATA_OUT <= data; -- Q17.15
 
-  -- MAX_DET_OUT <= max_det;
   MAX_INDEX_OUT <= max_index;
 
-  -- MIN_DET_OUT <= min_det;
   MIN_INDEX_OUT <= min_index;
 
 END behavioral;
