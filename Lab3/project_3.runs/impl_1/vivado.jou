@@ -3,12 +3,12 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Wed Oct  9 17:39:02 2024
-# Process ID: 58212
-# Current directory: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/impl_1
-# Command line: vivado.exe -log fpga_basicIO.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source fpga_basicIO.tcl -notrace
-# Log file: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/impl_1/fpga_basicIO.vdi
-# Journal file: C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/impl_1\vivado.jou
+# Start of session at: Mon Oct 21 16:54:59 2024
+# Process ID: 48620
+# Current directory: C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.runs/impl_1
+# Command line: vivado.exe -log top_circuit.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_circuit.tcl -notrace
+# Log file: C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.runs/impl_1/top_circuit.vdi
+# Journal file: C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.runs/impl_1\vivado.jou
 # Running On        :Kristian-PC
 # Platform          :Windows Server 2016 or Windows 10
 # Operating System  :19045
@@ -17,8 +17,8 @@
 # CPU Physical cores:4
 # CPU Logical cores :8
 # Host memory       :16908 MB
-# Swap memory       :36507 MB
-# Total Virtual     :53415 MB
-# Available Virtual :28092 MB
+# Swap memory       :32212 MB
+# Total Virtual     :49120 MB
+# Available Virtual :21486 MB
 #-----------------------------------------------------------
-source fpga_basicIO.tcl -notrace
+source top_circuit.tcl -notrace
