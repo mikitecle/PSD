@@ -5,17 +5,15 @@ USE IEEE.NUMERIC_STD.ALL;
 ENTITY control IS
   PORT (
     clk, rst : IN STD_LOGIC;
-    selectors : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
-    enables : OUT STD_LOGIC_VECTOR (6 DOWNTO 0);
-    write_det_enable : OUT STD_LOGIC;
-    input_addr : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
-    output_addr : OUT STD_LOGIC_VECTOR (9 DOWNTO 0);
+    selectors : OUT STD_LOGIC_VECTOR (9 DOWNTO 0); -- CHANGE THIS
+    input_addr : in STD_LOGIC_VECTOR (9 DOWNTO 0);
+    output_addr : in STD_LOGIC_VECTOR (9 DOWNTO 0);
     done : OUT STD_LOGIC
   );
 END control;
 
 ARCHITECTURE Behavioral OF control IS
-  TYPE fsm_states IS (s_initial, s_load, s_1, s_2, s_3, s_4, s_5, s_finished);
+  TYPE fsm_states IS (s_init, s_1, s_2, s_3, s_4, s_end);
   SIGNAL currstate, nextstate : fsm_states;
   SIGNAL input_counter, output_counter : unsigned(9 DOWNTO 0);
 
