@@ -10,63 +10,48 @@ ARCHITECTURE behavior OF datapath_tb IS
   -- Component Declaration for the Unit Under Test (UUT)
   COMPONENT datapath
     PORT (
-      A, B, C, D, E, F : IN signed (15 DOWNTO 0); -- Input data
+      DATA_IN : IN signed(23 DOWNTO 0);
 
-      S1, S2, S3, S4, S6, S7, S8, S9 : IN STD_LOGIC; -- Mux selects
-      S5 : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- Mux select for Mux5
+      DATA_OUT : OUT signed(63 DOWNTO 0);
 
-      E1, E2, E3, E4, E5, E6, E7 : IN STD_LOGIC; -- Enables for 6 registers and 1 SRA
+      CLK : IN STD_LOGIC;
+      RST : IN STD_LOGIC;
 
-      CLK, RST : IN STD_LOGIC; -- Clock and synchronous active high reset
-
-      DATA_OUT : OUT signed (31 DOWNTO 0) -- Output data
+      WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+      S : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      N : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
     );
   END COMPONENT;
 
-  -- Inputs
-  SIGNAL A, B, C, D, E, F : signed (15 DOWNTO 0);
-  SIGNAL S1, S2, S3, S4, S6, S7, S8, S9 : STD_LOGIC;
-  SIGNAL S5 : STD_LOGIC_VECTOR (1 DOWNTO 0);
-
-  SIGNAL E1, E2, E3, E4, E5, E6, E7 : STD_LOGIC;
-  SIGNAL CLK, RST : STD_LOGIC;
+  -- Inputs 
+  SIGNAL DATA_IN : signed(23 DOWNTO 0);
+  SIGNAL CLK : STD_LOGIC := '0';
+  SIGNAL RST : STD_LOGIC := '0';
+  SIGNAL WE : STD_LOGIC_VECTOR(5 DOWNTO 0);
+  SIGNAL S : STD_LOGIC_VECTOR(1 DOWNTO 0);
+  SIGNAL N : STD_LOGIC_VECTOR(2 DOWNTO 0) := "000";
 
   -- Outputs
-  SIGNAL DATA_OUT : signed (31 DOWNTO 0);
+  SIGNAL DATA_OUT : signed(63 DOWNTO 0);
 
   -- Clock period definition
-  CONSTANT clk_period : TIME := 16 ns;
+  CONSTANT clk_period : TIME := 10 ns;
 
 BEGIN
 
   -- Instantiate the Unit Under Test (UUT)
   uut : datapath
   PORT MAP(
-    A => A,
-    B => B,
-    C => C,
-    D => D,
-    E => E,
-    F => F,
-    S1 => S1,
-    S2 => S2,
-    S3 => S3,
-    S4 => S4,
-    S6 => S6,
-    S7 => S7,
-    S8 => S8,
-    S9 => S9,
-    S5 => S5,
-    E1 => E1,
-    E2 => E2,
-    E3 => E3,
-    E4 => E4,
-    E5 => E5,
-    E6 => E6,
-    E7 => E7,
+    DATA_IN => DATA_IN,
+
+    DATA_OUT => DATA_OUT,
+
     CLK => CLK,
     RST => RST,
-    DATA_OUT => DATA_OUT
+
+    WE => WE,
+    S => S,
+    N => N
   );
 
   -- Clock generation
@@ -77,73 +62,81 @@ BEGIN
   BEGIN
     -- Initialize Inputs
     RST <= '1';
-    A <= (OTHERS => '0');
-    B <= (OTHERS => '0');
-    C <= (OTHERS => '0');
-    D <= (OTHERS => '0');
-    E <= (OTHERS => '0');
-    F <= (OTHERS => '0');
-    S1 <= '0';
-    S2 <= '0';
-    S3 <= '0';
-    S4 <= '0';
-    S5 <= "00";
-    S6 <= '0';
-    S7 <= '0';
-    S8 <= '0';
-    S9 <= '0';
-    E1 <= '0';
-    E2 <= '0';
-    E3 <= '0';
-    E4 <= '0';
-    E5 <= '0';
-    E6 <= '0';
-    E7 <= '0';
+    DATA_IN <= (OTHERS => '0');
+    WE <= (OTHERS => '0');
+    S <= (OTHERS => '0');
 
     -- Wait for reset to finish
     WAIT FOR 100 ns;
     RST <= '0';
 
+    -- Det 1: 42.5 - 12.125i
+    -- Det 2: 9.8125 - 55.5i
+    -- Det 3: 134 + i
+    -- Det 4: 30.375 - 43.3125i
+
     -- Apply some test inputs after reset is de-asserted
-    A <= to_signed(1, 16);
-    B <= to_signed(2, 16);
-    C <= to_signed(3, 16);
-    D <= to_signed(4, 16);
-    E <= to_signed(5, 16);
-    F <= to_signed(6, 16);
+    DATA_IN <= "000010000000000110100000" AFTER 20 ns, -- 2 + 6.5i
+               "111010110000000010000000" AFTER 30 ns, -- -5.25 + 2i
+               "000100000000000100000000" AFTER 40 ns, -- 4 + 4i
+               "110101100000000110000000" AFTER 50 ns, -- -10.5 + 6i
+               -- Done first set of inputs
+               "000001100000000001100000" AFTER 60 ns, -- 1.5 + 1.5i
+               "000101000000000000100000" AFTER 70 ns, -- 5 + 0.5i
+               "000001010000000111000000" AFTER 80 ns, -- 1.25 + 7i
+               "001000110000000010000000" AFTER 90 ns, -- 8.75 + 2i
+               -- Done second set of inputs
+               "000110000000000010100000" AFTER 100 ns, -- 6 + 2.5i
+               "111101000000000101000000" AFTER 110 ns, -- -3 + 5i
+               "001010000000000011000000" AFTER 120 ns, -- 10 + 3i
+               "110001100000000110100000" AFTER 130 ns, -- -14.5 + 6.5i
+               -- Done third set of inputs
+               "000011100000000001010000" AFTER 140 ns, -- 3.5 + 1.25i
+               "111000110000000011100000" AFTER 150 ns, -- -7.25 + 3.5i
+               "001001100000000001000000" AFTER 160 ns, -- 9.5 + 1i
+               "111010010000000101100000" AFTER 170 ns, -- -5.75 + 5.5i
+               -- Done fourth set of inputs
+               "000000000000000000000000" AFTER 180 ns;-- 0 + 0i
+
+    WE <= "001001" AFTER 20 ns,
+          "010010" AFTER 30 ns,
+          "100101" AFTER 40 ns,
+          "000010" AFTER 50 ns,
+          "001001" AFTER 60 ns,
+          "010010" AFTER 70 ns,
+          "100101" AFTER 80 ns,
+          "000010" AFTER 90 ns,
+          "001001" AFTER 100 ns,
+          "010010" AFTER 110 ns,
+          "100101" AFTER 120 ns,
+          "000010" AFTER 130 ns,
+          "001001" AFTER 140 ns,
+          "010010" AFTER 150 ns,
+          "100101" AFTER 160 ns,
+          "000010" AFTER 170 ns,
+          "001001" AFTER 180 ns,
+          "010010" AFTER 190 ns,
+          "100101" AFTER 200 ns,
+          "000010" AFTER 210 ns,
+          "001001" AFTER 220 ns,
+          "010010" AFTER 230 ns,
+          "100101" AFTER 240 ns,
+          "000010" AFTER 250 ns,
+          "001001" AFTER 260 ns,
+          "010010" AFTER 270 ns,
+          "100101" AFTER 280 ns,
+          "000010" AFTER 290 ns;
 
     -- Select different mux values and enable the registers
-    S1 <= '0';
-    S2 <= '0';
-    S3 <= '0';
-    S4 <= '0';
-    S5 <= "00";
-    S6 <= '0';
-    S7 <= '0';
-    S8 <= '0';
-    S9 <= '0';
+    S <= "00" AFTER 20 ns;
 
-    E1 <= '1';
-    E2 <= '1';
-    E3 <= '1';
-    E4 <= '1';
-    E5 <= '1';
-    E6 <= '1';
-    E7 <= '1';
+    N <= "000" AFTER 80 ns,
+         "001" AFTER 120 ns,
+         "010" AFTER 160 ns,
+         "011" AFTER 200 ns;
 
     -- Wait for a few clock cycles to observe output
     WAIT FOR clk_period * 10;
-
-    -- Change mux selects
-    S1 <= '1';
-    S2 <= '1';
-    S3 <= '1';
-    S4 <= '1';
-    S5 <= "01";
-    S6 <= '1';
-    S7 <= '1';
-    S8 <= '1';
-    S9 <= '1';
 
     -- Wait to observe new outputs
     WAIT FOR clk_period * 10;

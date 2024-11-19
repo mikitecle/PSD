@@ -24,9 +24,9 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 // pre-commands:
-ISETouchFile( "init_design", "begin" );
+ISETouchFile( "write_bitstream", "begin" );
 ISEStep( "vivado",
-         "-log fpga_basicIO.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source fpga_basicIO.tcl -notrace" );
+         "-log top_circuit.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source top_circuit.tcl -notrace" );
 
 
 

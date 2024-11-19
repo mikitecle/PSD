@@ -4,55 +4,38 @@ USE IEEE.NUMERIC_STD.ALL;
 
 ENTITY datapath IS
   PORT (
-    A, B, C, D, E, F : IN signed (15 DOWNTO 0); -- Input data
+    DATA_IN : IN signed(23 DOWNTO 0);
 
-    S1, S2, S3, S4, S6, S7, S8, S9 : IN STD_LOGIC; -- Mux selects
-    S5 : IN STD_LOGIC_VECTOR (1 DOWNTO 0); -- Mux select for Mux5
+    DATA_OUT : OUT signed(31 DOWNTO 0);
+    MAX_INDEX_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    MIN_INDEX_OUT : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
 
-    E1, E2, E3, E4, E5, E6, E7 : IN STD_LOGIC; -- Enables for 6 registers and 1 SRA
+    CLK : IN STD_LOGIC;
+    RST : IN STD_LOGIC;
 
-    CLK, RST : IN STD_LOGIC; -- Clock and synchronous active high reset
-
-    DATA_OUT : OUT signed (31 DOWNTO 0) -- Output data
+    WE : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    S : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    N : IN STD_LOGIC_VECTOR(3 DOWNTO 0)
   );
 END datapath;
 
 ARCHITECTURE behavioral OF datapath IS
-
-  -- Operator outputs
-  SIGNAL mul1_out, mul2_out, alu_out, sra_out : signed (31 DOWNTO 0);
-  SIGNAL mul1_out_64, mul2_out_64 : signed(63 DOWNTO 0);
-
-  -- Mux outputs
-  SIGNAL mux1, mux2, mux3, mux4, mux5, mux6, mux7, mux8 : signed (31 DOWNTO 0);
-
-  -- Register outputs
-  SIGNAL r1, r2, r3, r4, r5, r6 : signed (31 DOWNTO 0);
-
+  SIGNAL r1 : signed(23 DOWNTO 0);
+  SIGNAL r2, r3, r4, r5, r6, r7, r8, r9 : signed(24 DOWNTO 0);
+  SIGNAL r10, r11 : signed(28 DOWNTO 0);
+  SIGNAL r12 : signed(25 DOWNTO 0);
+  SIGNAL mul1_out, mul2_out, mul3_out, mul4_out : signed(23 DOWNTO 0);
+  SIGNAL abs_real, abs_imag : signed(24 DOWNTO 0);
+  SIGNAL sub1_out, add1_out, sub2_out, sub3_out : signed(24 DOWNTO 0);
+  SIGNAL add2_out : signed(25 DOWNTO 0);
+  SIGNAL mux1_out, mux2_out : signed(31 DOWNTO 0);
+  SIGNAL ars1_temp, ars2_temp : signed(28 DOWNTO 0);
+  SIGNAL ars1_out, ars2_out : signed(31 DOWNTO 0);
+  SIGNAL sum_real, sum_imag : signed(28 DOWNTO 0);
+  SIGNAL data : signed(31 DOWNTO 0);
+  SIGNAL max_abs, min_abs : signed(25 DOWNTO 0);
+  SIGNAL max_index, min_index : STD_LOGIC_VECTOR(7 DOWNTO 0);
 BEGIN
-
-  -- Muxes:
-  mux1 <= r1 WHEN S1 = '0' ELSE
-          r3;
-  mux2 <= r1 WHEN S2 = '0' ELSE
-          r3;
-  mux3 <= resize(A, 32) WHEN S3 = '0' ELSE
-          mul1_out;
-  mux4 <= resize(B, 32) WHEN S4 = '0' ELSE
-          alu_out;
-
-  -- Mux5 has a 2-bit select signal S5
-  WITH S5 SELECT
-    mux5 <= resize(C, 32) WHEN "00",
-    mul1_out WHEN "01",
-    alu_out WHEN OTHERS;
-
-  mux6 <= resize(D, 32) WHEN S6 = '0' ELSE
-          mul2_out;
-  mux7 <= resize(E, 32) WHEN S7 = '0' ELSE
-          mul1_out;
-  mux8 <= resize(F, 32) WHEN S8 = '0' ELSE
-          alu_out;
 
   -- Registers:
   PROCESS (CLK)
@@ -65,46 +48,113 @@ BEGIN
         r4 <= (OTHERS => '0');
         r5 <= (OTHERS => '0');
         r6 <= (OTHERS => '0');
+        r7 <= (OTHERS => '0');
+        r8 <= (OTHERS => '0');
+        r9 <= (OTHERS => '0');
+        r10 <= (OTHERS => '0');
+        r11 <= (OTHERS => '0');
+        r12 <= (OTHERS => '0');
+        max_abs <= "10000000000000000000000000";
+        min_abs <= "01111111111111111111111111";
+        max_index <= (OTHERS => '0');
+        min_index <= (OTHERS => '0');
       ELSE
-        IF E1 = '1' THEN
-          r1 <= mux3;
+        IF WE(0) = '1' THEN
+          r1 <= DATA_IN; -- Q12.12
         END IF;
-        IF E2 = '1' THEN
-          r2 <= mux4;
+        IF WE(1) = '1' THEN
+          r2 <= mul1_out(23) & mul1_out; -- Q13.12
+          r3 <= mul2_out(23) & mul2_out; -- Q13.12
+          r4 <= mul3_out(23) & mul3_out; -- Q13.12
+          r5 <= mul4_out(23) & mul4_out; -- Q13.12
         END IF;
-        IF E3 = '1' THEN
-          r3 <= mux5;
+        IF WE(2) = '1' THEN
+          r6 <= sub1_out; -- Q13.12
+          r7 <= add1_out; -- Q13.12
         END IF;
-        IF E4 = '1' THEN
-          r4 <= mux6;
+        IF WE(3) = '1' THEN
+          r8 <= sub2_out; -- Q13.12
+          r9 <= sub3_out; -- Q13.12
         END IF;
-        IF E5 = '1' THEN
-          r5 <= mux7;
+        IF WE(4) = '1' THEN
+          r10 <= sum_real; -- Q17.12
+          r11 <= sum_imag; -- Q17.12
+          r12 <= add2_out; -- Q14.12
         END IF;
-        IF E6 = '1' THEN
-          r6 <= mux8;
+
+        -- Comparator for the absolute values:
+        IF S(0) = '1' THEN
+          IF r12 > max_abs THEN
+            max_abs <= r12;
+            max_index <= (OTHERS => '0');
+            max_index(to_integer(unsigned(N) - "0010")) <= '1';
+          ELSE
+            max_abs <= max_abs;
+            max_index <= max_index;
+          END IF;
+          IF r12 < min_abs THEN
+            min_abs <= r12;
+            min_index <= (OTHERS => '0');
+            min_index(to_integer(unsigned(N) - "0010")) <= '1';
+          ELSE
+            min_abs <= min_abs;
+            min_index <= min_index;
+          END IF;
         END IF;
       END IF;
     END IF;
   END PROCESS;
 
-  -- Multipliers (32-bit x 32-bit):
-  mul1_out_64 <= (mux1 * r2);
-  mul1_out <= mul1_out_64(31 DOWNTO 0);
+  -- Multipliers:
+  mul1_out <= r1(23 DOWNTO 12) * DATA_IN(23 DOWNTO 12); -- real * real = Q12.12
+  mul2_out <= r1(11 DOWNTO 0) * DATA_IN(11 DOWNTO 0); -- imag * imag = Q12.12
+  mul3_out <= r1(11 DOWNTO 0) * DATA_IN(23 DOWNTO 12); -- imag * real = Q12.12
+  mul4_out <= r1(23 DOWNTO 12) * DATA_IN(11 DOWNTO 0); -- real * imag = Q12.12
 
-  mul2_out_64 <= (r5 * r6);
-  mul2_out <= mul2_out_64(31 DOWNTO 0);
+  -- Absolute value of the real and imaginary parts:
+  abs_real <= -r8 WHEN r8 < 0 ELSE
+              r8; -- Q13.12
 
-  -- ALU:
-  WITH S9 SELECT
-    alu_out <= mux2 + sra_out WHEN '0',
-    sra_out - mux2 WHEN OTHERS;
+  abs_imag <= -r9 WHEN r9 < 0 ELSE
+              r9; -- Q13.12
 
-  -- SRA (Shift Right Arithmetic) for integer division:
-  sra_out <= r4(31) & r4(31) & r4(31 DOWNTO 2) WHEN E7 = '1' ELSE
-             r4;
+  -- Adders and subtractors: 
+  sub1_out <= r2 - r3; -- Q13.12
+  add1_out <= r4 + r5; -- Q13.12
 
-  -- Output assignment:
-  DATA_OUT <= alu_out;
+  sub2_out <= r6 - sub1_out; -- Q13.12
+  sub3_out <= r7 - add1_out; -- Q13.12
+
+  add2_out <= ('0' & abs_real) + ('0' & abs_imag); -- Q14.12
+
+  -- Muxes:
+  -- mux1_out <= r8(24) & r8(24) & r8(24) & r8(24) & r8 & "000" WHEN S(1) = '0' ELSE
+  --             ars1_out;
+
+  -- mux2_out <= r9(24) & r9(24) & r9(24) & r9(24) & r9 & "000" WHEN S(1) = '0' ELSE
+  --             ars2_out;
+
+  -- Sum of the real parts:
+  sum_real <= r8 + r10; -- Q17.12
+  ars1_out <= r10(28) & r10(28) & r10(28) & r10; -- Q17.15
+  -- ars1_out <= ars1_temp; -- Q17.15
+
+  -- Sum of the imaginary parts:
+  sum_imag <= r9 + r11; -- Q17.12
+  ars2_out <= r11(28) & r11(28) & r11(28) & r11; -- Q17.15
+  -- ars2_out <= ars2_temp & "000"; -- Q17.15
+
+  -- Output:
+  WITH S(2 DOWNTO 1) SELECT
+  data <= r8(24) & r8(24) & r8(24) & r8(24) & r8 & "000" WHEN "00",
+          r9(24) & r9(24) & r9(24) & r9(24) & r9 & "000" WHEN "01",
+          ars1_out WHEN "10",
+          ars2_out WHEN OTHERS;
+
+  DATA_OUT <= data; -- Q17.15
+
+  MAX_INDEX_OUT <= max_index;
+
+  MIN_INDEX_OUT <= min_index;
 
 END behavioral;

@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/krisg/AppData/Roaming/Xilinx/Vivado/project_2/project_2.runs/synth_1'
+HD_PWD='C:/Users/krisg/Documents/Git/PSD/Lab3/project_3.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log fpga_basicIO.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source fpga_basicIO.tcl
+EAStep vivado -log top_circuit.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_circuit.tcl

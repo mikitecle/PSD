@@ -1,0 +1,17 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../project_3.srcs/sources_1/new/MemIn.vhd" \
+"../../../../project_3.srcs/sources_1/new/MemOut copy.vhd" \
+"../../../../project_3.srcs/sources_1/new/UART_CTRL.vhd" \
+"../../../../project_3.srcs/sources_1/new/UART_TX_1B.vhd" \
+"../../../../project_3.srcs/sources_1/new/UART_TX_KB.vhd" \
+"../../../../project_3.srcs/sources_1/new/circuito.vhd" \
+"../../../../project_3.srcs/sources_1/new/control.vhd" \
+"../../../../project_3.srcs/sources_1/new/datapath.vhd" \
+"../../../../project_3.srcs/sources_1/new/debouncer.vhd" \
+"../../../../project_3.srcs/sources_1/new/sevenSeg.vhd" \
+"../../../../project_3.srcs/sources_1/new/top_circuit.vhd" \
+"../../../../project_3.srcs/sim_1/new/top_circuit_tb.vhd" \
+
+# Do not sort compile order
+nosort
